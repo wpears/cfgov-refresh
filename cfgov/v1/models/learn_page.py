@@ -1,5 +1,7 @@
+import re
 from datetime import datetime
 from localflavor.us.models import USStateField
+from urlparse import parse_qs, urlparse
 
 from django.db import models
 from wagtail.wagtailcore import blocks
@@ -219,3 +221,48 @@ class EventPage(AbstractFilterPage):
     ])
 
     template = 'events/event.html'
+
+    VIDEO_TYPES = {
+        YOUTUBE: 'youtube',
+        USTREAM: 'ustream'
+    }
+
+    @property
+    def video_type(self):
+        _type = ''
+        YOUTUBE_EMBED_URL = 'youtube.com/embed'
+        USTREAM_EMBED_URL = 'ustream.com/embed'
+        if YOUTUBE_EMBED_URL in getattr(self, 'youtube_url', ''):
+            _type = 'youtube'
+        elif USTREAM_EMBED_URL in getattr(self, 'live_stream_url', ''):
+            _type = 'ustream'
+        return _type
+
+    @property
+    def video_id(self):
+        _video_id = ''
+        # It might make more sense to just use urlparse and check the path.
+        YOUTUBE_REGEX = re.compile('\?v=(?P<w_id>.*)|\/embed\/(?P<e_id>[^?]*)', re.I)
+        if self.video_type == self.VIDEO_TYPES.YOUTUBE:
+            id_match = YOUTUBE_REGEX.search(self.youtube_url)
+            if id_match:
+                id_match_dict = id_match.groupdict()
+                w_id = getattr(id_match_dict, 'w_id', '')
+                e_id = getattr(id_match_dict, 'e_id', '')
+                _video_id = w_id or e_id
+        return _video_id
+
+    def build_video_url(self, video_url='', request):
+        url_dict = urlparse(video_url)
+        param_dict = parse_qs(url_dict.query)
+        add_param = lambda x: '&' + x if x.endswith('&') == false and x.endswith('x') == false else x
+        if self.video_type == self.VIDEO_TYPES.YOUTUBE:
+            if video_url.find( '?' ) == -1
+                video_url += '?'
+            if hasattr(param_dict, 'enablejsapi') == false
+                video_url += add_param('enablejsapi=1')
+            if hasattr(param_dict, 'autoplay') == false
+                video_url += add_param('autoplay=1')
+            if hasattr(param_dict, 'origin') == false
+                video_url += add_param('origin=http://' ~ request.META['HTTP_HOST'])
+        return video_url
