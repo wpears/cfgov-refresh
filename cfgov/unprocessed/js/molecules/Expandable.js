@@ -233,15 +233,11 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
 
   /**
    * Handle a resize of the window.
-   * TODO: Throttle this call per
-   * https://developer.mozilla.org/en-US/docs/Web/Events/resize.
    */
   function _resizeHandler() {
-    if( _contentAnimated.offsetHeight !== _contentHeight ) {
-      _refreshHeight();
-      if ( _isInMobile() ) {
-        _collapseBinded();
-      }
+    _refreshHeight();
+    if ( _isInMobile() ) {
+      _collapseBinded();
     }
   }
 
