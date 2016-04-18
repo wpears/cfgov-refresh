@@ -1,4 +1,4 @@
-from core.services import PDFGeneratorView, PDFReactor
+from core.services import PDFGeneratorView, PDFreactor
 from django.conf import settings
 from django.http import HttpResponse
 
