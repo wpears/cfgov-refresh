@@ -1,4 +1,4 @@
-# Wagtail Workflows
+# Contributing to our Wagtail influenced backend
 This document will be where you can find information on how to contribute to the Wagtail backend of the website.
 
 ## Overall backend vision with Wagtail and Atomic Design
