@@ -67,6 +67,11 @@
                 {% for block in value.content %}
                     {% if 'paragraph' in block.block_type %}
                         {{ parse_links(block.value) |safe}}
+                    {% elif 'image' in block.block_type %}
+                        <div class="o-expandable-media">
+                            {% set media = image(block.value, 'original') %}
+                            <img class="o-expandable_image" src="{{ media.url }}" alt="{{ media.alt }}">
+                        </div>
                     {% else %}
                         {{ render_stream_child(block) }}
                     {% endif %}

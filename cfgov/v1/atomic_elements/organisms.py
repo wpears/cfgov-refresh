@@ -164,6 +164,7 @@ class Expandable(BaseExpandable):
         [
             ('paragraph', blocks.RichTextBlock(required=False)),
             ('well', Well()),
+            ('image', images_blocks.ImageChooserBlock(icon='image')),
             ('links', atoms.Hyperlink()),
             ('email', molecules.ContactEmail()),
             ('phone', molecules.ContactPhone()),
