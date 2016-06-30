@@ -54,22 +54,25 @@
          <div class="o-filterable-list-controls">
 
             {# Set the filters #}
-
-		{% set filter_by = {
+            {% set filter_by = {
                 'calendar':   true,
                 'range_date': true
             } %}
+            {% set query = queries.calendar_event %}
+            {% set posts = query.search() %}
+
             {% import 'macros/filters.html' as filters with context %}
             {{ filters.render(
                 filter_by,
-                paginator,
-                events,
+                query,
+                posts,
                 'calendar_event',
                 { 'expand_label': 'Filter calendars' }
             ) }}
-            {{ calendar.render(events) }}
 
-            {{ pagination(paginator, ['calendar', 'range_date_gte', 'range_date_lte']) }}
+            {{ calendar.render(posts) }}
+
+            {{ pagination(posts, ['calendar', 'range_date_gte', 'range_date_lte']) }}
         </div>
     </div>
 
@@ -82,24 +85,19 @@
             generate a PDF of the results for you. Very large requests may take a while.
         </p>
         <div class="o-filterable-list-controls">
-            {% set filter_by = {
-                'calendar':   true,
-                'range_date': true
-            } %}
-            {% import 'macros/filters.html' as filters with context %}
             {{ filters.render(
                 filter_by,
                 query,
                 posts,
                 'calendar_event',
                 {
-                    'id_prefix'           : '',
+                    'id_prefix'           : 'download',
                     'expand_label'        : 'Download options',
                     'show_current_filters': false,
                     'action'              : 'pdf/',
                     'submit_label'        : 'Download PDF',
                     'additional_classes'  : 'js-validate_require-date',
-                    'form_method'         : 'get',
+                    'form_method'         : 'post',
                     'show_errors'         :  True
                 }
             ) }}
