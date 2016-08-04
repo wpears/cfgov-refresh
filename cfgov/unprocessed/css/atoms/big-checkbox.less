@@ -1,0 +1,117 @@
+.a-input {
+
+    @checkbox-width: unit( 18px / @base-font-size-px, em);
+    @radio-width: unit( 17px / @base-font-size-px, em);
+
+    &[type="checkbox"],
+    &[type="radio"]{
+        .u-visually-hidden();
+
+        .lt-ie9 & {
+            height: 20px;
+            width: 20px;
+            border: 0;
+            float: left;
+            margin: 1em;
+            position: static;
+            width: auto;
+        }
+    }
+
+    &[type="checkbox"] + label,
+    &[type="radio"] + label {
+        cursor: pointer;
+        margin-bottom: 0;
+    }
+
+    &[type="checkbox"] + label::before,
+    &[type="radio"] + label::before {
+        background: white;
+        content: '\a0';
+        display: inline-block;
+        margin-top: unit( 2px / @base-font-size-px, em);
+        margin-right: .6em;
+    }
+
+    &[type="radio"] + label::before {
+        height: @radio-width;
+        width: @radio-width;
+        border-radius: 100%;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3px @input-border;
+    }
+
+    &[type="radio"]:checked + label::before {
+        background-color: @input-active;
+        box-shadow: 0 0 0 2px @input-bg, 0 0 0 3px @input-active;
+    }
+
+    &[type="radio"]:hover + label::before {
+        box-shadow: 0 0 0 2px @input-bg, 0 0 0 3px @input-active;
+    }
+
+    &[type="radio"]:focus + label::before {
+        box-shadow: 0 0 0 1px @input-bg, 0 0 0 3px @input-active;
+    }
+
+    &[type="checkbox"] + label::before {
+        height: @checkbox-width;
+        width: @checkbox-width;
+        box-shadow: 0 0 0 1px @input-bg, 0 0 0 2px @input-border;
+    }
+
+    &[type="checkbox"]:checked + label::before {
+        content: @cf-icon-approved;
+        font-family: 'CFPB Minicons';
+        font-size: unit( 16px / @base-font-size-px, em);
+        box-shadow: 0 0 0 1px @input-bg, 0 0 0 2px @input-active;
+        text-align: center;
+    }
+
+    &[type="checkbox"]:hover + label::before {
+        box-shadow: 0 0 0 1px @input-bg, 0 0 0 2px @input-active;
+    }
+
+    &[type="checkbox"]:focus + label::before {
+        box-shadow: 0 0 0 2px @input-active;
+    }
+
+    &[type="checkbox"]:disabled + label {
+        color: @input-border-disabled;
+    }
+
+    &[type="checkbox"]:disabled + label::before,
+    &[type="radio"]:disabled + label::before {
+        background: @input-bg-disabled;
+        box-shadow: 0 0 0 1px @input-bg, 0 0 0 2px @input-border-disabled;
+        cursor: not-allowed;
+    }
+
+}
+
+.m-big-checkbox {
+    background: @input-inset-bg;
+
+    + .m-big-checkbox {
+        margin-top: 15px;
+    }
+
+
+    label {
+        margin: 0;
+        padding: unit( ( @grid_gutter-width / 2 ) / @base-font-size-px, em )
+               unit( ( @grid_gutter-width / 2 ) / @base-font-size-px, em )
+               unit( ( @grid_gutter-width / 1.75 ) / @base-font-size-px, em );
+    }
+
+    &.selected label,
+    &.focus label,
+    input:focus + label,
+    input:checked + label {
+      outline: 1px solid @input-border-focus;
+    }
+
+    &.selected label,
+    input:checked + label {
+      background-color: @input-inset-selected;
+    }
+}
