@@ -34,44 +34,39 @@
                 {%- endif -%}
             </legend>
         </div>
-        <div class="form-l_col
-                    form-l_col-1-2__wide">
         {% for field in settings.fields %}
-            {% if loop.index <= loop.length / 2 %}
-            <div class="m-big-checkbox">
-                    <input class="a-input"
-                           type="checkbox"
-                           name="form_{{ id_slug }}"
-                           id="input_{{ id_slug }}_{{ loop.index }}"
-                           {{ 'required' if settings.required else '' }}
-                           {{ 'disabled' if settings.disabled else '' }}>
-                    <label class="a-input_label"
-                           for="input_{{ id_slug }}_{{ loop.index }}">
-                        {{ field }}
-                    </label>
-            </div>
-            {% endif %}
+            {% if loop.length == 2 %}
+                <div class="m-big-checkbox m-big-checkbox__1-2">
+                    <div class="m-big-checkbox_container">
+                        <input class="a-input"
+                               type="checkbox"
+                               name="form_{{ id_slug }}"
+                               id="input_{{ id_slug }}_{{ loop.index }}"
+                               {{ 'required' if settings.required else '' }}
+                               {{ 'disabled' if settings.disabled else '' }}>
+                        <label class="a-input_label"
+                               for="input_{{ id_slug }}_{{ loop.index }}">
+                            {{ field }}
+                        </label>
+                    </div>
+                  </div>
+              {% else %}
+                  <div class="m-big-checkbox">
+                      <div class="m-big-checkbox_container">
+                          <input class="a-input"
+                                 type="checkbox"
+                                 name="form_{{ id_slug }}"
+                                 id="input_{{ id_slug }}_{{ loop.index }}"
+                                 {{ 'required' if settings.required else '' }}
+                                 {{ 'disabled' if settings.disabled else '' }}>
+                          <label class="a-input_label"
+                                 for="input_{{ id_slug }}_{{ loop.index }}">
+                              {{ field }}
+                          </label>
+                      </div>
+                  </div>
+              {% endif %}
         {% endfor %}
-        </div>
-        <div class="form-l_col
-                    form-l_col-1-2__wide">
-        {% for field in settings.fields %}
-            {% if loop.index > loop.length / 2 %}
-               <div class="m-big-checkbox">
-                       <input class="a-input"
-                              type="checkbox"
-                              name="form_{{ id_slug }}"
-                              id="input_{{ id_slug }}_{{ loop.index }}"
-                              {{ 'required' if settings.required else '' }}
-                              {{ 'disabled' if settings.disabled else '' }}>
-                       <label class="a-input_label"
-                              for="input_{{ id_slug }}_{{ loop.index }}">
-                           {{ field }}
-                       </label>
-               </div>
-            {% endif %}
-        {% endfor %}
-        </div>
     </fieldset>
 {%- endmacro %}
 

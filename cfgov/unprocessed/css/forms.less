@@ -249,21 +249,13 @@
 }
 
 .respond-to-min(@bp-sm-min, {
+
     .form-l_col-1-4 {
         .grid_column(3);
     }
 
     .form-l_col-1-2 {
         .grid_column(6);
-    }
-
-    .form-l_col-1-2__wide {
-        .grid_column(6);
-        border-right-width: 7.5px;
-
-        &:nth-child(odd) {
-            margin-left: -7.5px;
-        }
     }
 
     .form-l_col-1-3 {
@@ -411,7 +403,7 @@
     @radio-width: unit( 17px / @base-font-size-px, em);
 
     &[type="checkbox"],
-    &[type="radio"]{
+    &[type="radio"] {
         .u-visually-hidden();
 
         .lt-ie9 & {

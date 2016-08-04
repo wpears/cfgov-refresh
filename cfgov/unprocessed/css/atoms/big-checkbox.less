@@ -88,13 +88,15 @@
 
 }
 
+
+
 .m-big-checkbox {
-    background: @input-inset-bg;
 
-    + .m-big-checkbox {
-        margin-top: 15px;
+    margin-bottom: 15px;
+
+    &:last-child {
+        margin-bottom: 30px;
     }
-
 
     label {
         margin: 0;
@@ -113,5 +115,25 @@
     &.selected label,
     input:checked + label {
       background-color: @input-inset-selected;
+    }
+
+    &__1 {
+      .respond-to-min(@bp-sm-min, {
+          .grid_column(12);
+      });
+    }
+    &__1-2 {
+        .respond-to-min(@bp-sm-min, {
+            .grid_column(6);
+            border-right-width: 7.5px;
+
+            &:nth-child(odd) {
+                margin-left: -7.5px;
+            }
+        });
+    }
+
+    &_container {
+        background: @input-inset-bg;
     }
 }
