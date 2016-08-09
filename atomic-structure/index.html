@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Atomic structure and design - cfgov-refresh</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Atomic structure and design";
+    var mkdocs_page_input_path = "atomic-structure.md";
+    var mkdocs_page_url = "/atomic-structure/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> cfgov-refresh</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation/">Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../usage/">Usage</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Building and Deploying for cf.gov</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../whats-new/">What's new</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new-projects/">New projects</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../branching-merging/">Branching and merging</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../release-cadence/">Release cadence</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../deployment/">Deployment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../feature-flags/">Feature flags</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../django-to-wagtail/">Wagtail Pages vs Django views</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Front end guidelines</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Atomic structure and design</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#notes-on-atomic-design">Notes on Atomic Design</a></li>
+                
+                    <li><a class="toctree-l4" href="#atoms">Atoms</a></li>
+                
+                    <li><a class="toctree-l4" href="#molecules">Molecules</a></li>
+                
+                    <li><a class="toctree-l4" href="#organisms">Organisms</a></li>
+                
+                    <li><a class="toctree-l4" href="#templates">Templates</a></li>
+                
+                    <li><a class="toctree-l4" href="#folder-structure">Folder Structure</a></li>
+                
+                    <li><a class="toctree-l4" href="#javascript-architecture">JavaScript Architecture</a></li>
+                
+                    <li><a class="toctree-l4" href="#component-build-pipeline">Component Build Pipeline</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-atomic-design/">Notes on adapting atomic design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-frameworks/">Notes on frameworks</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../testing/">Testing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../development-tips/">Development tips</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contributing/">Contributing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../terms/">Terms</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../license/">License</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">cfgov-refresh</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Front end guidelines &raquo;</li>
+        
+      
+    
+    <li>Atomic structure and design</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="notes-on-atomic-design">Notes on Atomic Design</h1>
+<p>Check out <a href="http://www.ebaytechblog.com/?p=3113">Don't Build Pages, Build Modules</a>. It encompasses exactly what we are trying to achieve by building components using atomic design. It's important to note that our front-end atomic architecture is still evolving.</p>
+<p>Our components are broken down into templates, organisms, molecules, and atoms. We opted not to use the page component, although it exists in atomic design. Our components are composed of HTML, CSS, and Javascript. If a component doesn’t have user interactions or require styling, then it won’t have an associated js and/or css file. We compose our atomic components as follows:</p>
+<h3 id="atoms">Atoms</h3>
+<p>Prefixed with “a-” in CSS, Javascript, and HTML files.</p>
+<h4 id="html">HTML</h4>
+<pre><code class="html">&lt;div class=&quot;a-overlay u-hidden&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<h4 id="css">CSS</h4>
+<pre><code class="css"> .a-overlay {
+        // Only show overlay at mobile/tablet size.
+        .respond-to-max( @bp-sm-max, {
+            height: 100%;
+            width: 100%;
+</code></pre>
+
+<h3 id="molecules">Molecules</h3>
+<p>Prefixed with “m-” in CSS, Javascript, and HTML files.</p>
+<h4 id="html_1">HTML</h4>
+<pre><code class="html">&lt;div class=&quot;m-notification m-notification__error m-notification__visible&quot; data-js-hook=&quot;state_atomic_init&quot;&gt;
+      &lt;span class=&quot;m-notification_icon cf-icon&quot;&gt;&lt;/span&gt;
+      &lt;div class=&quot;m-notification_content&quot; role=&quot;alert&quot;&gt;&lt;/div&gt;
+ &lt;/div&gt;
+</code></pre>
+
+<h4 id="css_1">CSS</h4>
+<pre><code class="css">.m-notification {
+    display: none;
+    position: relative;
+    padding: @m-notification-padding__px;
+    padding-left: 40px;
+</code></pre>
+
+<h4 id="javascript">Javascript</h4>
+<pre><code class="javascript">function Notification( element ) { 
+   // eslint-disable-line max-statements, inline-comments, max-len
+   var BASE_CLASS = 'm-notification';
+
+   // Constants for the state of this Notification.
+   var SUCCESS = 'success';
+   var WARNING = 'warning';
+   var ERROR = 'error'; 
+   // Constants for the Notification modifiers.
+   var MODIFIER_VISIBLE = BASE_CLASS + '__visible'; 
+   var _dom = atomicHelpers.checkDom( element, BASE_CLASS );
+   var _contentDom = _dom.querySelector( '.' + BASE_CLASS + '_content' );
+</code></pre>
+
+<p>The notification molecule can be instantiated with the following code:</p>
+<pre><code class="javascript">_notification = new Notification( _dom );
+_notification.init();
+</code></pre>
+
+<h3 id="organisms">Organisms</h3>
+<p>Prefixed with “o-” in CSS, Javascript, and HTML.</p>
+<h4 id="html_2">HTML</h4>
+<pre><code class="html">&lt;div data-qa-hook=&quot;expandable&quot; class=&quot;o-expandable 
+                                      o-expandable__borders 
+                                      o-expandable__midtone 
+                                      o-expandable__expanded&quot; 
+                               data-js-hook=&quot;state_atomic_init&quot;&gt;
+    &lt;button class=&quot;o-expandable_target&quot; aria-pressed=&quot;true&quot;&gt;
+        &lt;div class=&quot;o-expandable_header&quot;&gt;
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code class="javascript"> function Expandable( element ) { 
+  var BASE_CLASS = 'o-expandable';
+
+  // Bitwise flags for the state of this Expandable.
+  var COLLAPSED = 0;
+  var COLLAPSING = 1;
+  var EXPANDING = 2;
+  var EXPANDED = 3;
+
+  // The Expandable element will directly be the Expandable
+  // when used in an ExpandableGroup, otherwise it can be the parent container.
+  var _dom = atomicHelpers.checkDom( element, BASE_CLASS );
+  var _target = _dom.querySelector( '.' + BASE_CLASS + '_target' );
+  var _content = _dom.querySelector( '.' + BASE_CLASS + '_content' );
+</code></pre>
+
+<p>The Expandable organism can be instantiated with the following code:</p>
+<pre><code class="javascript">_expandable = new Expandable( _dom.querySelector( '.o-expandable' ) );
+_expandable.init( _expandable.EXPANDED );
+</code></pre>
+
+<p>or</p>
+<pre><code class="javascript">var atomicHelpers = require( '../../modules/util/atomic-helpers' );
+var Expandable = require( '../../organisms/Expandable' );
+atomicHelpers.instantiateAll( '.o-expandable', Expandable );
+</code></pre>
+
+<h3 id="templates">Templates</h3>
+<p>Prefixed with “t-” in CSS, Javascript, and HTML.</p>
+<h4 id="css_2">CSS</h4>
+<pre><code class="css">.t-careers {
+    &amp;_social .m-social-media {
+        float: right;
+    }
+
+    // TODO: Consolidate site-wide media_image responsive sizes into one class.
+    &amp;_students-and-graduates .media_image {
+        width: 130px;
+        .respond-to-min( @bp-med-min, {
+            width: 150px;
+        } );
+</code></pre>
+
+<h3 id="folder-structure">Folder Structure</h3>
+<p>Atomic code is currently separated and named based on asset type. This is a mistake in my view, as I believe we should begin migrating to a modular folder structure based on the component.</p>
+<h4 id="current-structure">Current Structure</h4>
+<h4 id="html_3">HTML</h4>
+<pre><code>cfgov-refresh/cfgov/jinja2/v1/_includes/atoms/
+cfgov-refresh/cfgov/jinja2/v1/_includes/molecules/
+cfgov-refresh/cfgov/jinja2/v1/_includes/organisms/
+</code></pre>
+
+<h4 id="css_3">CSS</h4>
+<pre><code>cfgov-refresh/cfgov/unprocessed/css/atoms/
+cfgov-refresh/cfgov/unprocessed/css/molecules/
+cfgov-refresh/cfgov/unprocessed/css/organisms/
+</code></pre>
+
+<h4 id="javascript_1">Javascript</h4>
+<pre><code>cfgov-refresh/cfgov/unprocessed/js/atoms/
+cfgov-refresh/cfgov/unprocessed/js/molecules/
+cfgov-refresh/cfgov/unprocessed/js/organisms/
+</code></pre>
+
+<h4 id="test">Test</h4>
+<pre><code>cfgov-refresh/test/unit_tests/atoms/
+cfgov-refresh/test/unit_tests/molecules/
+cfgov-refresh/test/unit_tests/organisms/
+</code></pre>
+
+<h4 id="proposed-folder-structure">Proposed Folder Structure</h4>
+<pre><code>cfgov-refresh/cfgov/front-end/molecules/Expandable
+
+Expandable.html
+Expandable.css
+Expandable.js
+Expandable-unit-test.js
+README.MD
+</code></pre>
+
+<h3 id="javascript-architecture">JavaScript Architecture</h3>
+<p>There was considerable discussion on how we should create JS components. The components aren't constructed to be used on SPAs (Single Page Applications). They are built to be rendered on the sever and then enhanced via Javascript on the client. The basic interface for the components is as follows:</p>
+<pre><code class="javascript">function AtomicComponent( domElement ) {
+    // Ensure the passed in Element is in the DOM. 
+    // Query and store references to sub-elements.
+    // Instantiate child atomic components.
+    // Bind necessary events for referenced DOM elements.
+    // Perform other initialization related tasks.
+    this.init = function init(){}
+
+    // General teardown function
+    // We don't remove the element from the DOM so
+    // we need to unbind the events.
+    this.destroy = function destroy(){}
+}
+</code></pre>
+
+<p>We aren't testing for interface adherence but we probably should. We generally favor composition over inheritance. You can get more information by reading the following:</p>
+<h4 id="articles">Articles</h4>
+<p><a href="https://medium.com/javascript-scene/a-simple-challenge-to-classical-inheritance-fans-e78c2cf5eead#.mtrvhcjiw">A Simple Challenge to Classical Inheritance Fans</a>
+<a href="https://www.youtube.com/watch?v=wfMtDGfHWpA">Composition over Inheritance (Youtube)</a></p>
+<h4 id="code-and-related-prs">Code and Related PRs</h4>
+<p><a href="https://github.com/cfpb/cfgov-refresh/pull/916">View Unit Test</a>
+<a href="http://jsfiddle.net/0j9u66h0/9/">Expandable example 1</a>
+<a href="https://jsfiddle.net/cpsyLy3L/2/">Expandable example 2</a></p>
+<h2 id="component-build-pipeline">Component Build Pipeline</h2>
+<h4 id="gulp">Gulp</h4>
+<p>Gulp is used as a task automation tool. A specific breakdown of each task is contained <a href="https://github.com/cfpb/cfgov-refresh#available-gulp-tasks">here</a>.</p>
+<h4 id="webpack">Webpack</h4>
+<p>Wepback is used as a module bundler although it's capable of more. We create page, global, and atomic specific bundles. The configuration for the bundles is contained in webpack-config.js. An explanation for the usage of each bundle is contained in scripts.js.</p>
+<h4 id="routes">Routes</h4>
+<p>Routes are used to serve Javascript bundles to the browser based on the requested url or Wagtail page Media property. The happens via code contained in base.html.</p>
+<h4 id="basehtml">Base.html</h4>
+<p>This file serves as the base document for serving up assets and content. It's currently very complicated, obtrusive, and needs to be refactored.</p>
+<h4 id="wagtail-page-media-property">Wagtail Page Media Property</h4>
+<p>Each Atomic component has a media property which list the Javascript files that should be rendered via base.html. When a page is requested via the browser, code contained in base.html will loop all Atomic components for the requested page and render the appropriate Atomic Javascript bundles.</p>
+<h4 id="questions-and-concerns">Questions and Concerns</h4>
+<ul>
+<li>How do we support Single Page Applications and be functional when Javascript is disabled?</li>
+<li>How do we ensure creation of performant atomic components?</li>
+<li>Is the codebase lacking uniformity?</li>
+<li>CSS bloat when multiple components are on the same page but from different Django apps.</li>
+<li>Ensuring simplicity over complexity.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../notes-on-atomic-design/" class="btn btn-neutral float-right" title="Notes on adapting atomic design">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../django-to-wagtail/" class="btn btn-neutral" title="Wagtail Pages vs Django views"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../django-to-wagtail/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../notes-on-atomic-design/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Testing - cfgov-refresh</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Testing";
+    var mkdocs_page_input_path = "testing.md";
+    var mkdocs_page_url = "/testing/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> cfgov-refresh</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation/">Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../usage/">Usage</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Building and Deploying for cf.gov</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../whats-new/">What's new</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new-projects/">New projects</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../branching-merging/">Branching and merging</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../release-cadence/">Release cadence</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../deployment/">Deployment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../feature-flags/">Feature flags</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../django-to-wagtail/">Wagtail Pages vs Django views</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Front end guidelines</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../atomic-structure/">Atomic structure and design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-atomic-design/">Notes on adapting atomic design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-frameworks/">Notes on frameworks</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Testing</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#browser-tests">Browser Tests</a></li>
+                
+                    <li><a class="toctree-l4" href="#quick-start">Quick start:</a></li>
+                
+                    <li><a class="toctree-l4" href="#sauce-connect-send-tests-to-the-cloud">Sauce Connect - send tests to the cloud</a></li>
+                
+                    <li><a class="toctree-l4" href="#manual-test-configuration">Manual test configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#pages">Pages</a></li>
+                
+                    <li><a class="toctree-l4" href="#tests">Tests</a></li>
+                
+                    <li><a class="toctree-l4" href="#further-reading">Further Reading</a></li>
+                
+                    <li><a class="toctree-l4" href="#important-note">Important note:</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#performance-testing">Performance Testing</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#django-server-unit-tests">Django Server Unit Tests</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#accessibility-testing">Accessibility Testing</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#source-code-linting">Source code linting</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../development-tips/">Development tips</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contributing/">Contributing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../terms/">Terms</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../license/">License</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">cfgov-refresh</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Testing</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="browser-tests">Browser Tests</h1>
+<h2 id="quick-start">Quick start:</h2>
+<p>Open a new Terminal window or tab and change to the project directory,
+then tell gulp to start the tests:</p>
+<pre><code class="sh">gulp build
+gulp test:acceptance
+</code></pre>
+
+<p>If you want to test a server other than your local instance,
+edit the <code>HTTP_HOST</code> and <code>HTTP_PORT</code> values in your <code>.env</code> file
+and reload the settings with <code>cd .. &amp;&amp; cd cfgov-refresh</code>. Type <code>y</code> if prompted.</p>
+<h2 id="sauce-connect-send-tests-to-the-cloud">Sauce Connect - send tests to the cloud</h2>
+<p>Sauce Labs can be used to run tests remotely in the cloud.</p>
+<ol>
+<li>Log into <a href="../Log into http://saucelabs.com/account">http://saucelabs.com/account</a>.</li>
+<li><a href="https://docs.saucelabs.com/reference/sauce-connect/#basic-setup">Download Sauce Connect</a></li>
+<li>Open a new Terminal window or tab and navigate to the downloaded SauceConnect folder.
+   If you place the folder in your Application's folder this might look like:</li>
+</ol>
+<p><code>cd /Users/&lt;YOUR MAC OSX USERNAME&gt;/Applications/SauceConnect</code>
+4. Copy step 3 from the the SauceLabs
+   <a href="https://wiki.saucelabs.com/display/DOCS/Basic+Sauce+Connect+Setup#BasicSauceConnectSetup-SettingUpSauceConnect">Basic Setup instructions</a>
+   and run that in your Terminal window.
+   Once you see <code>Sauce Connect is up</code> in the Terminal,
+   that means the tunnel has successfully been established</p>
+<blockquote>
+<p>The Terminal command should already have your Sauce username and access key filled in.
+     If it doesn't, make sure you're logged in.
+5. Update and uncomment the <code>SAUCE_USERNAME</code>, <code>SAUCE_ACCESS_KEY</code>,
+   and <code>SAUCE_SELENIUM_URL</code> values in your <code>.env</code> file.
+   The access key can be found in lower-left on the Sauce Labs
+   <a href="https://saucelabs.com/account/profile">account profile page</a>.
+6. Reload the settings with <code>cd .. &amp;&amp; cd cfgov-refresh</code>. Type <code>y</code> if prompted.
+7. Run the tests with <code>gulp test:acceptance</code>.
+Note: If you want to temporarily disable testing on Sauce Labs,
+   run the command as: <code>gulp test:acceptance --sauce=false</code>.
+8. Monitor progress of the tests
+   on the <a href="https://saucelabs.com/dashboard">Sauce Labs dashboard</a> Automated Tests tab.</p>
+<p>Note: If you get the error <code>Error: ENOTFOUND getaddrinfo ENOTFOUND</code>
+  while running a test, it likely means that Sauce Connect is not running.
+  See step 4 above.</p>
+</blockquote>
+<h2 id="manual-test-configuration">Manual test configuration</h2>
+<p>A number of command-line arguments can be set to test particular configurations:</p>
+<ul>
+<li><code>--suite</code>: Choose a particular suite or suites to run.
+   For example, <code>gulp test:acceptance --suite=content</code> or <code>gulp test:acceptance --suite=content,functional</code>.</li>
+<li><code>--specs</code>: Choose a particular spec or specs to run.
+   For example, <code>gulp test:acceptance --specs=contact-us.js</code>, <code>gulp test:acceptance --specs=contact-us.js,about-us.js</code>, or <code>gulp test:acceptance --specs=foo*.js</code>. If <code>--suite</code> is specified, this argument will be ignored. If neither <code>--suite</code> nor <code>--specs</code> are specified, all specs will be run.</li>
+<li><code>--windowSize</code>: Set the window size in pixels in <code>w,h</code> format.
+   For example, <code>gulp test:acceptance --windowSize=900,400</code>.</li>
+<li><code>--browserName</code>: Set the browser to run.
+   For example, <code>gulp test:acceptance --browserName=firefox</code>.</li>
+<li><code>--version</code>: Set the browser version to run.
+   For example, <code>gulp test:acceptance --version='44.0'</code>.</li>
+<li><code>--platform</code>: Set the OS platform to run.
+   For example, <code>gulp test:acceptance --platform='osx 10.10'</code>.</li>
+<li><code>--sauce</code>: Whether to run on Sauce Labs or not.
+   For example, <code>gulp test:acceptance --sauce=false</code>.</li>
+</ul>
+<h2 id="pages">Pages</h2>
+<p>Pages are organized in <code>page_objects</code>. To add new tests start with adding a new page file and include the elements you'll want to query the page for. For example, if you wanted to test the page title and all the <code>h2</code> elements on the about page you'd write:</p>
+<pre><code class="js">function TheBureauPage() {
+  this.get = function() {
+    // Always use the relative url because the baseUrl is set for us
+    browser.get( '/the-bureau/' );
+  };
+
+  // Page titles are available to the browser global
+  this.pageTitle = function() { return browser.getTitle() };
+  // We want all the `bureau-mission_section` so we'll use .all()
+  this.missions = element.all( by.css( '.bureau-mission_section h1' ) );
+  // For a list of all locators see http://angular.github.io/protractor/#/api?view=webdriver.By
+}
+
+module.exports = TheBureauPage;
+</code></pre>
+
+<h2 id="tests">Tests</h2>
+<p>Tests are organized into suites under the <code>test/browser_tests/spec_suites/</code> directory. Any new tests should be added to an existing suite or placed into a new suite directory. An example test for our the-bureau example page above would be:</p>
+<pre><code class="js">var TheBureauPage = require( '../../page_objects/page_the-bureau.js' );
+
+describe( 'Beta The Bureau Page', function() {
+  var page;
+
+  beforeEach( function() {
+    page = new TheBureauPage();
+    page.get();
+  } );
+
+  it( 'should properly load in a browser', function() {
+    expect( page.pageTitle() ).toBe( 'The Bureau' );
+  } );
+
+  it( 'should include 3 bureau missions titled Educate, Enforce, Empower', function() {
+    expect( page.missions.count() ).toEqual( 3 );
+    expect( page.missions.getText() ).toEqual[ 'Educate', 'Enforce', 'Empower' ];
+  } );
+} );
+</code></pre>
+
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="http://angular.github.io/protractor/#/">Protractor</a></li>
+<li><a href="http://www.seleniumhq.org/docs/03_webdriver.jsp#locating-ui-elements-webelements">Select elements on a page</a></li>
+<li><a href="http://jasmine.github.io/2.0/introduction.html#section-Expectations">Writing Jasmin expectations</a>.</li>
+<li><a href="http://www.thoughtworks.com/insights/blog/using-page-objects-overcome-protractors-shortcomings">Understanding Page Objects</a></li>
+</ul>
+<h2 id="important-note">Important note:</h2>
+<p>Protractor was created by the Angular team to do end-to-end testing of angular sites. It extends the Selenium API and makes certain allowences for AngularJS. To make it work correctly with non-Angular sites you MUST include the following bit of code in your conf.js file.</p>
+<pre><code class="js">  beforeEach(function() {
+    return browser.ignoreSynchronization = true;
+  });
+</code></pre>
+
+<p>Enjoy! :relieved:</p>
+<h1 id="performance-testing">Performance Testing</h1>
+<p>To audit if the site complies with performance best practices and guidelines,
+run <code>gulp test:perf</code>.</p>
+<p>The audit will run against <a href="https://www.sitespeed.io/rules/">sitespeed.io performance rules</a>
+and crawl the website from the homepage.
+You can adjust the settings to skip rules and change the crawling depth
+by editing <code>/gulp/tasks/test.js</code>.</p>
+<h1 id="django-server-unit-tests">Django Server Unit Tests</h1>
+<p>To run the server unit tests using Tox,
+make sure the <code>TOXENV</code> variable is set in your <code>.env</code> file and
+run <code>gulp test:unit:server</code> from the command-line in the project root.</p>
+<h1 id="accessibility-testing">Accessibility Testing</h1>
+<p>Run the acceptance tests with an <code>--a11y</code> flag (i.e. <code>gulp test:acceptance --a11y</code>)
+to check every webpage for WCAG and Section 508 compliancy using Protractor's
+<a href="https://github.com/angular/protractor-accessibility-plugin">accessibility plugin</a>.</p>
+<p>If you'd like to audit a specific page, use <code>gulp test:a11y</code>:
+  1. Enable the environment variable <code>ACHECKER_ID</code> in your <code>.env</code> file.
+     Get a free <a href="http://achecker.ca/register.php">AChecker API ID</a> for the value.
+  2. Reload your <code>.env</code> with <code>. ./.env</code> while in the project root directory.
+  3. Run <code>gulp test:a11y</code> to run an audit on the homepage.
+  4. To test a page aside from the homepage, add the <code>--u=&lt;path_to_test&gt;</code> flag.
+     For example, <code>gulp test:a11y --u=contact-us</code>
+     or <code>gulp test:a11y --u=the-bureau/bureau-structure/</code>.</p>
+<h1 id="source-code-linting">Source code linting</h1>
+<p>The default test task includes linting of the JavaScript source, build,
+and test files.
+Use the <code>gulp lint</code> command from the command-line to run the ESLint linter,
+which checks the JavaScript against the rules configured in <code>.eslintrc</code>.
+<a href="http://eslint.org/docs/rules/">See the ESLint docs</a>
+for detailed rule descriptions.</p>
+<p>There are a number of options to the command:
+ - Use <code>gulp lint:build</code> to only lint the build scripts.
+ - Use <code>gulp lint:test</code> to only lint the test scripts.
+ - Use <code>gulp lint:scripts</code> to only lint the project source scripts.
+ - Add the <code>--fix</code> flag (like <code>gulp lint --fix</code>) to auto-fix
+   some errors, where ESLint has support to do so.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../development-tips/" class="btn btn-neutral float-right" title="Development tips">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../notes-on-frameworks/" class="btn btn-neutral" title="Notes on frameworks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../notes-on-frameworks/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../development-tips/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

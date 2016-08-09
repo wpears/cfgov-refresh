@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Usage - cfgov-refresh</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Usage";
+    var mkdocs_page_input_path = "usage.md";
+    var mkdocs_page_url = "/usage/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> cfgov-refresh</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation/">Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Usage</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#usage">Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#1-git-operations">1. Git operations</a></li>
+                
+                    <li><a class="toctree-l4" href="#2-run-elasticsearch">2. Run Elasticsearch</a></li>
+                
+                    <li><a class="toctree-l4" href="#3-load-indexes-launch-site">3. Load Indexes &amp; Launch Site</a></li>
+                
+                    <li><a class="toctree-l4" href="#4-launch-the-gulp-watch-task">4. Launch the Gulp watch task</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Building and Deploying for cf.gov</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../whats-new/">What's new</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new-projects/">New projects</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../branching-merging/">Branching and merging</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../release-cadence/">Release cadence</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../deployment/">Deployment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../feature-flags/">Feature flags</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../django-to-wagtail/">Wagtail Pages vs Django views</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Front end guidelines</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../atomic-structure/">Atomic structure and design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-atomic-design/">Notes on adapting atomic design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-frameworks/">Notes on frameworks</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../testing/">Testing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../development-tips/">Development tips</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contributing/">Contributing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../terms/">Terms</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../license/">License</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">cfgov-refresh</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Usage</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="usage">Usage</h2>
+<p>If not using the Vagrant box, you will generally have four tabs
+(or windows) open in your terminal, which will be used for:</p>
+<ol>
+<li><strong>Git operations</strong>.
+    Perform Git operations and general development in the repository,
+    such as <code>git checkout flapjack</code>.</li>
+<li><strong>Elasticsearch</strong>.
+    Run an Elasticsearch (ES) instance.
+    See instructions <a href="https://github.com/cfpb/cfgov-refresh#2-run-elasticsearch">below</a>.</li>
+<li><strong>Django server</strong>. Start and stop the web server.
+    Server is started with <code>./runserver.sh</code>,
+    but see more details <a href="https://github.com/cfpb/cfgov-refresh#3-load-indexes--launch-site">below</a>.</li>
+<li><strong>Gulp watch</strong>.
+    Run the Gulp watch (<code>gulp watch</code>) task to automatically re-run the gulp
+    asset compilation tasks when their source files are changed.</li>
+</ol>
+<p>What follows are the specific steps for each of these tabs.</p>
+<h3 id="1-git-operations">1. Git operations</h3>
+<p>From this tab you can do Git operations,
+such as checking out our development branches:</p>
+<pre><code class="bash">git checkout flapjack # Branch for our staging-development server.
+git checkout refresh  # Branch for our staging-stable server.
+</code></pre>
+
+<h4 id="updating-all-dependencies">Updating all dependencies</h4>
+<p>Each time you fetch from the upstream repository (this repo), run <code>./setup.sh</code>.
+This setup script will remove and re-install the project dependencies
+and rebuild the site's JavaScript and CSS assets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may also run <code>./backend.sh</code> or <code>./frontend.sh</code>
+if you only want to re-build the backend or front-end, respectively.</p>
+</div>
+<h3 id="2-run-elasticsearch">2. Run Elasticsearch</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This Elasticsearch tab (or window) might not be necessary if you opted for the <code>launchd</code> option when <a href="../installation#elasticsearch">installing Elasticsearch</a>.</p>
+</div>
+<p>To launch Elasticsearch, first find out where your Elasticsearch config file is located.
+You can do this with <a href="http://brew.sh">Homebrew</a> using:</p>
+<pre><code class="bash">brew info elasticsearch
+</code></pre>
+
+<p>The last line of that output should be the command you need to launch Elasticsearch with the
+proper path to its configuration file. For example, it may look like:</p>
+<pre><code class="bash">elasticsearch --config=/Users/[YOUR MAC OSX USERNAME]/homebrew/opt/elasticsearch/config/elasticsearch.yml
+</code></pre>
+
+<h3 id="3-load-indexes-launch-site">3. Load Indexes &amp; Launch Site</h3>
+<p>First, move into the <code>cfgov-refresh</code> project directory
+and ready your environment:</p>
+<pre><code class="bash"># Use the cfgov-refresh virtualenv.
+workon cfgov-refresh
+
+# cd into this directory (if you aren't already there)
+cd cfgov-refresh
+</code></pre>
+
+<p>Index the latest content from the API output from a WordPress and Django back-end.
+<strong>This requires the constants in <a href="../installation#stand-alone-installation">Stand alone installation</a> to be set.</strong></p>
+<pre><code class="bash">python cfgov/manage.py sheer_index -r
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To view the indexed content you can use a tool called
+<a href="http://mobz.github.io/elasticsearch-head/">elasticsearch-head</a>.</p>
+</div>
+<p>From the project root, start the Django server:</p>
+<pre><code class="bash">./runserver.sh
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If prompted to migrate database changes,
+stop the server with <code>ctrl</code> + <code>c</code> and run these commands:</p>
+</div>
+<pre><code class="bash">python cfgov/manage.py migrate
+./initial-data.sh
+./runserver.sh
+</code></pre>
+
+<p>To set up a superuser in order to access the Wagtail admin:</p>
+<pre><code>python cfgov/manage.py createsuperuser
+</code></pre>
+
+<p>To view the site browse to: <a href="http://localhost:8000">http://localhost:8000</a></p>
+<p>To view the Wagtail admin login,
+browse to: <a href="http://localhost:8000/admin/login/">http://localhost:8000/admin/login/</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using a different port.**
+If you want to run the server at a port other than 8000
+use <code>python cfgov/manage.py runserver &lt;port number&gt;</code>, e.g. <code>8001</code>.</p>
+</div>
+<h3 id="4-launch-the-gulp-watch-task">4. Launch the Gulp watch task</h3>
+<p>To watch for changes in the source code and automatically update the running site,
+open a terminal and run:</p>
+<pre><code class="bash">gulp build
+gulp watch
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The watch task only runs for the tasks for files that have changed.
+Also, you must run <code>gulp build</code> at least once before watching.</p>
+</div>
+<h4 id="available-gulp-tasks">Available Gulp Tasks</h4>
+<p>In addition to <code>gulp watch</code>, there are a number of other important gulp tasks,
+particularly <code>gulp build</code> and <code>gulp test</code>,
+which will build the project and test it, respectively.
+Using the <code>gulp --tasks</code> command you can view all available tasks.
+The important ones are listed below:</p>
+<pre><code>gulp build           # Concatenate, optimize, and copy source files to the production /dist/ directory.
+gulp clean           # Remove the contents of the production /dist/ directory.
+gulp lint            # Lint the scripts and build files.
+gulp docs            # Generate JSDocs from the scripts.
+gulp test            # Run linting, unit and acceptance tests (see below).
+gulp test:unit       # Run only unit tests on source code.
+gulp test:acceptance # Run only acceptance (in-browser) tests on production code.
+gulp watch           # Watch for source code changes and auto-update a browser instance.
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../whats-new/" class="btn btn-neutral float-right" title="What's new">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../whats-new/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

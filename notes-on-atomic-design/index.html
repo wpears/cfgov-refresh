@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Notes on adapting atomic design - cfgov-refresh</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Notes on adapting atomic design";
+    var mkdocs_page_input_path = "notes-on-atomic-design.md";
+    var mkdocs_page_url = "/notes-on-atomic-design/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> cfgov-refresh</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation/">Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../usage/">Usage</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Building and Deploying for cf.gov</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../whats-new/">What's new</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new-projects/">New projects</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../branching-merging/">Branching and merging</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../release-cadence/">Release cadence</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../deployment/">Deployment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../feature-flags/">Feature flags</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../django-to-wagtail/">Wagtail Pages vs Django views</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Front end guidelines</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../atomic-structure/">Atomic structure and design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Notes on adapting atomic design</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#atomic-design-in-capital-framework">Atomic Design in Capital Framework</a></li>
+                
+                    <li><a class="toctree-l4" href="#tldr">TLDR</a></li>
+                
+                    <li><a class="toctree-l4" href="#details">Details</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-frameworks/">Notes on frameworks</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../testing/">Testing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../development-tips/">Development tips</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contributing/">Contributing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../terms/">Terms</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../license/">License</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">cfgov-refresh</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Front end guidelines &raquo;</li>
+        
+      
+    
+    <li>Notes on adapting atomic design</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="atomic-design-in-capital-framework">Atomic Design in Capital Framework</h1>
+<h3 id="tldr">TLDR</h3>
+<ul>
+<li>Not easy to update bits and pieces (will require a full versioned release)</li>
+<li>A few components that haven't been converted by the v1 team yet (possibly workshop with entire D&amp;D team):<ul>
+<li>Hero</li>
+<li>Feature Content Module</li>
+<li>Forms (partialy done)</li>
+</ul>
+</li>
+<li>Difficult to test how changes affect every project (we should set up a playgroud)</li>
+<li>Unclear how atomic changes will affect components</li>
+<li>Documentation is incomplete (working on that currently)</li>
+<li>Unclear how future changes will be updated in Wagtail (should platform own this?)</li>
+</ul>
+<h2 id="details">Details</h2>
+<p>Now that v1 is out there, we've been getting a lot of interest about updating Capital Framework with the Atomic Design Principles to build better reusable and consistent design patterns. As we complete the documentation process, I've been collecting concerns, thoughts, and next steps we'll need to take to make that possible. Unfortunately, a large part of understanding Atomic Design happens when working with it yourself, but we can make that process easier by updating Capital Framework to utilize and document the patterns we've built.</p>
+<h4 id="its-not-easy-to-update-bits-and-pieces">It's not easy to update bits and pieces</h4>
+<p>While it'd be nice to update Capital Framework one module at a time, much like we did during the Design Surge, it's super complicated to mix atomic and non-atomic components. You end up with either duplication of code, or an entanglement between the components. Instead, it makes more sense to start an atomic release branch and port components there.</p>
+<p>Components would be ported as time allows, then released as whole as the next major version (aka v4). Older, unsupported projects could stay on v3, but newer projects would be updated to v4. This means some duplication of work going forward, but similar to jQuery and other projects, we could set a sunset date for v3 and only provide critical updates past that date.</p>
+<h4 id="there-are-some-missing-and-unfinished-components">There are some missing and unfinished components</h4>
+<p>We covered quite a lot in v1, but there are a few components that haven't been converted and some that require further work. At the same time, one of the lessons we learned during the process is that it's difficult to understand all of the principles without working with them. While the Platform team will be taking on much of this work, there's no reason to lay it all on their shoulders, and spreading the work around will enable those outside v1 and Platform to become more comfortable with designing and building atomically.</p>
+<p>So far I've received a good response to hosting a half-day workshop for both designers and developers at the July regroup to go over the principles and begin converting the Hero and FCM. A group event would allow us to pass along our knowledge and lessons learned in person, while also giving the rest of the team a chance to work with real designs and code, making it a lot easier to either pick up unfinished work or produce new components or changes based on project work.</p>
+<h4 id="its-difficult-to-test-how-changes-will-affect-other-projects">It's difficult to test how changes will affect other projects</h4>
+<p>While working within v1 it was pretty easy to test if a change to a component had unintended consequences elsewhere because everything was contained within the project. Despite that, unintended changes did still happen here and there. Once the atomic components are distributed to other projects, the chances of unintended changes becomes a lot higher. While NPM installing your local version of Capital Framework does make it easier to test, standing up cfgov-refresh with all of it's sibling projects is still a burden on those not consistently working on it.</p>
+<p>A playground that lives within Capital Framework (but not the documentation site) would make testing for edge cases and unintended issues far easier. As changes are proposed, we would have immediate feedback from live examples of our code base as it exists in production projects. The playground doesn't need to be a full blown live editor like CodePen, static examples that are copied from production to this playground should be more than enough to pass some gut checks.</p>
+<h4 id="its-unclear-how-atomic-changes-will-affect-current-component-organization">It's unclear how atomic changes will affect current component organization</h4>
+<p>How will atoms, molecules, and organisms be arranged within a component? How will these changes affect other components that then import those pieces? What happens if a molecule needs to become an organism, or vice versa? These questions will probably need to be fleshed out as we complete the transition work, but it's good to keep them in mind as we go along.</p>
+<h4 id="its-unclear-how-component-changes-will-be-propagated-to-wagtail">It's unclear how component changes will be propagated to Wagtail</h4>
+<p>If a component's foundation changes (markup, options, etc) how will those changes be passed into the CMS? Will it be the responsibility of the FEWD to make them or will the work be passed to a Platform team BEWD. How will that affect their workload and how should we pass that task along? What will be a reasonable timeline?</p>
+<p>For example, if we pass a task to the Platform team mid-sprint, but it couldn't be tackled for one or more sprints, it will create a delay in the release cycle of CF possibly leading to stale code. We will need to be more conscious and do some long term planning in situations where updates come from projects outside of Platform.</p>
+<h4 id="the-documentation-is-incomplete">The documentation is incomplete</h4>
+<p>The v1 designers have been working on thorough documentation of the components we've created, but the Capital Framework documentation will need to be updated as well. To ensure it happens (I am at fault for this as much as anyone), documentation updates should be strictly enforced when component PRs are opened. If we don't stay on top of it, it'll be the thing that gets pushed off indefinitely.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../notes-on-frameworks/" class="btn btn-neutral float-right" title="Notes on frameworks">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../atomic-structure/" class="btn btn-neutral" title="Atomic structure and design"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../atomic-structure/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../notes-on-frameworks/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

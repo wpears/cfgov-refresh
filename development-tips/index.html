@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Development tips - cfgov-refresh</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Development tips";
+    var mkdocs_page_input_path = "development-tips.md";
+    var mkdocs_page_url = "/development-tips/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> cfgov-refresh</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../installation/">Installation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../usage/">Usage</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Building and Deploying for cf.gov</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../whats-new/">What's new</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new-projects/">New projects</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../branching-merging/">Branching and merging</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../release-cadence/">Release cadence</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../deployment/">Deployment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../feature-flags/">Feature flags</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../django-to-wagtail/">Wagtail Pages vs Django views</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Front end guidelines</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../atomic-structure/">Atomic structure and design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-atomic-design/">Notes on adapting atomic design</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../notes-on-frameworks/">Notes on frameworks</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../testing/">Testing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Development tips</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#development-tips">Development tips</a></li>
+                
+                    <li><a class="toctree-l4" href="#tip-loading-sibling-projects">TIP: Loading sibling projects</a></li>
+                
+                    <li><a class="toctree-l4" href="#tip-loading-data-into-django-models">TIP: Loading data into Django models</a></li>
+                
+                    <li><a class="toctree-l4" href="#tip-working-with-the-templates">TIP: Working with the templates</a></li>
+                
+                    <li><a class="toctree-l4" href="#tip-outputting-indexed-content-in-a-sheer-template">TIP: Outputting indexed content in a Sheer template</a></li>
+                
+                    <li><a class="toctree-l4" href="#tip-filtering-results-with-queries">TIP: Filtering results with queries</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contributing/">Contributing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../terms/">Terms</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../license/">License</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">cfgov-refresh</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Development tips</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="development-tips">Development tips</h2>
+<h3 id="tip-loading-sibling-projects">TIP: Loading sibling projects</h3>
+<p>Some projects fit within the cfgov-refresh architecture,
+but are not fully incorporated into the project.
+These are known as "non-v1 Django apps."
+In order to visit areas of the site locally where those projects are used,
+the sibling projects need to be installed
+and then indexed within this cfgov-refresh project.</p>
+<p>The non-v1 apps are the following:</p>
+<ul>
+<li><a href="https://github.com/cfpb/owning-a-home">Owning a Home</a>.</li>
+<li><a href="https://github.com/cfpb/tax-time-saving">Tax time savings</a>.</li>
+<li>fin-ed-resources (not public) - for the Education Resources section.</li>
+<li>know-before-you-owe (not public) - for the Consumer Tools &gt; Know before you owe section.</li>
+</ul>
+<p>After installing these projects as sibling directories to the <code>cfgov-refresh</code> repository,
+build the third-party projects per their directions,
+stop the web server and return to <code>cfgov-refresh</code>
+and run <code>cfgov/manage.py sheer_index -r</code> to load the projects' data into ElasticSearch.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not install the projects directly into the <code>cfgov-refresh</code> directory.
+Clone and install the projects as siblings to <code>cfgov-refresh</code>,
+so that they share the same parent directory (<code>~/Projects</code> or similar).</p>
+</div>
+<h3 id="tip-loading-data-into-django-models">TIP: Loading data into Django models</h3>
+<p>The Django management command <code>import-data</code> will import data from the specified
+source into the specified model.</p>
+<pre><code>usage: manage.py import-data [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS]
+        [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--parent PARENT]
+        [--snippet] -u USERNAME -p PASSWORD [--app APP] [--overwrite]
+        data_type wagtail_type
+</code></pre>
+
+<ul>
+<li><code>data_type</code> is the WordPress post type defined in the <code>processors.py</code> file.</li>
+<li><code>wagtail_type</code> is the Django model name where the data is going to go.</li>
+<li><code>-u</code> and <code>-p</code> are credentials to an admin account.</li>
+</ul>
+<p>Required option:</p>
+<ul>
+<li><code>--parent</code> is the slug of the parent page that the pages will exist
+  under.</li>
+<li><code>--snippet</code> is a flag that's used to signify that the importing data will be
+  inserted into a Django model, registered as a <a href="http://docs.wagtail.io/en/v1.1/topics/snippets.html">Wagtail snippet</a>.
+  One of these options must be set for the command to run.</li>
+</ul>
+<p>Other options:</p>
+<ul>
+<li><code>--app</code> is the name of the app the Django models from <code>wagtail_type</code> exist in.
+  It defaults to our app, <code>v1</code>.</li>
+<li><code>--overwrite</code> overwrites existing pages in Wagtail based on comparing slugs.
+Be careful when using this as it will overwrite the data in Wagtail with data
+from the source. Default is <code>False</code>.</li>
+<li><code>--verbosity</code> is set to 1 by default. Set it to 2 or higher and expect the
+name of the slugs to appear where appropriate.</li>
+</ul>
+<p>For now, in order for this command to import the data, one of the things it
+needs is a file for "sheer logic" to use to retrieve the data. For us, the
+processors are already done from our last backend. This part of the command
+will change as we move away from our dependency on "sheer logic." This is set
+by putting the file in a <code>processors</code> module in the top level of the project
+and adding it to the setting <a href="https://github.com/cfpb/cfgov-refresh/blob/flapjack/cfgov/cfgov/settings/base.py#L218"><code>SHEER_PROCESSORS</code></a>.</p>
+<p>The command needs a <code>processors</code> module in the app that's passed to it, as well
+as a file with the same name as the Django model specified that defines a class
+named <code>DataConverter</code> that subclasses either <code>_helpers.PageDataConverter</code> or
+<code>_helpers.SnippetDataConverter</code> and implements their method(s) explained below:</p>
+<p><strong>PageDataConverter</strong>:</p>
+<ul>
+<li><strong>convert(self, imported_data)</strong>:
+   For converting pages or snippets, the processor file must implement the
+   <strong>convert()</strong> function with one argument. That argument represents the
+   imported data dictionary. That function must take the dictionary and map it
+   to a new one that uses the keys that Wagtail's <strong>create()</strong> and <strong>edit()</strong>
+   admin/snippet view functions expect in the <code>request.POST</code> dictionary to
+   actually migrate the data over, and then returns that dictionary where it
+   will be assigned to <code>request.POST</code>.</li>
+</ul>
+<p><strong>SnippetDataConverter(PageDataConverter)</strong>:</p>
+<ul>
+<li><strong>get_existing_snippet()</strong>
+   This also accepts the imported data dictionary. It's used to find an
+   existing snippet given the imported data, returning it if found or <code>None</code> if
+   not.</li>
+</ul>
+<h3 id="tip-working-with-the-templates">TIP: Working with the templates</h3>
+<h4 id="front-end-templateasset-locations">Front-End Template/Asset Locations</h4>
+<p><strong>Templates</strong> that are served by the Django server: <code>cfgov\jinja2\v1</code></p>
+<p><strong>Static assets</strong> prior to processing (minifying etc.): <code>cfgov\unprocessed</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After a <code>gulp build</code> they are copied over to the <code>cfgov\static_built</code> location,
+ready to be served by Django.</p>
+</div>
+<h4 id="simple-static-template-setup">Simple static template setup</h4>
+<p>By default, Django will render pages with accordance to the URL pattern defined
+for it. For example, going to <code>http://localhost:8000/the-bureau/index.html</code>
+(or <code>http://localhost:8000/the-bureau/</code>) renders <code>/the-bureau/index.html</code> from
+the <code>cfgov</code> app folder's <code>jinja2/v1</code> templates folder as processed
+by the <a href="http://jinja.pocoo.org/docs">Jinja2</a> templating engine.</p>
+<h3 id="tip-outputting-indexed-content-in-a-sheer-template">TIP: Outputting indexed content in a Sheer template</h3>
+<p>Most of our content is indexed from the API output of our WordPress back-end.
+This happens when the <code>python cfgov/manage.py sheer_index -r</code> command is run.</p>
+<p>There are two ways in which we use indexed content:
+repeating items (e.g., blog posts and press releases),
+and single pages (e.g., the Future Requests page in Doing Business with Us).
+What follows is a deeper dive into both of these content types.</p>
+<h4 id="repeating-content">Repeating content</h4>
+<p>For any kind of repeating content, this is the basic process:</p>
+<ol>
+<li>In the vars file for the section you're in (e.g., <code>newsroom/_vars-newsroom.html</code>),
+   we set up a variable that holds the results of the default query we want to run.</li>
+</ol>
+<p>Here's how it looks for the blog:</p>
+<pre><code class="jinja">{% set query = queries.posts %}
+{% set posts = query.search(size=10) %}
+</code></pre>
+
+<ol>
+<li>If you want to display the repeating content within a template,
+   simply set up a <code>for ... in</code> loop,
+   then output the different properties of the post within.
+   In the case of the blog, a list of posts is built using this method in
+   <code>cfgov/jinja2/v1/_includes/posts-paginated.html</code>.</li>
+</ol>
+<p>Here is a simplified example:</p>
+<pre><code class="jinja">{% for post in posts %}
+  &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
+  {{ post.content }}
+{% endfor %}
+</code></pre>
+
+<h4 id="single-content">Single content</h4>
+<p>To access a single piece of content,
+the easiest thing to do is use the <code>get_document()</code> function.</p>
+<p>Using the example given earlier of the Future Requests page,
+here's how it's done:</p>
+<pre><code class="jinja">{% set page = get_document('pages', '63169') %}
+{{ page.content | safe }}
+</code></pre>
+
+<p>The <code>get_document</code> method can be used to retrieve a single item of any post type
+for display within a template.
+In the below example we get an instance of the non-hierarchical
+<code>contact</code> post type using its slug (<code>whistleblowers</code>):</p>
+<pre><code class="jinja">{% set whistleblowers = get_document('contact', 'whistleblowers') %}
+</code></pre>
+
+<p>In practice, many of our templates are a Frankenstein-type mixture
+of hand-coded static content and calls to indexed content,
+as we continually try to strike the right balance of what content
+is appropriate to be edited by non-developers in Wagtail,
+and what is just too fragile to do any other way than by hand.</p>
+<h3 id="tip-filtering-results-with-queries">TIP: Filtering results with queries</h3>
+<p>Sometimes you'll want to create queries in your templates to filter the data.</p>
+<p>The two main ways of injecting filters into your data are in the URL's query
+string and within the template code itself.</p>
+<p>We have a handy function <code>search()</code> that:</p>
+<ol>
+<li>Pulls in filters from the URL query string.</li>
+<li>Allows you to add additional filters by passing them in as arguments to the function.</li>
+</ol>
+<h4 id="url-query-string-filters">URL query string filters</h4>
+<p>URL query string filters can be further broken down into two types:</p>
+<ol>
+<li>Term - Used when you want to filter by whether a field matches a term.
+Note that in order to use this type of filter,
+the field you are matching it against must have
+<code>"index": "not_analyzed"</code> set in the mapping.</li>
+<li>Range - Used for when you want to filter something by a range (e.g. dates or numbers)</li>
+</ol>
+<p>An example of Term is:</p>
+<p><code>?filter_category=Op-Ed</code></p>
+<p><code>filter_[field]=[value]</code></p>
+<p>An example of Range is:</p>
+<p><code>?filter_range_date_gte=2014-01</code></p>
+<p><code>filter_range_[field]_[operator]=[value]</code></p>
+<p>URL query string filters are convenient for many of the filtered queries you'll need to run,
+but often there are cases where you'll need more flexibility.</p>
+<h4 id="more-complex-filters">More complex filters</h4>
+<p>By default, <code>search()</code> uses the default query parameters
+defined in the <code>_queries/object-name.json</code> file,
+then mixes them in with any additional arguments
+from the URL query string in addition to what is passed into the function itself.</p>
+<p>When using <code>search()</code>, you can also pass in filters with the same <code>filter_</code> syntax as above.</p>
+<p>For example:</p>
+<p><code>search(filter_category='Op-Ed')</code></p>
+<p>Multiple term filters on the same field will be combined in an OR clause, while
+term filters of different fields will be combined in an AND clause.</p>
+<p>For example:</p>
+<p><code>search(filter_tag='Students', filter_tag='Finance', filter_author='Batman')</code></p>
+<p>This will return documents that have the tag Students OR Finance, AND have an author of Batman.</p>
+<p>If you need more control over your filter than that,
+enter it manually in the <code>cfgov/jinja2/v1/_queries/[filtername].json</code> file.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contributing/" class="btn btn-neutral float-right" title="Contributing">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../testing/" class="btn btn-neutral" title="Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../testing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
