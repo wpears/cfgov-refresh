@@ -271,7 +271,7 @@ You can get a database dump from the Build server by running the Jenkins job
 You'll get a download of `refresh_dump.sql.gz`; unzip that, then run:
 
 ```bash
-./refesh-data.sh /path/to/refresh_dump.sql
+./refresh-data.sh /path/to/refresh_dump.sql
 ```
 
 This will remove the initial Wagtail admin user that was created by
