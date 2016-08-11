@@ -186,29 +186,10 @@
                 
                     <li><a class="toctree-l4" href="#tip-filtering-results-with-queries">TIP: Filtering results with queries</a></li>
                 
+                    <li><a class="toctree-l4" href="#tip-updating-the-documentation">TIP: Updating the documentation</a></li>
+                
             
             </ul>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../contributing/">Contributing</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../terms/">Terms</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../license/">License</a>
         
     </li>
 <li>
@@ -307,7 +288,7 @@ needs is a file for "sheer logic" to use to retrieve the data. For us, the
 processors are already done from our last backend. This part of the command
 will change as we move away from our dependency on "sheer logic." This is set
 by putting the file in a <code>processors</code> module in the top level of the project
-and adding it to the setting <a href="https://github.com/cfpb/cfgov-refresh/blob/flapjack/cfgov/cfgov/settings/base.py#L218"><code>SHEER_PROCESSORS</code></a>.</p>
+and adding it to the setting <a href="https://github.com/cfpb/cfgov-refresh/blob/master/cfgov/cfgov/settings/base.py#L218"><code>SHEER_PROCESSORS</code></a>.</p>
 <p>The command needs a <code>processors</code> module in the app that's passed to it, as well
 as a file with the same name as the Django model specified that defines a class
 named <code>DataConverter</code> that subclasses either <code>_helpers.PageDataConverter</code> or
@@ -439,14 +420,19 @@ term filters of different fields will be combined in an AND clause.</p>
 <p>This will return documents that have the tag Students OR Finance, AND have an author of Batman.</p>
 <p>If you need more control over your filter than that,
 enter it manually in the <code>cfgov/jinja2/v1/_queries/[filtername].json</code> file.</p>
+<h3 id="tip-updating-the-documentation">TIP: Updating the documentation</h3>
+<p>Our documentation is written as Markdown files and served in GitHub pages 
+by <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">mkdocs</a>.</p>
+<p>To update the docs in GitHub Pages once a pull request has been merged, 
+mkdocs provides <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">a helpful command</a>:</p>
+<pre><code>mkdocs gh-deploy --clean
+</code></pre>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../contributing/" class="btn btn-neutral float-right" title="Contributing">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../testing/" class="btn btn-neutral" title="Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -477,8 +463,6 @@ enter it manually in the <code>cfgov/jinja2/v1/_queries/[filtername].json</code>
       
         <span><a href="../testing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

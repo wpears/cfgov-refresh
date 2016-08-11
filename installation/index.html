@@ -67,12 +67,11 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#clone-the-repository">Clone the repository</a></li>
+                <li class="toctree-l3"><a href="#installation-and-configuration-for-cfgov-refresh">Installation and configuration for cfgov-refresh</a></li>
                 
-            
-                <li class="toctree-l3"><a href="#stand-alone-installation">Stand-alone installation</a></li>
+                    <li><a class="toctree-l4" href="#clone-the-repository">Clone the repository</a></li>
                 
-                    <li><a class="toctree-l4" href="#install-system-level-requirements">Install system-level requirements</a></li>
+                    <li><a class="toctree-l4" href="#stand-alone-installation">Stand-alone installation</a></li>
                 
                     <li><a class="toctree-l4" href="#vagrant-box-installation">Vagrant-box installation</a></li>
                 
@@ -195,27 +194,6 @@
     </li>
 <li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../contributing/">Contributing</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../terms/">Terms</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../license/">License</a>
-        
-    </li>
-<li>
-          
         </ul>
       </div>
       &nbsp;
@@ -248,7 +226,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="clone-the-repository">Clone the repository</h1>
+                <h1 id="installation-and-configuration-for-cfgov-refresh">Installation and configuration for cfgov-refresh</h1>
+<h2 id="clone-the-repository">Clone the repository</h2>
 <p>Using the console, navigate to the root directory in which your projects live and clone this project's repository:</p>
 <pre><code class="bash">git clone git@github.com:cfpb/cfgov-refresh.git
 cd cfgov-refresh
@@ -264,11 +243,11 @@ cd cfgov-refresh
 <p class="admonition-title">Danger</p>
 <p>The instruction for Vagrant are not currently working.</p>
 </div>
-<h1 id="stand-alone-installation">Stand-alone installation</h1>
+<h2 id="stand-alone-installation">Stand-alone installation</h2>
 <p>These instructions are somewhat specific to developing on Mac OS X,
 but if you're familiar with other Unix-based systems,
 it should be fairly easy to adapt them to your needs.</p>
-<h2 id="install-system-level-requirements">Install system-level requirements</h2>
+<h3 id="install-system-level-requirements">Install system-level requirements</h3>
 <h4 id="virtualenv-virtualenvwrapper-python-modules">virtualenv &amp; virtualenvwrapper Python modules</h4>
 <p>Install <a href="https://virtualenv.pypa.io/en/latest/index.html">virtualenv</a>
 and <a href="https://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a>
@@ -380,7 +359,7 @@ If you setup Autoenv earlier, this will happen for you automatically when you
 <code>cd</code> into the project directory.</p>
 <p>If you prefer not to use Autoenv, just be sure to <code>source .env</code> every time
 you start a new session of work on the project.</p>
-<h4 id="run-setupsh">Run <code>setup.sh</code></h4>
+<h4 id="run-the-setup-script">Run the setup script</h4>
 <p>At this point, your machine should have everything it needs to automate the
 rest of the setup process.</p>
 <p>If you haven't cloned this repo yet, clone it to a local folder.
@@ -457,11 +436,11 @@ cfgov start django
 <h2 id="optional-steps">Optional steps</h2>
 <h3 id="load-a-database-dump-from-the-build-server">Load a database dump from the Build server</h3>
 <p>If you're installing this fresh, the initial data you receive will not be
-as extensive as you'd probably like it to be.
-You can get a database dump from the Build server by running the Jenkins job
-"flapjack-demo-refresh-mysql-dump".
-You'll get a download of <code>refresh_dump.sql.gz</code>; unzip that, then run:</p>
-<pre><code class="bash">./refesh-data.sh /path/to/refresh_dump.sql
+as extensive as you'd probably like it to be.</p>
+<p>You can get a database dump using the <code>cf.gov-dump-rdbms</code>
+Jenkins job. Download the <code>sql.gz</code> file,
+unzip it, and then run:</p>
+<pre><code class="bash">./refresh-data.sh /path/to/dump.sql
 </code></pre>
 
 <p>This will remove the initial Wagtail admin user that was created by
