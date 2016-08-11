@@ -175,8 +175,6 @@
                 
                     <li><a class="toctree-l4" href="#manual-test-configuration">Manual test configuration</a></li>
                 
-                    <li><a class="toctree-l4" href="#pages">Pages</a></li>
-                
                     <li><a class="toctree-l4" href="#tests">Tests</a></li>
                 
                     <li><a class="toctree-l4" href="#further-reading">Further Reading</a></li>
@@ -242,10 +240,12 @@
               
                 <h1 id="browser-tests">Browser Tests</h1>
 <h2 id="quick-start">Quick start:</h2>
-<p>Open a new Terminal window or tab and change to the project directory,
+<p>Many of our browser tests have been rewritten as Python unit tests. The remaining rely on data that is not generated during testing, so please note many of these tests might fail if you do not have a production database locally. If you do, open a new Terminal window or tab and change to the project directory,
 then tell gulp to start the tests:</p>
 <pre><code class="sh">gulp build
-gulp test:acceptance
+gulp test:acceptance --suite=integration
+gulp test:acceptance --suite=content
+
 </code></pre>
 
 <p>If you want to test a server other than your local instance,
@@ -287,21 +287,23 @@ and reload the settings with <code>cd .. &amp;&amp; cd cfgov-refresh</code>. Typ
 </li>
 <li>
 <p>Run the tests with <code>gulp test:acceptance</code>.</p>
-<blockquote>
-<p>Note: If you want to temporarily disable testing on Sauce Labs,
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to temporarily disable testing on Sauce Labs,
 run the command as: <code>gulp test:acceptance --sauce=false</code>.</p>
-</blockquote>
+</div>
 </li>
 <li>
 <p>Monitor progress of the tests
    on the <a href="https://saucelabs.com/dashboard">Sauce Labs dashboard</a> Automated Tests tab.</p>
 </li>
 </ol>
-<blockquote>
-<p>Note: If you get the error <code>Error: ENOTFOUND getaddrinfo ENOTFOUND</code>
-  while running a test, it likely means that Sauce Connect is not running.
-  See step 4 above.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get the error <code>Error: ENOTFOUND getaddrinfo ENOTFOUND</code>
+while running a test, it likely means that Sauce Connect is not running.
+See step 4 above.</p>
+</div>
 <h2 id="manual-test-configuration">Manual test configuration</h2>
 <p>A number of command-line arguments can be set to test particular configurations:</p>
 <ul>
@@ -320,24 +322,6 @@ run the command as: <code>gulp test:acceptance --sauce=false</code>.</p>
 <li><code>--sauce</code>: Whether to run on Sauce Labs or not.
    For example, <code>gulp test:acceptance --sauce=false</code>.</li>
 </ul>
-<h2 id="pages">Pages</h2>
-<p>Pages are organized in <code>page_objects</code>. To add new tests start with adding a new page file and include the elements you'll want to query the page for. For example, if you wanted to test the page title and all the <code>h2</code> elements on the about page you'd write:</p>
-<pre><code class="js">function TheBureauPage() {
-  this.get = function() {
-    // Always use the relative url because the baseUrl is set for us
-    browser.get( '/the-bureau/' );
-  };
-
-  // Page titles are available to the browser global
-  this.pageTitle = function() { return browser.getTitle() };
-  // We want all the `bureau-mission_section` so we'll use .all()
-  this.missions = element.all( by.css( '.bureau-mission_section h1' ) );
-  // For a list of all locators see http://angular.github.io/protractor/#/api?view=webdriver.By
-}
-
-module.exports = TheBureauPage;
-</code></pre>
-
 <h2 id="tests">Tests</h2>
 <p>Tests are organized into suites under the <code>test/browser_tests/spec_suites/</code> directory. Any new tests should be added to an existing suite or placed into a new suite directory. An example test for our the-bureau example page above would be:</p>
 <pre><code class="js">var TheBureauPage = require( '../../page_objects/page_the-bureau.js' );
