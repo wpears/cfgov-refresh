@@ -166,13 +166,13 @@
 <li>There is no reduction in test coverage from the last release tagging</li>
 </ul>
 <h2 id="current-deployment-process">Current deployment process</h2>
-<p>The current cf.gov deployment process requires running the following individual Jenkins jobs manually, in the following order:</p>
+<p>The current cf.gov deployment process requires running the <code>cf.gov-pipeline-build</code> Jenkins pipeline job, with the release tag to deploy and the environment to which it should be deployed.</p>
+<p>The pipeline will invoke the following jobs, in order:</p>
 <ul>
-<li>cf.gov-beta-frontend-build, build with the tag name of the latest release, i.e. 3.5.2.</li>
-<li>cf.gov-fab-deploy-django, build with DEPLOY_ENV Staging</li>
-<li>cf.gov-fab-deploy-django, build with DEPLOY_ENV <strong><em>PRODUCTION</em></strong></li>
+<li>cf.gov-frontend-build, which builds the front-end assets for cfgov-refresh</li>
+<li>cf.gov-deploy-django, which takes the cfgov-refresh build, and uses <a href="https://github.com/cfpb/drama-free-django">drama-free-django</a> to build a deployable artifact for all of cf.gov and its requirements, and then deploys the artifact to the appropriate servers for the selected environment.</li>
 </ul>
-<p>The following teams and individuals have the necessary access to deploy cf.gov releases:</p>
+<p>Any back-end developer on the platform team should be able to assist with deployments. You may also contact the following individually:</p>
 <ul>
 <li>Ross Karchner</li>
 <li>Scott Cranfill</li>
