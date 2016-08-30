@@ -154,7 +154,7 @@
                 <h1 id="deployment">Deployment</h1>
 <p>Everything that is part of cfgov-refresh and its dependencies are deployed as part of the cf.gov deployment jobs. For needs that are outside of the standard deployment process (perhaps relating to regular data loading or manipulation), additional jobs will need to be created.</p>
 <p>Projects that are independent of cfgov-refresh will need to provide their own deployment process, and all jobs they require. They will not be automatically included in the cf.gov deployment process, and will not be on the cf.gov release cadence. </p>
-<p>All new deployment jobs, jobs that run in addition to the cf.gov depoyment jobs, as well as independent jobs, must be implemented with Jenkins-as-code.</p>
+<p>All new deployment jobs, jobs that run in addition to the cf.gov deployment jobs, as well as independent jobs, must be implemented with <a href="https://github.com/cfpb/jenkins-automation">Jenkins-as-code</a>.</p>
 <h2 id="deployment-qa">Deployment QA</h2>
 <p>All code that gets merged into the cfgov-refresh master must have adequate tests, as appropriate for the nature of the code. </p>
 <p>This could potentially include unit tests, browser tests, and 508-compliance tests.</p>
@@ -166,7 +166,7 @@
 <li>There is no reduction in test coverage from the last release tagging</li>
 </ul>
 <h2 id="current-deployment-process">Current deployment process</h2>
-<p>The current cf.gov deployment process requires running the <code>cf.gov-pipeline-build</code> Jenkins pipeline job, with the release tag to deploy and the environment to which it should be deployed.</p>
+<p>The current cf.gov deployment process requires running the cf.gov-pipeline-build Jenkins pipeline job, with the release tag to deploy and the environment to which it should be deployed.</p>
 <p>The pipeline will invoke the following jobs, in order:</p>
 <ul>
 <li>cf.gov-frontend-build, which builds the front-end assets for cfgov-refresh</li>

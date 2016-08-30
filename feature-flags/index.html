@@ -177,8 +177,10 @@ I’m a beta banner.
 </code></pre>
 
 <p>Feature flags are implemented as a Django app in cfgov-refresh/cfgov/flags. </p>
-<h2 id="feature-flag-hygiene">Feature Flag Hygiene</h2>
+<h2 id="feature-flag-hygiene">Feature flag hygiene</h2>
 <p>Feature flags should be rare and ephemeral. Changes should be small and frequent, and not big-bang releases, and flags that are no longer used should be cleaned up and removed from code and the database.</p>
+<h2 id="feature-flag-source">Feature flag source</h2>
+<p>Feature flags for cfgov-refresh are implemented <a href="https://github.com/cfpb/cfgov-refresh/tree/master/cfgov/flags">in the <code>flags</code> Django app</a>.</p>
             </section>
         </div>
 
