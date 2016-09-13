@@ -5,7 +5,9 @@ class ConferenceRegistration(models.Model):
     # Required entries: name, email, sessions
     name =           models.CharField(max_length=250, blank=True)
     organization =   models.CharField(max_length=250, blank=True)
+    # What attributes should be passed to an EmailField?
     email =          models.EmailField(max_length=250, blank=True)
     sessions =       models.MultipleChoiceField(choices=refs.conf_session_choices, blank=True)
     foodinfo =       models.CharField(max_length=250, blank=True)
     accommodations = models.CharField(max_length=250, blank=True)
+

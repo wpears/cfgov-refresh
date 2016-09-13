@@ -53,7 +53,7 @@ def set_response(is_ajax):
     else:
         passing = redirect('govdelivery:success')
         failing = redirect('govdelivery:server_error')
-    return passing, failing_response
+    return passing, failing
 
 def has_required_params(request):
     for required_param in REQUIRED_PARAMS_GOVDELIVERY:
