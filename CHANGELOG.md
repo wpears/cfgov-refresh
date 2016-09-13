@@ -21,6 +21,7 @@ Given the `MAJOR.MINOR.PATCH` pattern, here is how we decide to increment:
 - Google Optimize code on `find-a-housing-counselor` page
 - Wagtail User editor now enforces unique email addresses when creating/editing users.
 - Default button text color and spacing overrides to `.m-global-search_trigger` in nemo stylesheet so that search button will be visible on pages that use `base_nonresponsive` template
+- Data migration sets up site root and careers pages
 
 ### Changed
 - Special characters no longer break the multiselect in the filter form
@@ -39,7 +40,6 @@ Given the `MAJOR.MINOR.PATCH` pattern, here is how we decide to increment:
 - Updated gulp-rename npm module to version `1.2.2` from `1.1.0`.
 - Replaces deprecated gulp-cssmin with gulp-clean-css.
 - Updated admin page sidefoot 'Related links' label and icon to read 'Related content'
-
 
 ### Removed
 - Unused functions `author_name` and `item_author_name` from `v1/feeds.py`
