@@ -13,6 +13,7 @@ from .base import CFGOVPage
 from ..atomic_elements import molecules, organisms
 from ..util.util import get_secondary_nav_items
 from jobmanager.models import JobListingTable
+from data_research.blocks import ConferenceRegistrationForm
 
 
 class BrowsePage(CFGOVPage):
@@ -33,6 +34,7 @@ class BrowsePage(CFGOVPage):
         ('table', organisms.Table(editable=False)),
         ('table_block', organisms.AtomicTableBlock(table_options={'renderer':'html'})),
         ('job_listing_table', JobListingTable()),
+        ('conference_registration_form', ConferenceRegistrationForm()),
     ], blank=True)
 
     secondary_nav_exclude_sibling_pages = models.BooleanField(default=False)
