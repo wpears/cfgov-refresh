@@ -25,6 +25,7 @@ Given the `MAJOR.MINOR.PATCH` pattern, here is how we decide to increment:
 - Data migration sets up site root and careers pages
 - Added a test for get_browsefilterable_posts function of the sublanding page 
 - New `@flag_required` decorator for Django views
+- Data migration sets up site root and careers pages
 
 ### Changed
 - Special characters no longer break the multiselect in the filter form
