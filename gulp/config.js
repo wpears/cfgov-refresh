@@ -80,8 +80,8 @@ module.exports = {
   },
   copy: {
     icons: {
-      src:  paths.modules + '/capital-framework/src/cf-icons/src/fonts/*',
-      dest: paths.processed + '/fonts/'
+      src:  paths.modules + '/capital-framework/src/cf-icons/src/icons/*',
+      dest: paths.processed + '/icons/'
     },
     vendorFonts: {
       src:  paths.unprocessed + '/fonts/pdfreactor/*',
