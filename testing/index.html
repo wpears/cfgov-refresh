@@ -165,6 +165,12 @@ gulp test:acceptance --suite=content
 edit the <code>HTTP_HOST</code> and <code>HTTP_PORT</code> values in your <code>.env</code> file
 and reload the settings with <code>cd .. &amp;&amp; cd cfgov-refresh</code>. Type <code>y</code> if prompted.</p>
 <h2 id="sauce-connect-send-tests-to-the-cloud">Sauce Connect - send tests to the cloud</h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The instruction for automatically
+running Sauce Connect from gulp are not working.
+See https://github.com/cfpb/cfgov-refresh/issues/2324</p>
+</div>
 <p>Sauce Labs can be used to run tests remotely in the cloud.</p>
 <ol>
 <li>
@@ -265,21 +271,11 @@ describe( 'Beta The Bureau Page', function() {
 <li><a href="http://jasmine.github.io/2.0/introduction.html#section-Expectations">Writing Jasmin expectations</a>.</li>
 <li><a href="http://www.thoughtworks.com/insights/blog/using-page-objects-overcome-protractors-shortcomings">Understanding Page Objects</a></li>
 </ul>
-<h2 id="important-note">Important note:</h2>
-<p>Protractor was created by the Angular team to do end-to-end testing of angular sites. It extends the Selenium API and makes certain allowences for AngularJS. To make it work correctly with non-Angular sites you MUST include the following bit of code in your conf.js file.</p>
-<pre><code class="js">  beforeEach(function() {
-    return browser.ignoreSynchronization = true;
-  });
-</code></pre>
-
-<p>Enjoy! :relieved:</p>
 <h1 id="performance-testing">Performance Testing</h1>
 <p>To audit if the site complies with performance best practices and guidelines,
 run <code>gulp test:perf</code>.</p>
-<p>The audit will run against <a href="https://www.sitespeed.io/rules/">sitespeed.io performance rules</a>
-and crawl the website from the homepage.
-You can adjust the settings to skip rules and change the crawling depth
-by editing <code>/gulp/tasks/test.js</code>.</p>
+<p>The audit will run against
+<a href="https://github.com/addyosmani/psi">Google's PageSpeed Insights</a>.</p>
 <h1 id="django-server-unit-tests">Django Server Unit Tests</h1>
 <p>To run the server unit tests using Tox,
 make sure the <code>TOXENV</code> variable is set in your <code>.env</code> file and
@@ -288,14 +284,16 @@ run <code>gulp test:unit:server</code> from the command-line in the project root
 <p>Run the acceptance tests with an <code>--a11y</code> flag (i.e. <code>gulp test:acceptance --a11y</code>)
 to check every webpage for WCAG and Section 508 compliancy using Protractor's
 <a href="https://github.com/angular/protractor-accessibility-plugin">accessibility plugin</a>.</p>
-<p>If you'd like to audit a specific page, use <code>gulp test:a11y</code>:
-  1. Enable the environment variable <code>ACHECKER_ID</code> in your <code>.env</code> file.
-     Get a free <a href="http://achecker.ca/register.php">AChecker API ID</a> for the value.
-  2. Reload your <code>.env</code> with <code>. ./.env</code> while in the project root directory.
-  3. Run <code>gulp test:a11y</code> to run an audit on the homepage.
-  4. To test a page aside from the homepage, add the <code>--u=&lt;path_to_test&gt;</code> flag.
+<p>If you'd like to audit a specific page, use <code>gulp test:a11y</code>:</p>
+<ol>
+<li>Enable the environment variable <code>ACHECKER_ID</code> in your <code>.env</code> file.
+     Get a free <a href="http://achecker.ca/register.php">AChecker API ID</a> for the value.</li>
+<li>Reload your <code>.env</code> with <code>source ./.env</code> while in the project root directory.</li>
+<li>Run <code>gulp test:a11y</code> to run an audit on the homepage.</li>
+<li>To test a page aside from the homepage, add the <code>--u=&lt;path_to_test&gt;</code> flag.
      For example, <code>gulp test:a11y --u=contact-us</code>
-     or <code>gulp test:a11y --u=the-bureau/bureau-structure/</code>.</p>
+     or <code>gulp test:a11y --u=the-bureau/bureau-structure/</code>.</li>
+</ol>
 <h1 id="source-code-linting">Source code linting</h1>
 <p>The default test task includes linting of the JavaScript source, build,
 and test files.
@@ -303,12 +301,14 @@ Use the <code>gulp lint</code> command from the command-line to run the ESLint l
 which checks the JavaScript against the rules configured in <code>.eslintrc</code>.
 <a href="http://eslint.org/docs/rules/">See the ESLint docs</a>
 for detailed rule descriptions.</p>
-<p>There are a number of options to the command:
- - Use <code>gulp lint:build</code> to only lint the build scripts.
- - Use <code>gulp lint:test</code> to only lint the test scripts.
- - Use <code>gulp lint:scripts</code> to only lint the project source scripts.
- - Add the <code>--fix</code> flag (like <code>gulp lint --fix</code>) to auto-fix
-   some errors, where ESLint has support to do so.</p>
+<p>There are a number of options to the command:</p>
+<ul>
+<li><code>gulp lint:build</code>: Lint only the gulp build scripts.</li>
+<li><code>gulp lint:test</code>: Lint only the test scripts.</li>
+<li><code>gulp lint:scripts</code>: Lint only the project source scripts.</li>
+<li><code>--fix</code>: Add this flag (like <code>gulp lint --fix</code> or <code>gulp lint:build --fix</code>)
+   to auto-fix some errors, where ESLint has support to do so.</li>
+</ul>
             </section>
         </div>
 
