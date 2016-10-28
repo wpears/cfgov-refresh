@@ -103,6 +103,19 @@
                                     <a href="../feature-flags/" class="">Feature flags</a>
                                 </li>
                                 
+                            </ul>
+                            
+                        </li>
+                        
+                        <li>
+                            
+                            <span>Back-end guidelines</span>
+                            <ul class="secondary-nav">
+                                
+                                <li>
+                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
+                                </li>
+                                
                                 <li>
                                     <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
                                 </li>
@@ -113,7 +126,7 @@
                         
                         <li>
                             
-                            <span>Front end guidelines</span>
+                            <span>Front-end guidelines</span>
                             <ul class="secondary-nav">
                                 
                                 <li>
@@ -151,7 +164,7 @@
             </aside>
 
             <section id="main" class="main-content" role="main">
-                <h1 id="browser-tests">Browser Tests</h1>
+                <h1 id="browser-tests">Browser tests</h1>
 <h2 id="quick-start">Quick start:</h2>
 <p>Many of our browser tests have been rewritten as Python unit tests. The remaining rely on data that is not generated during testing, so please note many of these tests might fail if you do not have a production database locally. If you do, open a new Terminal window or tab and change to the project directory,
 then tell gulp to start the tests:</p>
@@ -264,22 +277,31 @@ describe( 'Beta The Bureau Page', function() {
 } );
 </code></pre>
 
-<h2 id="further-reading">Further Reading</h2>
+<h2 id="further-reading">Further reading</h2>
 <ul>
 <li><a href="http://angular.github.io/protractor/#/">Protractor</a></li>
 <li><a href="http://www.seleniumhq.org/docs/03_webdriver.jsp#locating-ui-elements-webelements">Select elements on a page</a></li>
 <li><a href="http://jasmine.github.io/2.0/introduction.html#section-Expectations">Writing Jasmin expectations</a>.</li>
 <li><a href="http://www.thoughtworks.com/insights/blog/using-page-objects-overcome-protractors-shortcomings">Understanding Page Objects</a></li>
 </ul>
-<h1 id="performance-testing">Performance Testing</h1>
+<h1 id="performance-testing">Performance testing</h1>
 <p>To audit if the site complies with performance best practices and guidelines,
 run <code>gulp test:perf</code>.</p>
 <p>The audit will run against
 <a href="https://github.com/addyosmani/psi">Google's PageSpeed Insights</a>.</p>
-<h1 id="django-server-unit-tests">Django Server Unit Tests</h1>
-<p>To run the server unit tests using Tox,
-make sure the <code>TOXENV</code> variable is set in your <code>.env</code> file and
-run <code>gulp test:unit:server</code> from the command-line in the project root.</p>
+<h1 id="django-and-python-unit-tests">Django and Python unit tests</h1>
+<p>To run the the full suite of Python 2.7 unit tests using Tox, cd to the project 
+root, make sure the <code>TOXENV</code> variable is set in your <code>.env</code> file and then run</p>
+<pre><code>tox
+</code></pre>
+
+<p>If you haven't changed any installed packages and you don't need to test all migrations, you can run a much faster Python code test using:</p>
+<pre><code>tox -e fast
+</code></pre>
+
+<p>To see Python code coverage information, run
+<code>`
+./show_coverage.sh</code></p>
 <h1 id="accessibility-testing">Accessibility Testing</h1>
 <p>Run the acceptance tests with an <code>--a11y</code> flag (i.e. <code>gulp test:acceptance --a11y</code>)
 to check every webpage for WCAG and Section 508 compliancy using Protractor's
@@ -314,7 +336,7 @@ for detailed rule descriptions.</p>
 
         <footer role="contentinfo">
             <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau.</a>.
+                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
 
                 <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
             </div>

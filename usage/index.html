@@ -103,6 +103,19 @@
                                     <a href="../feature-flags/" class="">Feature flags</a>
                                 </li>
                                 
+                            </ul>
+                            
+                        </li>
+                        
+                        <li>
+                            
+                            <span>Back-end guidelines</span>
+                            <ul class="secondary-nav">
+                                
+                                <li>
+                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
+                                </li>
+                                
                                 <li>
                                     <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
                                 </li>
@@ -113,7 +126,7 @@
                         
                         <li>
                             
-                            <span>Front end guidelines</span>
+                            <span>Front-end guidelines</span>
                             <ul class="secondary-nav">
                                 
                                 <li>
@@ -160,10 +173,10 @@
     such as <code>git checkout master</code>.</li>
 <li><strong>Elasticsearch</strong>.
     Run an Elasticsearch (ES) instance.
-    See instructions <a href="https://github.com/cfpb/cfgov-refresh#2-run-elasticsearch">below</a>.</li>
+    See instructions <a href="#2-run-elasticsearch">below</a>.</li>
 <li><strong>Django server</strong>. Start and stop the web server.
     Server is started with <code>./runserver.sh</code>,
-    but see more details <a href="https://github.com/cfpb/cfgov-refresh#3-load-indexes--launch-site">below</a>.</li>
+    but see more details <a href="#3-load-indexes--launch-site">below</a>.</li>
 <li><strong>Gulp watch</strong>.
     Run the Gulp watch (<code>gulp watch</code>) task to automatically re-run the gulp
     asset compilation tasks when their source files are changed.</li>
@@ -177,7 +190,7 @@ such as checking out our master branch:</p>
 
 <h4 id="updating-all-dependencies">Updating all dependencies</h4>
 <p>Each time you fetch from the upstream repository (this repo), run <code>./setup.sh</code>.
-This setup script will remove and re-install the project dependencies
+This setup script will remove and reinstall the project dependencies
 and rebuild the site's JavaScript and CSS assets.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -238,13 +251,19 @@ stop the server with <code>ctrl</code> + <code>c</code> and run these commands:<
 </code></pre>
 
 <p>To view the site browse to: <a href="http://localhost:8000">http://localhost:8000</a></p>
+<div class="admonition note">
+<p class="admonition-title">Using a different port</p>
+<p>If you want to run the server at a port other than 8000 use</p>
+<p><code>python cfgov/manage.py runserver &lt;port number&gt;</code></p>
+<p>Specify an alternate port number, e.g. <code>8001</code>.</p>
+</div>
 <p>To view the Wagtail admin login,
 browse to: <a href="http://localhost:8000/admin/login/">http://localhost:8000/admin/login/</a></p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Using a different port.**
-If you want to run the server at a port other than 8000
-use <code>python cfgov/manage.py runserver &lt;port number&gt;</code>, e.g. <code>8001</code>.</p>
+<p class="admonition-title">Using HTTPS locally</p>
+<p>To access a local server using HTTPS use</p>
+<p><code>./runserver.sh ssl</code></p>
+<p>You'll need to ignore any browser certificate errors.</p>
 </div>
 <h3 id="4-launch-the-gulp-watch-task">4. Launch the Gulp watch task</h3>
 <p>To watch for changes in the source code and automatically update the running site,
@@ -278,7 +297,7 @@ gulp watch           # Watch for source code changes and auto-update a browser i
 
         <footer role="contentinfo">
             <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau.</a>.
+                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
 
                 <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
             </div>

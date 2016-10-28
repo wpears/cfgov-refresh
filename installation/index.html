@@ -103,6 +103,19 @@
                                     <a href="../feature-flags/" class="">Feature flags</a>
                                 </li>
                                 
+                            </ul>
+                            
+                        </li>
+                        
+                        <li>
+                            
+                            <span>Back-end guidelines</span>
+                            <ul class="secondary-nav">
+                                
+                                <li>
+                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
+                                </li>
+                                
                                 <li>
                                     <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
                                 </li>
@@ -113,7 +126,7 @@
                         
                         <li>
                             
-                            <span>Front end guidelines</span>
+                            <span>Front-end guidelines</span>
                             <ul class="secondary-nav">
                                 
                                 <li>
@@ -158,7 +171,7 @@
 cd cfgov-refresh
 </code></pre>
 
-<p>You may also wish to fork the repository on Github and clone the resultant personal fork. This is advised if you are going to be doing development on <code>cfgov-refresh</code> and contributing to the project.</p>
+<p>You may also wish to fork the repository on GitHub and clone the resultant personal fork. This is advised if you are going to be doing development on <code>cfgov-refresh</code> and contributing to the project.</p>
 <p>There are two ways to install cfgov-refresh:</p>
 <ul>
 <li><a href="#stand-alone-installation">Stand-alone installation</a></li>
@@ -367,12 +380,10 @@ migrations are applied to the database, and then does the following:</p>
 <code>WAGTAIL_ADMIN_PW</code> environment variable, if set.</li>
 <li>If it doesn't already exist, creates a new Wagtail home page named <code>CFGOV</code>,
 with a slug of <code>cfgov</code>.</li>
-<li>If it doesn't already exist, creates a new Wagtail Site with a hostname of
-<code>content.localhost</code>, with the root page set to the <code>CFGOV</code> home page.</li>
-<li>If they don't already exist, creates pages for events (name <code>Events</code>, slug
-<code>events</code>) and archived events (name <code>Archive</code>, slug <code>archive</code>).</li>
+<li>Updates the default Wagtail site to use the port defined by the <code>DJANGO_HTTP_PORT</code> environment variable, if defined; otherwise this port is set to 80.</li>
+<li>If it doesn't already exist, creates a new Wagtail staging Site with a hostname defined by the <code>DJANGO_STAGING_HOSTNAME</code> environment variable, with the root page set to the <code>CFGOV</code> home page. The staging site port is set using the same logic as the default site port described above.</li>
 </ul>
-<h3 id="load-a-database-dump-from-the-build-server">Load a database dump from the Build server</h3>
+<h3 id="load-a-database-dump">Load a database dump</h3>
 <p>If you're installing this fresh, the initial data you receive will not be
 as extensive as you'd probably like it to be.</p>
 <p>You can get a database dump using the <code>cf.gov-dump-rdbms</code>
@@ -381,10 +392,9 @@ unzip it, and then run:</p>
 <pre><code class="bash">./refresh-data.sh /path/to/dump.sql
 </code></pre>
 
-<p>This will remove the initial Wagtail admin user that was created by
-the <code>initial-data.sh</code> script that was called by <code>backend.sh</code>.
-If you need to access the Wagtail admin, create a new user with the following:</p>
-<pre><code>./cfgov/manage.py createsuperuser
+<p>The <code>refresh-data.sh</code> script will apply the same changes as the <code>initial-data.sh</code> script described above (including setting up the <code>admin</code> superuser), but will not apply migrations.</p>
+<p>To apply any unapplied migrations to a database created from a dump, run:</p>
+<pre><code class="bash">python cfgov/manage.py migrate
 </code></pre>
 
 <h3 id="install-protractor-locally">Install Protractor locally</h3>
@@ -464,7 +474,7 @@ After doing that, you'll need to reinstall virtualenv:
 
         <footer role="contentinfo">
             <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau.</a>.
+                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
 
                 <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
             </div>
