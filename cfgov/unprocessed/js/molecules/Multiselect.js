@@ -181,7 +181,8 @@ function Multiselect( element ) { // eslint-disable-line max-statements, inline-
 
     _fieldsetDom = domCreate( 'fieldset', {
       'className':   BASE_CLASS + '_fieldset u-invisible',
-      'aria-hidden': 'true'
+      'aria-hidden': 'true',
+      'data-observe': 'attribute:aria-hidden'
     } );
 
     _optionsDom = domCreate( 'ul', {

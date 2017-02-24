@@ -41,8 +41,8 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
   var _transitionPrefix = _getTransitionPrefix( _transitionEndEvent );
   var _contentHeight;
 
-  // TODO: Replace function of _that with Function.prototype.bind.
-  var _that = this;
+  // TODO: Replace function of _instance with Function.prototype.bind.
+  var _instance = this;
   var _collapseBinded = fnBind( collapse, this );
   var _expandBinded = fnBind( expand, this );
 
@@ -123,18 +123,60 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
 
     window.setTimeout( addObserver, 0 );
 
-    return _that;
+    return _instance;
   }
 
   /**
    * Add mutation observer events.
    */
   function _addMutationObserverEvents() {
-    _observer = new MutationObserver( function( mutations ) {
-      mutations.forEach( _refreshHeight );
+    var observableElements = _dom.querySelectorAll( '[data-observe]' );
+    var observableType;
+    var observerOptions = {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: []
+    };
+    var observableProperty;
+    var observableValue;
+
+    observableElements.forEach( function( element ) {
+      observableValue = element.getAttribute( 'data-observe' );
+      if ( observableValue ) {
+         observableValue =  observableValue.split( ':' );
+         observableType = observableValue[0];
+
+        if ( observableValue.length > 1 ) {
+          observableProperty = observableValue[1];
+        }
+
+        if ( observerOptions.attributeFilter.indexOf( observableProperty ) === -1 ) {
+          observerOptions.attributeFilter.push( observableProperty );
+        }
+      }
     } );
 
-    _observer.observe( _content, { childList: true, subtree: true } );
+    var observer = new MutationObserver( function( mutations ) {
+      mutations.forEach( _analyzeMutation );
+    } );
+
+    observer.observe( _content, observerOptions );
+  }
+
+  /**
+   * Add mutation observer events.
+   */
+  function _analyzeMutation( mutationRecord ) {
+      window.setTimeout( function() {
+        var domDimensions = _dom.getBoundingClientRect();
+        var targetDimensions = mutationRecord.target.getBoundingClientRect();
+        if ( domDimensions.bottom < targetDimensions.bottom ) {
+          _content.style.height = _content.offsetHeight + ( targetDimensions.bottom - domDimensions.bottom) + 'px'
+        } else {
+          _refreshHeight();
+        }
+      }, 500 )
   }
 
   /**
@@ -156,7 +198,7 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
     } else {
       _expandBinded( duration );
     }
-    return _that;
+    return _instance;
   }
 
   /**
@@ -172,7 +214,7 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
     duration = duration || _calculateExpandDuration( _contentHeight );
 
     _setStateTo( EXPANDING );
-    this.dispatchEvent( 'expandBegin', { target: _that } );
+    this.dispatchEvent( 'expandBegin', { target: _instance } );
     _setMaxHeight();
     _transitionHeight( _expandComplete, duration );
     return this;
@@ -191,7 +233,7 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
     duration = duration || _calculateCollapseDuration( _contentHeight );
 
     _setStateTo( COLLAPSING );
-    this.dispatchEvent( 'collapseBegin', { target: _that } );
+    this.dispatchEvent( 'collapseBegin', { target: _instance } );
     _setMinHeight();
     _transitionHeight( _collapseComplete, duration );
     return this;
@@ -240,7 +282,7 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
   function _expandComplete() {
     _content.removeEventListener( _transitionEndEvent, _expandComplete );
     _setExpandedState();
-    _that.dispatchEvent( 'expandEnd', { target: _that } );
+    _instance.dispatchEvent( 'expandEnd', { target: _instance } );
   }
 
   /**
@@ -249,7 +291,7 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
   function _collapseComplete() {
     _content.removeEventListener( _transitionEndEvent, _collapseComplete );
     _setCollapsedState();
-    _that.dispatchEvent( 'collapseEnd', { target: _that } );
+    _instance.dispatchEvent( 'collapseEnd', { target: _instance } );
   }
 
   /**
@@ -257,9 +299,9 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
    */
   function _handleClick() {
     // Bubble click event outside of the Expandable.
-    _that.dispatchEvent( 'click', { target: _that } );
+    _instance.dispatchEvent( 'click', { target: _instance } );
     if ( _isCollapsed() || _isExpanded() ) {
-      _that.toggle();
+      _instance.toggle();
     }
   }
 
@@ -288,6 +330,7 @@ function Expandable( element ) { // eslint-disable-line max-statements, inline-c
    * Reset the height of the Expandables, when e.g. resizing the window.
    */
   function _refreshHeight() {
+    console.log( 'refresh' );
     if ( _isExpanded() ) {
       _setMaxHeight();
     } else {
