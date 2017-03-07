@@ -165,12 +165,12 @@
 
             <section id="main" class="main-content" role="main">
                 <h1 id="feature-flags">Feature flags</h1>
-<p>Feature flags are stored in the Wagtail database and exposed in the Wagtail admin under “Settings”:</p>
+<p>Feature flags are implemented using our <a href="https://github.com/cfpb/wagtail-flags">Wagtail-Flags</a> app. The <a href="https://github.com/cfpb/wagtail-flags/blob/master/README.md">README</a> contains an overview and examples of how to use feature flags in Wagtail.</p>
 <p><img alt="Feature flags" src="../img/image02.png" /></p>
 <p>Here flags can added, enabled, or disabled:</p>
 <p><img alt="Feature flags" src="../img/image00.png" /></p>
 <p>The flag consists of a single string (by convention all uppercase, with underscores instead of whitespace). Flags are disabled by default, and checks for flags that do not exist will return False.</p>
-<p>Once a flag has been created it can be checked in Python and Jinja2 templates using the functions <code>flag_enabled</code> and <code>flag_disabled</code> found in <a href="https://github.com/cfpb/cfgov-refresh/tree/master/cfgov/flags/template_functions.py"><code>flags.template_functions</code></a> and exposed to templates in v1. Checking the boolean value of a feature flag requires an <code>HttpRequest</code> object in order to determine the <code>Site</code> the flag is being checked against.</p>
+<p>Once a flag has been created it can be checked in Python and Jinja2 templates using the functions <a href="https://github.com/cfpb/wagtail-flags/blob/master/README.md#usage">documented in the Wagtail-Flags README</a>.</p>
 <h2 id="python-example">Python example</h2>
 <pre><code class="python">from flags.template_functions import flag_enabled, flag_disabled
 
@@ -212,11 +212,8 @@ I’m a beta banner.
 {% endif %}
 </code></pre>
 
-<p>Feature flags are implemented as a Django app in <a href="https://github.com/cfpb/cfgov-refresh/tree/master/cfgov/flags"><code>cfgov-refresh/cfgov/flags</code></a>.</p>
 <h2 id="feature-flag-hygiene">Feature flag hygiene</h2>
 <p>Feature flags should be rare and ephemeral. Changes should be small and frequent, and not big-bang releases, and flags that are no longer used should be cleaned up and removed from code and the database.</p>
-<h2 id="feature-flag-source">Feature flag source</h2>
-<p>Feature flags for cfgov-refresh are implemented <a href="https://github.com/cfpb/cfgov-refresh/tree/master/cfgov/flags">in the <code>flags</code> Django app</a>.</p>
             </section>
         </div>
 
