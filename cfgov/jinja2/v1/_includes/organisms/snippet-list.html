@@ -73,11 +73,11 @@
             <ul data-display-table="row-group">
             {% for snippet in filtered_snippets %}
                 <li data-display-table="row">
-                    <div data-display-table="cell">
+                    <div class="o-snippet-list_list-left-cell" data-display-table="cell">
                         <div class="o-snippet-list_list-item-title">{{ snippet }}</div>
                         {{ snippet.desc if snippet.desc else '' }}
                     </div>
-                    <div data-display-table="cell">
+                    <div class="o-snippet-list_list-right-cell" data-display-table="cell">
                         <ul class="o-snippet-list_list-action-list">
                     {% for action in value.actions %}
                         {% if snippet[action.snippet_field] %}
