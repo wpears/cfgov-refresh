@@ -371,6 +371,16 @@ term filters of different fields will be combined in an AND clause.</p>
 <p>This will return documents that have the tag Students OR Finance, AND have an author of Batman.</p>
 <p>If you need more control over your filter than that,
 enter it manually in the <code>cfgov/jinja2/v1/_queries/[filtername].json</code> file.</p>
+<h3 id="tip-debugging-site-performance">TIP: Debugging site performance</h3>
+<p>When running locally it is possible to enable the
+<a href="https://django-debug-toolbar.readthedocs.io/en/stable/">Django Debug Toolbar</a>
+by defining the <code>ENABLE_DEBUG_TOOLBAR</code> environment variable:</p>
+<pre><code class="sh">$ ENABLE_DEBUG_TOOLBAR=1 ./runserver.sh
+</code></pre>
+
+<p>This tool exposes various useful pieces of information about things like HTTP headers,
+Django settings, SQL queries, and template variables. Note that running with the toolbar on
+may have an impact on local server performance.</p>
 <h3 id="tip-updating-the-documentation">TIP: Updating the documentation</h3>
 <p>Our documentation is written as Markdown files and served in GitHub pages 
 by <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">mkdocs</a>.</p>
