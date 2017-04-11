@@ -381,7 +381,7 @@ migrations are applied to the database, and then does the following:</p>
 <li>If it doesn't already exist, creates a new Wagtail home page named <code>CFGOV</code>,
 with a slug of <code>cfgov</code>.</li>
 <li>Updates the default Wagtail site to use the port defined by the <code>DJANGO_HTTP_PORT</code> environment variable, if defined; otherwise this port is set to 80.</li>
-<li>If it doesn't already exist, creates a new Wagtail staging Site with a hostname defined by the <code>DJANGO_STAGING_HOSTNAME</code> environment variable, with the root page set to the <code>CFGOV</code> home page. The staging site port is set using the same logic as the default site port described above.</li>
+<li>If it doesn't already exist, creates a new <a href="https://github.com/cfpb/wagtail-sharing">wagtail-sharing</a> <code>SharingSite</code> with a hostname and port defined by the <code>DJANGO_STAGING_HOSTNAME</code> and <code>DJANGO_HTTP_PORT</code> environment variables.</li>
 </ul>
 <h3 id="load-a-database-dump">Load a database dump</h3>
 <p>If you're installing this fresh, the initial data you receive will not be
