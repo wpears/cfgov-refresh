@@ -19,7 +19,7 @@
         <h3>What is your question about?</h3>
         <ul>
         {%- for subcat in page.ask_category.subcategories.all() -%}
-            <li>{{ subcat.name }}</li>
+            <li data-id="{{ subcat.id }}">{{ subcat.name }}</li>
         {% endfor %}
         </ul>
     </section>
@@ -42,9 +42,7 @@
 {% block javascript %}
 {{ super() }}
 <script>
-    var audienceMap = {{ page.ask_category.audience_json|safe }};
-    var subcatMap = {{ page.ask_category.subcategory_json|safe }};
-    var answerMap = {{ page.ask_category.answer_json|safe }};
+    var facetMap = {{ page.ask_category.facet_map|safe }};
 </script>    
 {% endblock %}
 
