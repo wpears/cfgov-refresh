@@ -19,7 +19,7 @@ from v1.atomic_elements.organisms import FilterControls
 from v1.feeds import FilterableFeedPageMixin
 from v1.models import CFGOVPage, LandingPage
 from v1.util.filterable_list import FilterableListMixin
-from ask_cfpb.models import (Category, Audience)
+from ask_cfpb.models import Category, Audience
 
 
 class AnswerLandingPage(LandingPage):
@@ -84,9 +84,9 @@ class AnswerCategoryPage(
         context = super(
             AnswerCategoryPage, self).get_context(request, *args, **kwargs)
         context.update({
-            'choices':
-            self.ask_category.subcategories.all().values_list(
-                'slug', 'name')
+            'choices': self.ask_category.subcategories.all(),
+            'audiences': self.ask_category.audience_counts,
+            'answers': self.ask_category.facet_map['answers']
         })
         return context
 

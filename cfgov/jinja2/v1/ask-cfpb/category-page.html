@@ -18,10 +18,26 @@
         </div>
         <h3>What is your question about?</h3>
         <ul>
-        {%- for subcat in page.ask_category.subcategories.all() -%}
-            <li data-id="{{ subcat.id }}">{{ subcat.name }}</li>
+        {%- for subcat in choices -%}
+            <li data-subcategory-id="{{ subcat.id }}">{{ subcat.name }}</li>
         {% endfor %}
         </ul>
+        <h3>Audiences</h3>
+        <ul>
+        {%- for audience_id in audiences -%}
+            <li data-audience-id="{{ audience_id }}">
+                {{ audiences[audience_id]['name'] }} ({{ audiences[audience_id]['count'] }})</li>
+        {% endfor %}
+        </ul>
+        <aside>
+        <ul>
+        {%- for id in answers -%}
+        <li data-answer-id="{{ id }}">
+            <a href="{{ answers[id]['url'] }}">{{ answers[id]['question'] }}</a>
+        </li>
+        {% endfor %}
+        </ul>
+        </aside>
     </section>
     <section class="search-results"></section>
 
@@ -42,7 +58,7 @@
 {% block javascript %}
 {{ super() }}
 <script>
-    var facetMap = {{ page.ask_category.facet_map|safe }};
+    var facetMap = {{ page.ask_category.facet_json|safe }};
 </script>    
 {% endblock %}
 
