@@ -3,24 +3,24 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/installation/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/installation/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/usage/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/usage/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,54 +28,38 @@
     
         
     <url>
-     <loc>None/whats-new/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/whats-new/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/new-projects/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/new-projects/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/branching-merging/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/branching-merging/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/release-cadence/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/release-cadence/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/deployment/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/deployment/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/feature-flags/</loc>
-     <lastmod>2017-04-11</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>None/wagtail-migrations/</loc>
-     <lastmod>2017-04-11</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/django-to-wagtail/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/feature-flags/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -84,20 +68,36 @@
     
         
     <url>
-     <loc>None/atomic-structure/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/wagtail-migrations/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/notes-on-atomic-design/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/django-to-wagtail/</loc>
+     <lastmod>2017-05-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/atomic-structure/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/notes-on-frameworks/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/notes-on-atomic-design/</loc>
+     <lastmod>2017-05-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/notes-on-frameworks/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -105,16 +105,16 @@
 
     
     <url>
-     <loc>None/testing/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/testing/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/development-tips/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <loc>/development-tips/</loc>
+     <lastmod>2017-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

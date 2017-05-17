@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="../css/syntax.css">
     
 
-    
     <style type="text/css">
+        
         .sidebar-nav a:hover,
         .sidebar-nav a:focus,
         .sidebar-nav a:active,
@@ -27,8 +27,10 @@
         header {
             border-bottom-color: #2CB34A;
         }
+        
+        
     </style>
-    
+
 
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -37,7 +39,7 @@
 </head>
 
 <body>
-    
+
     <div class="container">
         <header role="banner">
             <div class="wrap">
@@ -47,28 +49,28 @@
                 <h1 class="site-title"><a class="title-link" href="../">cfgov-refresh</a></h1>
             </div>
         </header>
-    
+
         <div class="wrap content">
             <aside>
                 <nav class="sidebar-nav" role="navigation">
                     <ul>
                         
                         <li>
-                             
+                            
                             <a href=".." class="">Introduction</a>
 
                             
                         </li>
                         
                         <li>
-                             
+                            
                             <a href="../installation/" class="">Installation</a>
 
                             
                         </li>
                         
                         <li>
-                             
+                            
                             <a href="../usage/" class="">Usage</a>
 
                             
@@ -146,14 +148,14 @@
                         </li>
                         
                         <li>
-                             
+                            
                             <a href="../testing/" class="">Testing</a>
 
                             
                         </li>
                         
                         <li>
-                             
+                            
                             <a href="./" class="sidebar-nav-active">Development tips</a>
 
                             
@@ -192,10 +194,19 @@ and then indexed within this cfgov-refresh project.</p>
 <li>fin-ed-resources (ghe/CFGOV/fin-ed-resources) - for the Education Resources section.</li>
 <li>know-before-you-owe (ghe/CFGOV/know-before-you-owe) - for the Consumer Tools &gt; Know before you owe section.</li>
 </ul>
-<p>After installing these projects as sibling directories to the <code>cfgov-refresh</code> repository,
-build the third-party projects per their directions,
-stop the web server and return to <code>cfgov-refresh</code>
-and run <code>cfgov/manage.py sheer_index -r</code> to load the projects' data into ElasticSearch.</p>
+<p>After installing these projects as sibling directories to the <code>cfgov-refresh</code> repository,</p>
+<h5 id="option-1-sheer-index-and-elasticsearch-eg-owning-a-home">Option 1: Sheer Index and Elasticsearch (e.g. owning-a-home)</h5>
+<ol>
+<li>build the third-party projects per their directions,</li>
+<li>stop the web server and return to <code>cfgov-refresh</code></li>
+<li>and run <code>cfgov/manage.py sheer_index -r</code> to load the projects' data into ElasticSearch.</li>
+</ol>
+<h5 id="option-2-direct-dependencies">Option 2: Direct dependencies</h5>
+<ol>
+<li>Build the third-party projects per their directions</li>
+<li>Stop the web server and return to <code>cfgov-refresh</code></li>
+<li>Run <code>pip install -e ../&lt;sibling&gt;</code> to load the projects' dependencies</li>
+</ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Do not install the projects directly into the <code>cfgov-refresh</code> directory.
@@ -398,6 +409,6 @@ mkdocs provides <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">
                 <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
             </div>
         </footer>
-    </div> 
+    </div>
 </body>
 </html>
