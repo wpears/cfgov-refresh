@@ -299,7 +299,7 @@ urlpatterns += ask_patterns
 
 <p>This lambda takes the request and calls the <a href="https://github.com/cfpb/wagtail-sharing">Wagtail-Sharing</a> <code>ServeView</code> (which we're using in place of <code>wagtail.wagtailcore.views.serve</code>).</p>
 <h2 id="enabling-a-flag">Enabling a flag</h2>
-<p>Feature flags are enabled based on a set of conditions that are given either in the Django settings files (in <code>cfgov/cfgov/settings/</code>) or in the Django or Wagtail admin. Multiple conditions can be given, both in settings and in the admin, and all conditions must be satisfied before a flag is enabled.</p>
+<p>Feature flags are enabled based on a set of conditions that are given either in the Django settings files (in <code>cfgov/cfgov/settings/</code>) or in the Django or Wagtail admin. Multiple conditions can be given, both in settings and in the admin, and if any condition is satisfied a flag is enabled.</p>
 <p><a href="https://github.com/cfpb/wagtail-flags/blob/master/README.md#built-in-conditions">A list of available conditions and how to use them is available in the Wagtail-Flags documentation</a>.</p>
 <h3 id="hard-coded-conditions">Hard-coded conditions</h3>
 <p>Conditions that are defined in the Django settings are hard-coded, and require a change to files in cfgov-refresh, a new tagged release, and new deployment to change. These conditions should be used for flags that are relatively long-lasting and that can require a round-trip through the release and deployment process to change.</p>
