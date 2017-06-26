@@ -29,6 +29,8 @@
         }
         
         
+
+        
     </style>
 
 
@@ -187,8 +189,9 @@
 <h3 id="1-git-operations">1. Git operations</h3>
 <p>From this tab you can do Git operations,
 such as checking out our master branch:</p>
-<pre><code class="bash">git checkout master
-</code></pre>
+<div class="highlight"><pre><span></span>git checkout master
+</pre></div>
+
 
 <h4 id="updating-all-dependencies">Updating all dependencies</h4>
 <p>Each time you fetch from the upstream repository (this repo), run <code>./setup.sh</code>.
@@ -206,28 +209,32 @@ if you only want to re-build the backend or front-end, respectively.</p>
 </div>
 <p>To launch Elasticsearch, first find out where your Elasticsearch config file is located.
 You can do this with <a href="http://brew.sh">Homebrew</a> using:</p>
-<pre><code class="bash">brew info elasticsearch
-</code></pre>
+<div class="highlight"><pre><span></span>brew info elasticsearch
+</pre></div>
+
 
 <p>The last line of that output should be the command you need to launch Elasticsearch with the
 proper path to its configuration file. For example, it may look like:</p>
-<pre><code class="bash">elasticsearch --config=/Users/[YOUR MAC OSX USERNAME]/homebrew/opt/elasticsearch/config/elasticsearch.yml
-</code></pre>
+<div class="highlight"><pre><span></span>elasticsearch --config<span class="o">=</span>/Users/<span class="o">[</span>YOUR MAC OSX USERNAME<span class="o">]</span>/homebrew/opt/elasticsearch/config/elasticsearch.yml
+</pre></div>
+
 
 <h3 id="3-load-indexes-launch-site">3. Load Indexes &amp; Launch Site</h3>
 <p>First, move into the <code>cfgov-refresh</code> project directory
 and ready your environment:</p>
-<pre><code class="bash"># Use the cfgov-refresh virtualenv.
+<div class="highlight"><pre><span></span><span class="c1"># Use the cfgov-refresh virtualenv.</span>
 workon cfgov-refresh
 
-# cd into this directory (if you aren't already there)
-cd cfgov-refresh
-</code></pre>
+<span class="c1"># cd into this directory (if you aren&#39;t already there)</span>
+<span class="nb">cd</span> cfgov-refresh
+</pre></div>
+
 
 <p>Index the latest content from the API output from a WordPress and Django back-end.
 <strong>This requires the constants in <a href="../installation#stand-alone-installation">Stand alone installation</a> to be set.</strong></p>
-<pre><code class="bash">python cfgov/manage.py sheer_index -r
-</code></pre>
+<div class="highlight"><pre><span></span>python cfgov/manage.py sheer_index -r
+</pre></div>
+
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -235,22 +242,25 @@ cd cfgov-refresh
 <a href="http://mobz.github.io/elasticsearch-head/">elasticsearch-head</a>.</p>
 </div>
 <p>From the project root, start the Django server:</p>
-<pre><code class="bash">./runserver.sh
-</code></pre>
+<div class="highlight"><pre><span></span>./runserver.sh
+</pre></div>
+
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If prompted to migrate database changes,
 stop the server with <code>ctrl</code> + <code>c</code> and run these commands:</p>
 </div>
-<pre><code class="bash">python cfgov/manage.py migrate
+<div class="highlight"><pre><span></span>python cfgov/manage.py migrate
 ./initial-data.sh
 ./runserver.sh
-</code></pre>
+</pre></div>
+
 
 <p>To set up a superuser in order to access the Wagtail admin:</p>
-<pre><code>python cfgov/manage.py createsuperuser
-</code></pre>
+<div class="highlight"><pre><span></span>python cfgov/manage.py createsuperuser
+</pre></div>
+
 
 <p>To view the site browse to: <a href="http://localhost:8000">http://localhost:8000</a></p>
 <div class="admonition note">
@@ -270,9 +280,10 @@ browse to: <a href="http://localhost:8000/admin/login/">http://localhost:8000/ad
 <h3 id="4-launch-the-gulp-watch-task">4. Launch the Gulp watch task</h3>
 <p>To watch for changes in the source code and automatically update the running site,
 open a terminal and run:</p>
-<pre><code class="bash">gulp build
+<div class="highlight"><pre><span></span>gulp build
 gulp watch
-</code></pre>
+</pre></div>
+
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -285,7 +296,7 @@ particularly <code>gulp build</code> and <code>gulp test</code>,
 which will build the project and test it, respectively.
 Using the <code>gulp --tasks</code> command you can view all available tasks.
 The important ones are listed below:</p>
-<pre><code>gulp build           # Concatenate, optimize, and copy source files to the production /dist/ directory.
+<div class="highlight"><pre><span></span>gulp build           # Concatenate, optimize, and copy source files to the production /dist/ directory.
 gulp clean           # Remove the contents of the production /dist/ directory.
 gulp lint            # Lint the scripts and build files.
 gulp docs            # Generate JSDocs from the scripts.
@@ -293,7 +304,7 @@ gulp test            # Run linting, unit and acceptance tests (see below).
 gulp test:unit       # Run only unit tests on source code.
 gulp test:acceptance # Run only acceptance (in-browser) tests on production code.
 gulp watch           # Watch for source code changes and auto-update a browser instance.
-</code></pre>
+</pre></div>
             </section>
         </div>
 

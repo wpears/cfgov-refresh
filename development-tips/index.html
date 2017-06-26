@@ -29,6 +29,8 @@
         }
         
         
+
+        
     </style>
 
 
@@ -177,10 +179,15 @@ The easiest way to do this is the following steps:</p>
 <li>Update the version of the dependency in <code>package.json</code>.</li>
 <li>Delete the <code>node_modules</code> directory.</li>
 <li>Delete the <code>npm-shrinkwrap.json</code> file.</li>
-<li>Run <code>npm install</code>.</li>
-<li>Run <code>npm shrinkwrap --dev</code>.</li>
+<li>Run <code>./frontend.sh shrinkwrap</code>.</li>
 </ol>
 <p>Congrats! The dependency has been updated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Shrinkwrapping will ignore development dependencies,
+so if one of those was updated you will need to run <code>npm install</code>
+after shrinkwrapping to bring your development environment up to date.</p>
+</div>
 <h3 id="tip-loading-sibling-projects">TIP: Loading sibling projects</h3>
 <p>Some projects fit within the cfgov-refresh architecture,
 but are not fully incorporated into the project.
@@ -216,17 +223,15 @@ so that they share the same parent directory (<code>~/Projects</code> or similar
 <h3 id="tip-loading-data-into-django-models">TIP: Loading data into Django models</h3>
 <p>The Django management command <code>import-data</code> will import data from the specified
 source into the specified model.</p>
-<pre><code>usage: manage.py import-data [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS]
+<p><div class="highlight"><pre><span></span>usage: manage.py import-data [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS]
         [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--parent PARENT]
         [--snippet] -u USERNAME -p PASSWORD [--app APP] [--overwrite]
         data_type wagtail_type
-</code></pre>
+</pre></div>
 
-<ul>
-<li><code>data_type</code> is the WordPress post type defined in the <code>processors.py</code> file.</li>
-<li><code>wagtail_type</code> is the Django model name where the data is going to go.</li>
-<li><code>-u</code> and <code>-p</code> are credentials to an admin account.</li>
-</ul>
+- <code>data_type</code> is the WordPress post type defined in the <code>processors.py</code> file.
+- <code>wagtail_type</code> is the Django model name where the data is going to go.
+- <code>-u</code> and <code>-p</code> are credentials to an admin account.</p>
 <p>Required option:</p>
 <ul>
 <li><code>--parent</code> is the slug of the parent page that the pages will exist
@@ -295,46 +300,23 @@ This happens when the <code>python cfgov/manage.py sheer_index -r</code> command
 repeating items (e.g., blog posts and press releases),
 and single pages (e.g., the Future Requests page in Doing Business with Us).
 What follows is a deeper dive into both of these content types.</p>
-<h4 id="repeating-content">Repeating content</h4>
-<p>For any kind of repeating content, this is the basic process:</p>
-<ol>
-<li>In the vars file for the section you're in (e.g., <code>newsroom/_vars-newsroom.html</code>),
-   we set up a variable that holds the results of the default query we want to run.</li>
-</ol>
-<p>Here's how it looks for the blog:</p>
-<pre><code class="jinja">{% set query = queries.posts %}
-{% set posts = query.search(size=10) %}
-</code></pre>
-
-<ol>
-<li>If you want to display the repeating content within a template,
-   simply set up a <code>for ... in</code> loop,
-   then output the different properties of the post within.
-   In the case of the blog, a list of posts is built using this method in
-   <code>cfgov/jinja2/v1/_includes/posts-paginated.html</code>.</li>
-</ol>
-<p>Here is a simplified example:</p>
-<pre><code class="jinja">{% for post in posts %}
-  &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
-  {{ post.content }}
-{% endfor %}
-</code></pre>
-
 <h4 id="single-content">Single content</h4>
 <p>To access a single piece of content,
 the easiest thing to do is use the <code>get_document()</code> function.</p>
 <p>Using the example given earlier of the Future Requests page,
 here's how it's done:</p>
-<pre><code class="jinja">{% set page = get_document('pages', '63169') %}
-{{ page.content | safe }}
-</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">page</span> <span class="o">=</span> <span class="nv">get_document</span><span class="o">(</span><span class="s1">&#39;pages&#39;</span><span class="o">,</span> <span class="s1">&#39;63169&#39;</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{{</span> <span class="nv">page.content</span> <span class="o">|</span> <span class="nf">safe</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+
 
 <p>The <code>get_document</code> method can be used to retrieve a single item of any post type
 for display within a template.
 In the below example we get an instance of the non-hierarchical
 <code>contact</code> post type using its slug (<code>whistleblowers</code>):</p>
-<pre><code class="jinja">{% set whistleblowers = get_document('contact', 'whistleblowers') %}
-</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">whistleblowers</span> <span class="o">=</span> <span class="nv">get_document</span><span class="o">(</span><span class="s1">&#39;contact&#39;</span><span class="o">,</span> <span class="s1">&#39;whistleblowers&#39;</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+
 
 <p>In practice, many of our templates are a Frankenstein-type mixture
 of hand-coded static content and calls to indexed content,
@@ -386,19 +368,20 @@ enter it manually in the <code>cfgov/jinja2/v1/_queries/[filtername].json</code>
 <p>When running locally it is possible to enable the
 <a href="https://django-debug-toolbar.readthedocs.io/en/stable/">Django Debug Toolbar</a>
 by defining the <code>ENABLE_DEBUG_TOOLBAR</code> environment variable:</p>
-<pre><code class="sh">$ ENABLE_DEBUG_TOOLBAR=1 ./runserver.sh
-</code></pre>
+<div class="highlight"><pre><span></span>$ <span class="nv">ENABLE_DEBUG_TOOLBAR</span><span class="o">=</span><span class="m">1</span> ./runserver.sh
+</pre></div>
+
 
 <p>This tool exposes various useful pieces of information about things like HTTP headers,
 Django settings, SQL queries, and template variables. Note that running with the toolbar on
 may have an impact on local server performance.</p>
 <h3 id="tip-updating-the-documentation">TIP: Updating the documentation</h3>
-<p>Our documentation is written as Markdown files and served in GitHub pages 
+<p>Our documentation is written as Markdown files and served in GitHub pages
 by <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">mkdocs</a>.</p>
-<p>To update the docs in GitHub Pages once a pull request has been merged, 
+<p>To update the docs in GitHub Pages once a pull request has been merged,
 mkdocs provides <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">a helpful command</a>:</p>
-<pre><code>mkdocs gh-deploy --clean
-</code></pre>
+<div class="highlight"><pre><span></span>mkdocs gh-deploy --clean
+</pre></div>
             </section>
         </div>
 
