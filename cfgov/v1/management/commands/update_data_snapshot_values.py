@@ -1,3 +1,5 @@
+import ast
+
 from django.core.management.base import BaseCommand
 
 from v1.models.browse_page import BrowsePage
@@ -6,34 +8,15 @@ from v1.tests.wagtail_pages.helpers import publish_changes
 class Command(BaseCommand):
     help = 'Monthly updates to data snapshot values'
     # Test/example command:
-    # python cfgov/manage.py update_data_snapshot_values --data_month='September 2017' --market_key='AUT' --num_originations='12345' --value_originations='1245' --year_over_year_change='123'
+    # python cfgov/manage.py update_data_snapshot_values --markets="[{'key':'AUT','data_month':'October 2017', 'num_originations': '12345', 'value_originations':'12345', 'year_over_year_change': '12345'}, {'key':'XYZ','data_month':'January 2017', 'num_originations': '123457', 'value_originations':'123457', 'year_over_year_change': '123457'}]"
+
 
     def add_arguments(self, parser):
         """Adds all arguments to be processed."""
         parser.add_argument(
-            '--data_month',
+            '--markets',
             nargs='?',
-            help='Latest month of data in "month YYYY" form'
-        )
-        parser.add_argument(
-            '--market_key',
-            nargs='?',
-            help='Three-letter market identifier'
-        )
-        parser.add_argument(
-            '--num_originations',
-            nargs='?',
-            help='Number of originations'
-        )
-        parser.add_argument(
-            '--value_originations',
-            nargs='?',
-            help='Dollar value of originations'
-        )
-        parser.add_argument(
-            '--year_over_year_change',
-            nargs='?',
-            help='Year over year percentage change: positive value followed by "increase" or "decrease"'
+            help='String representation of a list of markets'
         )
 
     def get_data_snapshots(self):
@@ -52,26 +35,30 @@ class Command(BaseCommand):
         
         return snapshots
 
-    def find_data_snapshot(self, market_key):
-        snapshots = self.get_data_snapshots()
+    def find_data_snapshot(self, market_key, snapshots):
         snapshot = filter(lambda item: item['market_key'] == market_key, snapshots)
         if snapshot:
             return snapshot[0]
 
 
     def handle(self, *args, **options):
-        # Look up data snapshot by the provided market key
-        snapshot = self.find_data_snapshot(options['market_key'])
-        
-        # Update snapshot fields with the provided values
-        snapshot['data_month'] = options['data_month']
-        snapshot['num_originations'] = options['num_originations']
-        snapshot['value_originations'] = options['value_originations']
-        snapshot['year_over_year_change'] = options['year_over_year_change']
+        # Convert markets represented by a string to its python representation (a list of dictionaries)
+        markets = ast.literal_eval(options['markets'])
 
-        # Publish changes to the browse page the data snapshot lives on
-        page = snapshot['page']
-        publish_changes(page.specific)
+        snapshots = self.get_data_snapshots()
+        for market in markets:
+            # Look up data snapshot by the provided market key
+            snapshot = self.find_data_snapshot(market['key'], snapshots)
+            if snapshot:
+                # Update snapshot fields with the provided values
+                snapshot['data_month'] = market['data_month']
+                snapshot['num_originations'] = market['num_originations']
+                snapshot['value_originations'] = market['value_originations']
+                snapshot['year_over_year_change'] = market['year_over_year_change']
+
+                # Publish changes to the browse page the data snapshot lives on
+                page = snapshot['page']
+                publish_changes(page.specific)
 
 
 
