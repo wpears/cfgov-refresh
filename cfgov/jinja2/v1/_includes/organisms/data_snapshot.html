@@ -23,7 +23,7 @@
 
    ========================================================================== #}
 
-<h2>Data Snapshot for {{ value.data_month }}</h2>
+<h2>Data snapshot for {{ value.data_month }}</h2>
 <div class="content-l">
     <div class="content-l_col content-l_col-1-2">
         <h3><b>{{ value.num_originations }}</b>
@@ -45,7 +45,7 @@
     <div class="content-l_col content-l_col-2-2">
         <div class="m-full-width-media">
             {% set media = image(value.image, 'original') %}
-            <img class="m-full-width-media_image"
+            <img class="richtext-image full-width"
                  src="{{ media.url }}"
                  alt="{{ image_alt_value(media) }}">
         </div>
