@@ -1,4 +1,4 @@
-import ast
+import json
 
 from django.core.management.base import BaseCommand
 
@@ -14,9 +14,9 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Adds all arguments to be processed."""
         parser.add_argument(
-            '--markets',
+            '--snapshot_file',
             nargs='?',
-            help='String representation of a list of markets'
+            help='Filename of a JSON file containing all markets\' data snapshot updates'
         )
 
     def get_data_snapshots(self):
@@ -32,7 +32,7 @@ class Command(BaseCommand):
             if snapshot:
                 snapshot[0]['value']['page'] = page
                 snapshots.append(snapshot[0]['value'])
-        
+
         return snapshots
 
     def find_data_snapshot(self, market_key, snapshots):
@@ -42,12 +42,14 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        # Convert markets represented by a string to its python representation (a list of dictionaries)
-        markets = ast.literal_eval(options['markets'])
+        # Read markets from file into update dicts
+        with open(options['snapshot_file']) as json_data:
+            markets = json.load(json_data)
 
         snapshots = self.get_data_snapshots()
-        for market in markets:
+        for market_key, market in markets.iteritems():
             # Look up data snapshot by the provided market key
+            # snapshot = self.find_data_snapshot(market_key, snapshots)
             snapshot = self.find_data_snapshot(market['key'], snapshots)
             if snapshot:
                 # Update snapshot fields with the provided values
@@ -59,6 +61,3 @@ class Command(BaseCommand):
                 # Publish changes to the browse page the data snapshot lives on
                 page = snapshot['page']
                 publish_changes(page.specific)
-
-
-
