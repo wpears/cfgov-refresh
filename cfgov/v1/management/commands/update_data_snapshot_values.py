@@ -47,9 +47,8 @@ class Command(BaseCommand):
             markets = json.load(json_data)
 
         snapshots = self.get_data_snapshots()
-        for market_key, market in markets.iteritems():
+        for market in markets:
             # Look up data snapshot by the provided market key
-            # snapshot = self.find_data_snapshot(market_key, snapshots)
             snapshot = self.find_data_snapshot(market['key'], snapshots)
             if snapshot:
                 # Update snapshot fields with the provided values
