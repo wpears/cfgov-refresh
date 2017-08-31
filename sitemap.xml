@@ -79,6 +79,12 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>/translation/</loc>
+     <lastmod>2017-08-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
