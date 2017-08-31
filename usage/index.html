@@ -287,8 +287,15 @@ gulp watch
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The watch task only runs for the tasks for files that have changed.
+<p>The watch task will only re-run the tasks that have changed files.
 Also, you must run <code>gulp build</code> at least once before watching.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Server error</p>
+<p>If you get this message on the page when running <code>gulp watch</code>:
+"A server error occurred.  Please contact the administrator."
+You likely need to delete files with the <code>.pyc</code> extension from the project with the following command:  <br />
+<code>find . -name \"*.pyc\" -delete</code></p>
 </div>
 <h4 id="available-gulp-tasks">Available Gulp Tasks</h4>
 <p>In addition to <code>gulp watch</code>, there are a number of other important gulp tasks,

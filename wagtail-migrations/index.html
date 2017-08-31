@@ -169,10 +169,10 @@
 
             <section id="main" class="main-content" role="main">
                 <h1 id="wagtail-and-django-data-migrations">Wagtail and Django data migrations</h1>
-<p>Django data migrations with Wagtail can be interesting and challenging because programmatic editing of Wagtail pages <a href="https://github.com/torchbox/wagtail/issues/1101">is difficult</a>, and pages have both revisions and StreamFields. This document is intended to describe ways we try to address these challenges in cfgov-refresh.</p>
+<p>Django data migrations with Wagtail can be challenging because programmatic editing of Wagtail pages <a href="https://github.com/torchbox/wagtail/issues/1101">is difficult</a>, and pages have both revisions and StreamFields. This document is intended to describe ways we try to address these challenges in cfgov-refresh.</p>
 <h2 id="migrating-streamfields">Migrating StreamFields</h2>
-<p>StreamFields do not follow a fixed structure, rather they're a freeform sequences of blocks. Making a change to a StreamField involves both creating a <a href="https://docs.djangoproject.com/en/1.8/topics/migrations/#workflow">Django schema migration</a> and a custom <a href="https://docs.djangoproject.com/en/1.8/topics/migrations/#data-migrations">Django data migration</a>. The data migration needs to modify both the existing Wagtail pages that correspond to the changed model and all revisions of that page. It also needs to be able to manipulate the StreamField contents. </p>
-<p>To this end, there are some utility functions in cfgov-refresh that make this easier. Using these utilities, a Django data migration that modifies a StreamField would follow the following format:</p>
+<p>StreamFields do not follow a fixed structure, rather they're a freeform sequences of blocks. Making a change to a StreamField involves both creating a <a href="https://docs.djangoproject.com/en/1.8/topics/migrations/#workflow">Django schema migration</a> and a custom <a href="https://docs.djangoproject.com/en/1.8/topics/migrations/#data-migrations">Django data migration</a>. The data migration needs to modify both the existing Wagtail pages that correspond to the changed model and all revisions of that page. It also needs to be able to manipulate the StreamField contents.</p>
+<p>To this end, there are some utility functions in cfgov-refresh that make this easier. Using these utilities, a Django data migration that modifies a StreamField would use the following format:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">migrations</span>
 
 <span class="kn">from</span> <span class="nn">v1.util.migrations</span> <span class="kn">import</span> <span class="n">migrate_page_types_and_fields</span>
@@ -194,7 +194,7 @@
     <span class="n">page_types_and_fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s1">&#39;myapp&#39;</span><span class="p">,</span> <span class="s1">&#39;MyPage&#39;</span><span class="p">,</span> <span class="s1">&#39;streamfield_name&#39;</span><span class="p">,</span> <span class="s1">&#39;streamblock_type&#39;</span><span class="p">),</span>
     <span class="p">]</span>
-    <span class="n">migrate_page_types_and_fields</span><span class="p">(</span><span class="n">apps</span><span class="p">,</span> 
+    <span class="n">migrate_page_types_and_fields</span><span class="p">(</span><span class="n">apps</span><span class="p">,</span>
                                   <span class="n">page_types_and_fields</span><span class="p">,</span>
                                   <span class="n">forward_mapper</span><span class="p">)</span>
 
@@ -203,7 +203,7 @@
     <span class="n">page_types_and_fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s1">&#39;myapp&#39;</span><span class="p">,</span> <span class="s1">&#39;MyPage&#39;</span><span class="p">,</span> <span class="s1">&#39;streamfield_name&#39;</span><span class="p">,</span> <span class="s1">&#39;streamblock_type&#39;</span><span class="p">),</span>
     <span class="p">]</span>
-    <span class="n">migrate_page_types_and_fields</span><span class="p">(</span><span class="n">apps</span><span class="p">,</span> 
+    <span class="n">migrate_page_types_and_fields</span><span class="p">(</span><span class="n">apps</span><span class="p">,</span>
                                   <span class="n">page_types_and_fields</span><span class="p">,</span>
                                   <span class="n">backward_mapper</span><span class="p">)</span>
 
@@ -228,7 +228,7 @@
 <p>Get the stream field data for a given field name on a page or a revision.</p>
 <p>This function will return a list of <code>dict</code>-like objects containing the blocks within the given StreamField.</p>
 <h5 id="set_stream_datapage_or_revision-field_name-stream_data-committrue"><code>set_stream_data(page_or_revision, field_name, stream_data, commit=True)</code></h5>
-<p>Set the stream field data for a given field name on a page or a revision. If commit is True (default) <code>save()</code> is called on the <code>page_or_revision</code> object. </p>
+<p>Set the stream field data for a given field name on a page or a revision. If commit is True (default) <code>save()</code> is called on the <code>page_or_revision</code> object.</p>
 <p><code>stream_data</code> must be a list of <code>dict</code>-like objects containing the blocks within the given StreamField.</p>
             </section>
         </div>

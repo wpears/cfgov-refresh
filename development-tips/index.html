@@ -169,25 +169,6 @@
 
             <section id="main" class="main-content" role="main">
                 <h2 id="development-tips">Development tips</h2>
-<h3 id="tip-updating-npm-shrinkwrapped-dependencies">TIP: Updating npm shrinkwrapped dependencies</h3>
-<p>For <a href="http://www.infoworld.com/article/3048526/security/nodejs-alert-google-engineer-finds-flaw-in-npm-scripts.html">security reasons</a>,
-the dependencies in <a href="../package.json"><code>package.json</code></a> are pinned to a version
-in <a href="../npm-shrinkwrap.json"><code>npm-shrinkwrap.json</code></a>.
-This means updating a project dependency requires updating both files.
-The easiest way to do this is the following steps:</p>
-<ol>
-<li>Update the version of the dependency in <code>package.json</code>.</li>
-<li>Delete the <code>node_modules</code> directory.</li>
-<li>Delete the <code>npm-shrinkwrap.json</code> file.</li>
-<li>Run <code>./frontend.sh shrinkwrap</code>.</li>
-</ol>
-<p>Congrats! The dependency has been updated.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Shrinkwrapping will ignore development dependencies,
-so if one of those was updated you will need to run <code>npm install</code>
-after shrinkwrapping to bring your development environment up to date.</p>
-</div>
 <h3 id="tip-loading-sibling-projects">TIP: Loading sibling projects</h3>
 <p>Some projects fit within the cfgov-refresh architecture,
 but are not fully incorporated into the project.
