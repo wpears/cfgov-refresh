@@ -175,10 +175,8 @@
                 <h1 id="installation-and-configuration-for-cfgov-refresh">Installation and configuration for cfgov-refresh</h1>
 <h2 id="clone-the-repository">Clone the repository</h2>
 <p>Using the console, navigate to the root directory in which your projects live and clone this project's repository:</p>
-<div class="highlight"><pre><span></span>git clone git@github.com:cfpb/cfgov-refresh.git
-<span class="nb">cd</span> cfgov-refresh
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">git clone git@github.com:cfpb/cfgov-refresh.git
+cd cfgov-refresh</code></pre>
 
 <p>You may also wish to fork the repository on GitHub and clone the resultant personal fork. This is advised if you are going to be doing development on <code>cfgov-refresh</code> and contributing to the project.</p>
 <p>There are two ways to install cfgov-refresh:</p>
@@ -199,9 +197,7 @@ it should be fairly easy to adapt them to your needs.</p>
 <p>Install <a href="https://virtualenv.pypa.io/en/latest/index.html">virtualenv</a>
 and <a href="https://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a>
 to be able to create a local environment for your server:</p>
-<div class="highlight"><pre><span></span>pip install virtualenv virtualenvwrapper
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">pip install virtualenv virtualenvwrapper</code></pre>
 
 <h4 id="autoenv-module">Autoenv module</h4>
 <p>This project uses a large number of environment variables.</p>
@@ -209,28 +205,20 @@ to be able to create a local environment for your server:</p>
 upon <code>cd</code>ing to the project folder,
 <a href="https://github.com/kennethreitz/autoenv#install">install Autoenv</a>.
 We recommend using <a href="http://brew.sh">Homebrew</a>:</p>
-<div class="highlight"><pre><span></span>brew install autoenv
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">brew install autoenv</code></pre>
 
 <p>After installation, Homebrew will output instructions similar to:</p>
-<div class="highlight"><pre><span></span>To finish the installation, <span class="nb">source</span> activate.sh in your shell:
-  <span class="nb">source</span> /Users/<span class="o">[</span>YOUR USERNAME<span class="o">]</span>/homebrew/opt/autoenv/activate.sh
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">To finish the installation, source activate.sh in your shell:
+  source /Users/[YOUR USERNAME]/homebrew/opt/autoenv/activate.sh</code></pre>
 
 <p>Run that now for your initial setup.
 Any time you run the project you’ll need to run that last line, so
 if you’ll be working with the project consistently,
 we suggest adding it to your Bash profile by running:</p>
-<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;source /Users/[YOUR USERNAME]/homebrew/opt/autoenv/activate.sh&#39;</span> &gt;&gt; ~/.bash_profile
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">echo 'source /Users/[YOUR USERNAME]/homebrew/opt/autoenv/activate.sh' &gt;&gt; ~/.bash_profile</code></pre>
 
 <p>If you need to find this info again later, you can run:</p>
-<div class="highlight"><pre><span></span>brew info autoenv
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">brew info autoenv</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -250,19 +238,15 @@ is no longer supported by <code>brew</code>.</strong></p>
 </div>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/1.7/setup.html">Install Elasticsearch 1.7</a>
 however you’d like. We use <a href="http://brew.sh">Homebrew</a> for developing on OS X):</p>
-<div class="highlight"><pre><span></span>brew tap homebrew/versions
+<pre class="highlight"><code class="language-bash linenums">brew tap homebrew/versions
 brew search elasticsearch
-brew install homebrew/versions/elasticsearch17
-</pre></div>
-
+brew install homebrew/versions/elasticsearch17</code></pre>
 
 <p>Just as with Autoenv, Homebrew will output similar instructions after installation:</p>
-<div class="highlight"><pre><span></span><span class="c1"># To have launchd start homebrew/versions/elasticsearch17 now and restart at login:</span>
+<pre class="highlight"><code class="language-bash linenums"># To have launchd start homebrew/versions/elasticsearch17 now and restart at login:
   brew services start homebrew/versions/elasticsearch17
-<span class="c1"># Or, if you don&#39;t want/need a background service you can just run:</span>
-  elasticsearch --config<span class="o">=</span>/Users/<span class="o">[</span>YOUR USERNAME<span class="o">]</span>/homebrew/opt/elasticsearch17/config/elasticsearch.yml
-</pre></div>
-
+# Or, if you don't want/need a background service you can just run:
+  elasticsearch --config=/Users/[YOUR USERNAME]/homebrew/opt/elasticsearch17/config/elasticsearch.yml</code></pre>
 
 <p>Any time you resume work on the project after restarting your machine,
 you’ll need to open a new tab and run that last line.
@@ -271,9 +255,7 @@ we suggest using the first option, so you don't have to worry about that.
 Note that some older versions of Homebrew may suggest
 using <code>launchctl</code> instead of <code>brew services</code>.</p>
 <p>If you need to find this info again later, you can run:</p>
-<div class="highlight"><pre><span></span>brew info elasticsearch17
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">brew info elasticsearch17</code></pre>
 
 <h4 id="front-end-dependencies">Front-end dependencies</h4>
 <p>The cfgov-refresh front end currently uses the following frameworks / tools:</p>
@@ -298,9 +280,7 @@ using <code>launchctl</code> instead of <code>brew services</code>.</p>
 <p>Install <a href="http://gulpjs.com">Gulp</a>:</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span>npm install -g gulp
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">npm install -g gulp</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -310,9 +290,7 @@ using <code>launchctl</code> instead of <code>brew services</code>.</p>
 <p>If this is the first time you're setting up the project, run the following
 script to copy <code>.env_SAMPLE</code> to <code>.env</code>, export your environment variables,
 and activate your virtualenv for the first time.</p>
-<div class="highlight"><pre><span></span><span class="nb">source</span> load-env.sh
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">source load-env.sh</code></pre>
 
 <p>Each time you start a new session for working on this project, you'll need to
 get those environment variables and get your virtualenv running again.
@@ -328,9 +306,7 @@ Because related projects will need to be installed as siblings to this project,
 we recommend putting them all in their own folder, e.g., <code>~/Projects/cf.gov</code>.</p>
 <p>Once cloned, from the project root (<code>~/Projects/cf.gov/cfgov-refresh/</code>),
 run this command to complete the setup process:</p>
-<div class="highlight"><pre><span></span><span class="nb">source</span> setup.sh
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">source setup.sh</code></pre>
 
 <p>This will take several minutes, going through the steps in these scripts:</p>
 <ol>
@@ -359,28 +335,20 @@ if you don't already have one.</p>
 <p>If you would like to manually copy the environment settings,
 copy the <code>.env_SAMPLE</code> file and un-comment each variable after
 adding your own values.
-<div class="highlight"><pre><span></span>cp -a .env_SAMPLE .env <span class="o">&amp;&amp;</span> open -t .env
-</pre></div>
-</p>
+<pre class="highlight"><code class="language-bash linenums">cp -a .env_SAMPLE .env &amp;&amp; open -t .env</code></pre></p>
 <p>Then load the environment variables with:
-<div class="highlight"><pre><span></span>. ./.env
-</pre></div>
-</p>
+<pre class="highlight"><code class="language-bash linenums">. ./.env</code></pre></p>
 <h3 id="2-fetch-extra-playbooks">2. Fetch extra playbooks</h3>
 <p>The project pulls together various open source and closed source plays. The plays are
 managed through ansible-galaxy, a core module for this exact purpose. To download all
 the dependencies, use this command:</p>
-<div class="highlight"><pre><span></span>ansible-galaxy install -r ansible/requirements.yml
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">ansible-galaxy install -r ansible/requirements.yml</code></pre>
 
 <h3 id="3-launch-vagrant-virtual-environment">3. Launch Vagrant virtual environment</h3>
 <p>The project uses Vagrant to create the simulated virtual environment allowing the developer
 to work on a production-like environment while maintaining development work on the
 local machine. To create this virtual environment, you need to execute the following command.</p>
-<div class="highlight"><pre><span></span>vagrant up
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">vagrant up</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -390,13 +358,11 @@ local machine. To create this virtual environment, you need to execute the follo
 <p>In order to run the application, we must generate the front-end assets.
 After running the following commands, visit <a href="http://localhost:8001">http://localhost:8001</a> to see the site running.
 You can also place the first two export commands into your <code>.bashrc</code> to simplify things later.</p>
-<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CFGOV_HOME</span><span class="o">=</span>path/to/cfgov-refresh
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$CFGOV_HOME</span>/bin
+<pre class="highlight"><code class="language-bash linenums">export CFGOV_HOME=path/to/cfgov-refresh
+export PATH=$PATH:$CFGOV_HOME/bin
 cfgov init
 cfgov assets
-cfgov start django
-</pre></div>
-
+cfgov start django</code></pre>
 
 <h2 id="optional-steps">Optional steps</h2>
 <h3 id="load-initial-data-into-database">Load initial data into database</h3>
@@ -421,22 +387,16 @@ as extensive as you'd probably like it to be.</p>
 <li>Unzip it</li>
 <li>Run:</li>
 </ol>
-<div class="highlight"><pre><span></span>./refresh-data.sh /path/to/dump.sql
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">./refresh-data.sh /path/to/dump.sql</code></pre>
 
 <p>The <code>refresh-data.sh</code> script will apply the same changes as the <code>initial-data.sh</code> script described above (including setting up the <code>admin</code> superuser), but will not apply migrations.</p>
 <p>To apply any unapplied migrations to a database created from a dump, run:</p>
-<div class="highlight"><pre><span></span>python cfgov/manage.py migrate
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">python cfgov/manage.py migrate</code></pre>
 
 <h3 id="install-dependencies-for-working-with-the-govdelivery-api">Install dependencies for working with the GovDelivery API</h3>
 <p>Install the following GovDelivery dependencies into your virtual environment:</p>
-<div class="highlight"><pre><span></span>pip install git+git://github.com/dpford/flask-govdelivery
-pip install git+git://github.com/rosskarchner/govdelivery
-</pre></div>
-
+<pre class="highlight"><code class="language-bash linenums">pip install git+git://github.com/dpford/flask-govdelivery
+pip install git+git://github.com/rosskarchner/govdelivery</code></pre>
 
 <p>Uncomment and set the GovDelivery environment variables in your <code>.env</code> file.</p>
 <div class="admonition note">

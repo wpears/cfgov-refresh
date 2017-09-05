@@ -176,28 +176,22 @@
 <h2 id="quick-start">Quick start:</h2>
 <p>To run browser tests, open a new Terminal window or tab and change to the project directory,
 then tell gulp to start the tests:</p>
-<div class="highlight"><pre><span></span>gulp build
-gulp test:acceptance <span class="o">(</span> tox -e acceptance can be run as well <span class="o">)</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-sh linenums">gulp build
+gulp test:acceptance ( tox -e acceptance can be run as well )</code></pre>
 
 <p>There are several options you can pass to run a particular suite of tests,
 to run a particular list of features,
 and/or to run it in "fast" mode:</p>
-<div class="highlight"><pre><span></span>gulp test:acceptance --suite<span class="o">=</span>wagtail-admin <span class="o">(</span> runs just the wagtail-admin suite <span class="o">)</span>
-gulp test:acceptance --specs<span class="o">=</span>multi-select.feature <span class="o">(</span> runs just the multi-select feature <span class="o">)</span>
-gulp test:acceptance --tags<span class="o">=</span>@mobile <span class="o">(</span> runs all scenarios tagged with @mobile <span class="o">)</span>
-gulp test:acceptance --fast <span class="o">(</span> runs the tests without recreating the virtual environment <span class="o">)</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-sh linenums">gulp test:acceptance --suite=wagtail-admin ( runs just the wagtail-admin suite )
+gulp test:acceptance --specs=multi-select.feature ( runs just the multi-select feature )
+gulp test:acceptance --tags=@mobile ( runs all scenarios tagged with @mobile )
+gulp test:acceptance --fast ( runs the tests without recreating the virtual environment )</code></pre>
 
 <p>The same options can be used with tox (--omitted):</p>
-<div class="highlight"><pre><span></span>tox -e acceptance <span class="nv">suite</span><span class="o">=</span>wagtail-admin
-tox -e acceptance <span class="nv">specs</span><span class="o">=</span>multi-select.feature
-tox -e acceptance <span class="nv">tags</span><span class="o">=</span>@mobile
-tox -e acceptance-fast
-</pre></div>
-
+<pre class="highlight"><code class="language-sh linenums">tox -e acceptance suite=wagtail-admin
+tox -e acceptance specs=multi-select.feature
+tox -e acceptance tags=@mobile
+tox -e acceptance-fast</code></pre>
 
 <p>These tests will run on their own server; you do not need to be running your development server.</p>
 <h2 id="cucumber-tool-for-running-automated-tests-written-in-plain-language">Cucumber - tool for running automated tests written in plain language</h2>
@@ -297,9 +291,7 @@ See <a href="https://github.com/cfpb/cfgov-refresh/issues/2324">https://github.c
 <li>
 <p>Open a new Terminal window or tab and navigate to the downloaded SauceConnect folder.
     If you place the folder in your Application's folder this might look like:</p>
-<div class="highlight"><pre><span></span>cd /Users/&lt;YOUR MAC OSX USERNAME&gt;/Applications/SauceConnect
-</pre></div>
-
+<pre class="highlight"><code class="linenums">cd /Users/&lt;YOUR MAC OSX USERNAME&gt;/Applications/SauceConnect</code></pre>
 
 </li>
 <li>
@@ -324,11 +316,9 @@ See <a href="https://github.com/cfpb/cfgov-refresh/issues/2324">https://github.c
 </li>
 <li>
 <p>Run the tests with <code>gulp test:acceptance</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to temporarily disable testing on Sauce Labs,
-run the command as: <code>gulp test:acceptance --sauce=false</code>.</p>
-</div>
+<p>!!! Note:
+    If you want to temporarily disable testing on Sauce Labs,
+    run the command as: <code>gulp test:acceptance --sauce=false</code>.</p>
 </li>
 <li>
 <p>Monitor progress of the tests
@@ -377,18 +367,12 @@ run <code>gulp test:perf</code>.</p>
 <h1 id="django-and-python-unit-tests">Django and Python unit tests</h1>
 <p>To run the the full suite of Python 2.7 unit tests using Tox, cd to the project
 root, make sure the <code>TOXENV</code> variable is set in your <code>.env</code> file and then run</p>
-<div class="highlight"><pre><span></span>tox
-</pre></div>
-
+<pre class="highlight"><code class="linenums">tox</code></pre>
 
 <p>If you haven't changed any installed packages and you don't need to test all migrations, you can run a much faster Python code test using:
-<div class="highlight"><pre><span></span>tox -e fast
-</pre></div>
-</p>
+<pre class="highlight"><code class="linenums">tox -e fast</code></pre></p>
 <p>To see Python code coverage information, run
-<div class="highlight"><pre><span></span>./show_coverage.sh
-</pre></div>
-</p>
+<pre class="highlight"><code class="linenums">./show_coverage.sh</code></pre></p>
 <h1 id="accessibility-testing">Accessibility Testing</h1>
 <p>Run the acceptance tests with an <code>--a11y</code> flag (i.e. <code>gulp test:acceptance --a11y</code>)
 to check every webpage for WCAG and Section 508 compliancy using Protractor's

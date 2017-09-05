@@ -176,15 +176,11 @@
 <p>As cfgov-refresh is a Django project, the <a href="https://docs.djangoproject.com/en/1.8/topics/i18n/translation/#set-language-redirect-view">Django translation documentation is a good place to start</a>. What follows is a brief introduction to translations with the particular tools cfgov-refresh uses (like Jinja2 templates) and the conventions we use.</p>
 <h2 id="overview">Overview</h2>
 <p>Translation is generally handled by one form or another of <a href="https://en.wikipedia.org/wiki/Gettext">gettext</a>. By convention, this is usually performed in code by wrapping a string to be translated in a function that is either named or aliased with an underscore. For example:</p>
-<div class="highlight"><pre><span></span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;This is a translatable string.&quot;</span><span class="p">)</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-python linenums">_(&quot;This is a translatable string.&quot;)</code></pre>
 
 <p>These strings are collected into portable object (<code>.po</code>) files for each supported language. These files map the original string (<code>msgid</code>) to a matching translated string (<code>msgstr</code>). For example:</p>
-<div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;This is a translatable string.&quot;</span>
-<span class="nv">msgstr</span> <span class="s">&quot;Esta es una cadena traducible.&quot;</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-po linenums">msgid &quot;This is a translatable string.&quot;
+msgstr &quot;Esta es una cadena traducible.&quot;</code></pre>
 
 <p>These portable object files are compiled into machine object files (<code>.mo</code>) that the translation system uses when looking up the original string.</p>
 <p>By convention the <code>.po</code> and <code>.mo</code> files live inside a <code>locale/[LANGUAGE]/LC_MESSAGES/</code> folder structure, for example, <code>cfgov/locale/es/LC_MESSAGES/django.po</code> for the Spanish language portable object file for all of our cfgov-refresh messages.</p>
@@ -192,45 +188,33 @@
 <p>This brief howto will guide you through adding translatable text to cfgov-refresh.</p>
 <h4 id="1-add-the-translation-function-around-the-string">1. Add the translation function around the string</h4>
 <p>In Jinja2 templates:</p>
-<div class="highlight"><pre><span></span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
-</pre></div>
-
+<pre class="highlight"><code class="language-jinja linenums">{{ _('Hello World!') }}</code></pre>
 
 <p>In Django templates:</p>
-<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">load</span> <span class="nv">i18n</span> <span class="cp">%}</span><span class="x"></span>
+<pre class="highlight"><code class="language-django linenums">{% load i18n %}
 
-<span class="cp">{%</span> <span class="k">trans</span> <span class="s2">&quot;Hello World!&quot;</span> <span class="cp">%}</span><span class="x"></span>
-</pre></div>
-
+{% trans &quot;Hello World!&quot; %}</code></pre>
 
 <p>In Python code:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext</span> <span class="k">as</span> <span class="n">_</span>
+<pre class="highlight"><code class="language-python linenums">from django.utils.translation import ugettext as _
 
-<span class="n">mystring</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
-</pre></div>
-
+mystring = _('Hello World!')</code></pre>
 
 <p>The string in the call to the translation function will be the <code>msgid</code> in the portable object file below.</p>
 <h4 id="2-run-the-makemessages-management-command-to-add-the-string-to-the-portable-object-file">2. Run the <code>makemessages</code> management command to add the string to the portable object file</h4>
 <p>The <code>makemessages</code> management command will look through all Python, Django, and Jinja2 template files to find strings that are wrapped in a translation function call and add them to the portable object file for a particular language. The language is specified with <code>-l</code>. The command also must be called from the root of the Django app tree, <em>not</em> the project root.</p>
 <p>To generate or update the portable object file for Spanish:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> cfgov
-django-admin.py makemessages -l es
-</pre></div>
-
+<pre class="highlight"><code class="language-shell linenums">cd cfgov
+django-admin.py makemessages -l es</code></pre>
 
 <h4 id="3-edit-the-portable-object-file-to-add-a-translation-for-the-string">3. Edit the portable object file to add a translation for the string</h4>
 <p>The portable object files are stored in <code>cfgov/locale/[LANGUAGE]/LC_MESSAGES/</code>. For the Spanish portable object file, edit <code>cfgov/locale/es/LC_MESSAGES/django.po</code> and add the Spanish translation as the <code>msgstr</code> for your new <code>msgid</code></p>
-<div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;Hello World!&quot;</span>
-<span class="nv">msgstr</span> <span class="s">&quot;Hola Mundo!&quot;</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-po linenums">msgid &quot;Hello World!&quot;
+msgstr &quot;Hola Mundo!&quot;</code></pre>
 
 <h4 id="4-run-the-compilemessages-management-command-to-compile-the-machine-object-file">4. Run the <code>compilemessages</code> management command to compile the machine object file</h4>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> cfgov
-django-admin.py compilemessages
-</pre></div>
-
+<pre class="highlight"><code class="language-shell linenums">cd cfgov
+django-admin.py compilemessages</code></pre>
 
 <h2 id="wagtail-considerations">Wagtail Considerations</h2>
 <p>All of our Wagtail pages include a language-selection dropdown under its Configuration tab:</p>

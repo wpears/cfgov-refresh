@@ -174,14 +174,12 @@
             <section id="main" class="main-content" role="main">
                 <h1 id="wagtail-pages-vs-django-views">Wagtail pages vs. Django views</h1>
 <p>Rather than using “classic” Django views added to urls.py, when feasible an app should provide singleton Wagtail Page. This will allow site editors to drop that page anywhere in the site’s URL structure that they wish. A Wagtail Page subclass can do anything a Django view can <a href="http://docs.wagtail.io/en/v1.5.2/topics/pages.html#more-control-over-page-rendering">when overriding the serve method</a>.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
-<span class="kn">from</span> <span class="nn">wagtail.wagtailcore.models</span> <span class="kn">import</span> <span class="n">Page</span><span class="p">,</span>
+<pre class="highlight"><code class="language-python linenums">from django.http import HttpResponse
+from wagtail.wagtailcore.models import Page,
 
-<span class="k">class</span> <span class="nc">HelloWorldPage</span><span class="p">(</span><span class="n">CFGOVPage</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
-</pre></div>
-
+class HelloWorldPage(CFGOVPage):
+    def serve(self, request):
+        return HttpResponse(&quot;Hello World&quot;)</code></pre>
 
 <p>By working with the Wagtail CMS, we also get some of the benefits of feature flags for free.</p>
             </section>
