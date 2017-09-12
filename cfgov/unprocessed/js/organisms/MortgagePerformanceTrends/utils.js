@@ -5,8 +5,10 @@ var ajax = require( 'xdr' );
 
 var COUNTIES_URL = '/data-research/mortgages/api/v1/metadata/state_county_meta';
 var METROS_URL = '/data-research/mortgages/api/v1/metadata/state_msa_meta';
+var NON_METROS_URL = '/data-research/mortgages/api/v1/metadata/state_non_msa_meta';
 var counties;
 var metros;
+var nonmetros;
 
 var utils = {
   showEl: el => {
@@ -31,6 +33,15 @@ var utils = {
       return cb( null, metros );
     }
     return ajax( { url: METROS_URL }, function( resp ) {
+      var data = JSON.parse( resp.data );
+      cb( null, data );
+    } );
+  },
+  getNonMetroData: cb => {
+    if ( nonmetros ) {
+      return cb( null, nonmetros );
+    }
+    return ajax( { url: NON_METROS_URL }, function( resp ) {
       var data = JSON.parse( resp.data );
       cb( null, data );
     } );

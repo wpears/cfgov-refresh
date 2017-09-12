@@ -34,6 +34,15 @@ const isLoadingMetros = action => {
   }
 };
 
+const isLoadingNonMetros = action => {
+  switch ( action.type ) {
+    case 'REQUEST_NON_METROS':
+      return true;
+    default:
+      return false;
+  }
+};
+
 const isLoadingCounties = action => {
   switch ( action.type ) {
     case 'REQUEST_COUNTIES':
@@ -61,6 +70,17 @@ const updateMetros = ( metros, action ) => {
     case 'REQUEST_METROS':
     default:
       return metros;
+  }
+};
+
+const updateNonMetros = ( nonmetros, action ) => {
+  switch ( action.type ) {
+    case 'SET_NON_METROS':
+      return action.nonmetros;
+    case 'FETCH_NON_METROS':
+    case 'REQUEST_NON_METROS':
+    default:
+      return nonmetros;
   }
 };
 
@@ -95,10 +115,15 @@ const initialState = {
   },
   counties: {},
   metros: {},
+  nonmetros: {},
   // Is the chart waiting for data?
   isLoading: false,
   // Is the county dropdown waiting for data?
   isLoadingCounties: false,
+  // Is the metro dropdown waiting for data?
+  isLoadingMetros: false,
+  // Is the non-metro dropdown waiting for data?
+  isLoadingNonMetros: false,
   // Is the chart being re-rendered?
   isLoadingChart: false,
   // Should the national trend be shown alongside the geo's?
@@ -117,10 +142,12 @@ class LineChartStore extends Store {
       geo: updateGeo( state.geo, action ),
       isLoading: isLoading( action ),
       isLoadingMetros: isLoadingMetros( action ),
+      isLoadingNonMetros: isLoadingNonMetros( action ),
       isLoadingCounties: isLoadingCounties( action ),
       includeNational: includeNational( state.includeNational, action ),
       counties: updateCounties( state.counties, action ),
-      metros: updateMetros( state.metros, action )
+      metros: updateMetros( state.metros, action ),
+      nonmetros: updateNonMetros( state.nonmetros, action )
     };
     return newState;
   }

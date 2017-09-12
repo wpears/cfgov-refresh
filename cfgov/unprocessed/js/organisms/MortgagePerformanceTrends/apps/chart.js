@@ -58,6 +58,7 @@ MortgagePerformanceLineChart.prototype.onChange = function( event ) {
   switch ( event.target.id ) {
     case 'mp-line-chart_geo-state':
     case 'mp-line-chart_geo-metro':
+    case 'mp-line-chart_geo-non-metro':
       // Reset the county dropdown to the first item if we're no longer using it
       this.$county.selectedIndex = 0;
       geoType = this.$container.querySelector( 'input[name="mp-line-chart_geo"]:checked' ).id.replace( 'mp-line-chart_geo-', '' );
