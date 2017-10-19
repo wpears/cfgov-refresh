@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 import datetime
 
+from haystack.query import SearchQuerySet
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -129,6 +130,41 @@ def validate_year_month(year_month):
     return datetime.date(year, month, 1)
 
 
+def update_map_payload(records, geo, geo_dict, days_late, payload):
+    """
+    Update a metro or county payload via Elasticsearch, falling back to
+    a slower database query if Elasticsearch is not available.
+    """
+    def map_value(record, days_late):
+        record_dict = {
+            '90': record.percent_90,
+            '30-89': record.percent_30_60}
+        return record_dict[days_late]
+
+    if len(records) > 0:  # Elasticsearch is responding # pragma: no cover
+        for record in records:
+            map_values = {'value': map_value(record, days_late),
+                          'name': record.name}
+            payload['data'].update({record.fips: map_values})
+        return payload
+    # No Elasticsearch, so we fall back to database queries
+    records = geo_dict[geo]['fallback_queryset']
+    for record in records:
+        geo_parent = getattr(record, geo_dict[geo]['fips_type'])
+        if geo == 'counties':
+            name = "{}, {}".format(
+                geo_parent.name, geo_parent.state.abbr)
+        else:
+            name = geo_parent.name
+        map_values = {'name': name}
+        if geo_parent.valid is True:
+            map_values['value'] = map_value(record, days_late)
+        else:
+            map_values['value'] = None
+        payload['data'].update({record.fips: map_values})
+    return payload
+
+
 class MapData(APIView):
     """
     View for delivering geo-based map data by date
@@ -145,62 +181,59 @@ class MapData(APIView):
         geo_dict = {
             'national':
                 {'queryset': NationalMortgageData.objects.get(date=date),
-                 'fips_type': 'nation',
-                 'geo_obj': ''},
+                 'fallback_queryset': [],
+                 'fips_type': 'nation'},
             'states':
-                {'queryset': StateMortgageData.objects.filter(
-                    date=date),
-                 'fips_type': 'state',
-                 'geo_obj': 'state'},
+                {'queryset': StateMortgageData.objects.filter(date=date),
+                 'fallback_queryset': [],
+                 'fips_type': 'state'},
             'counties':
-                {'queryset': CountyMortgageData.objects.filter(
-                    date=date, county__valid=True),
-                 'fips_type': 'county',
-                 'geo_obj': 'county'},
+                {'queryset':
+                 SearchQuerySet().models(CountyMortgageData).filter(
+                     content=date.strftime("%Y%m%d")),
+                 'fallback_queryset': CountyMortgageData.objects.filter(
+                     date=date, county__valid=True),
+                 'fips_type': 'county'},
             'metros':
-                {'queryset': MSAMortgageData.objects.filter(
-                    date=date),
-                 'fips_type': 'msa',
-                 'geo_obj': 'msa'},
+                {'queryset':
+                 SearchQuerySet().models(MSAMortgageData).filter(
+                     content=date.strftime("%Y%m%d")),
+                 'fallback_queryset': MSAMortgageData.objects.filter(
+                     date=date),
+                 'fips_type': 'msa'},
         }
         if geo not in geo_dict:
             return Response("Unkown geographic unit")
-        nat_records = geo_dict['national']['queryset']
-        nat_data_series = nat_records.time_series(days_late)
+        payload = {'meta': {'fips_type': geo_dict[geo]['fips_type'],
+                            'date': '{}'.format(date)},
+                   'data': {}}
+        nat_record = geo_dict['national']['queryset']
+        nat_data_series = {
+            'name': 'United States',
+            'value': nat_record.time_series(days_late)['value']}
         if geo == 'national':
-            payload = {'meta': {'fips_type': geo_dict[geo]['fips_type'],
-                                'date': '{}'.format(date)},
-                       'data': {}}
-            nat_data_series.update({'name': 'United States'})
-            del(nat_data_series['date'])
-            payload['data'].update(nat_data_series)
-        else:
-            records = geo_dict[geo]['queryset']
-            payload = {'meta': {'fips_type': geo_dict[geo]['fips_type'],
-                                'date': '{}'.format(date),
-                                'national_average': nat_data_series['value']},
-                       'data': {}}
+            payload['data'] = nat_data_series
+            return Response(payload)
+        payload['meta']['national_average'] = nat_data_series['value']
+        records = geo_dict[geo]['queryset']
+        if geo == 'states':
             for record in records:
-                data_series = record.time_series(days_late)
-                geo_parent = getattr(record, geo_dict[geo]['geo_obj'])
-                if geo == 'counties':
-                    name = "{}, {}".format(
-                        geo_parent.name, geo_parent.state.abbr)
-                else:
-                    name = geo_parent.name
-                data_series.update(
-                    {'name': name})
-                del(data_series['date'])
+                data_series = {
+                    'name': record.state.name,
+                    'value': record.time_series(days_late)['value']}
                 payload['data'].update({record.fips: data_series})
-            if geo == 'metros':
-                for metro in MetroArea.objects.filter(valid=False):
-                    payload['data'][metro.fips]['value'] = None
-                for record in NonMSAMortgageData.objects.filter(date=date):
-                    non_data_series = record.time_series(days_late)
-                    if record.state.non_msa_valid is False:
-                        non_data_series['value'] = None
-                    non_name = "Non-metro area of {}".format(record.state.name)
-                    non_data_series.update({'name': non_name})
-                    del non_data_series['date']
-                    payload['data'].update({record.fips: non_data_series})
+            return Response(payload)
+        # geo is now either county or metro, so we want Elasticsearch
+        payload = update_map_payload(
+            records, geo, geo_dict, days_late, payload)
+        if geo == 'metros':  # map needs metro and non-metro data together
+            for non in NonMSAMortgageData.objects.filter(date=date):
+                non_name = "Non-metro area of {}".format(non.state.name)
+                non_data_series = {'name': non_name}
+                if non.state.non_msa_valid is True:
+                    non_data_series['value'] = non.time_series(
+                        days_late)['value']
+                else:
+                    non_data_series['value'] = None
+                payload['data'].update({non.fips: non_data_series})
         return Response(payload)

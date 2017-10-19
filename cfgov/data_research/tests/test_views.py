@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import datetime
 import json
+import mock
 import unittest
 
 import django
@@ -81,7 +82,7 @@ class TimeseriesViewTests(django.test.TestCase):
             name='Casper, WY',
             states=["56"],
             counties=["12081", "12115"],
-            valid=True)
+            valid=False)
 
         mommy.make(
             NationalMortgageData,
@@ -102,7 +103,7 @@ class TimeseriesViewTests(django.test.TestCase):
             fips='12',
             id=1,
             state=State.objects.get(fips='12'),
-            ninety=4069,
+            ninety=407,
             other=3619,
             sixty=2758,
             thirty=6766,
@@ -120,6 +121,19 @@ class TimeseriesViewTests(django.test.TestCase):
             sixty=1275,
             thirty=3676,
             total=22674)
+
+        mommy.make(
+            MSAMortgageData,
+            current=40,
+            date=datetime.date(2008, 1, 1),
+            msa=MetroArea.objects.get(fips='16220'),
+            fips='16220',
+            id=2,
+            ninety=10,
+            other=10,
+            sixty=20,
+            thirty=20,
+            total=100)
 
         mommy.make(
             NonMSAMortgageData,
@@ -313,6 +327,29 @@ class TimeseriesViewTests(django.test.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('Unkown geographic unit', response.content)
 
+    @mock.patch('data_research.views.SearchQuerySet.models')
+    def test_county_map_via_elasticsearch(self, mock_sqs):
+        mock_result = mock.Mock(
+            fips='12081',
+            name='Manatee County, FL',
+            percent_90=0.1518324607329843)
+        mock_filter = mock.Mock()
+        mock_filter.return_value = [mock_result]
+        mock_sqs.filter = mock_filter
+        response = self.client.get(
+            reverse(
+                'data_research_api_mortgage_mapdata',
+                kwargs={'geo': 'counties',
+                        'days_late': '90',
+                        'year_month': '2008-01'}))
+        self.assertEqual(mock_sqs.call_count, 2)
+        self.assertEqual(
+            json.loads(response.content)['data']['12081']['value'],
+            0.1518324607329843)
+        self.assertEqual(
+            json.loads(response.content)['data']['12081']['name'],
+            'Manatee County, FL')
+
     def test_county_map_data_30_89(self):
         response = self.client.get(
             reverse(
@@ -339,7 +376,7 @@ class TimeseriesViewTests(django.test.TestCase):
             sorted(response_data.get('data').get('12081').keys()),
             ['name', 'value'])
 
-    def test_msa_map_data_30_89(self):
+    def test_msa_map_data_invalid_msa(self):
         response = self.client.get(
             reverse(
                 'data_research_api_mortgage_mapdata',
@@ -347,6 +384,9 @@ class TimeseriesViewTests(django.test.TestCase):
                         'days_late': '30-89',
                         'year_month': '2008-01'}))
         self.assertEqual(response.status_code, 200)
+        self.assertIs(
+            json.loads(response.content)['data']['16220']['value'],
+            None)
 
     def test_msa_map_data_90(self):
         response = self.client.get(
@@ -357,12 +397,20 @@ class TimeseriesViewTests(django.test.TestCase):
                         'year_month': '2008-01'}))
         self.assertEqual(response.status_code, 200)
 
+    @mock.patch('data_research.views.SearchQuerySet.filter')
+    def test_msa_map_data_90_no_elasticsearch(self, mock_sqs):
+        mock_sqs.return_value = []
+        response = self.client.get(
+            reverse(
+                'data_research_api_mortgage_mapdata',
+                kwargs={'geo': 'metros',
+                        'days_late': '90',
+                        'year_month': '2008-01'}))
+        self.assertEqual(response.status_code, 200)
+
     def test_map_view_msa_below_threshold(self):
         """The view should deliver a below-threshold MSA with value of None"""
-        msa = MSAMortgageData.objects.get(fips='35840')
-        geo = msa.msa
-        geo.valid = False
-        geo.save()
+        msa = MSAMortgageData.objects.get(fips='16220')
         response = self.client.get(
             reverse(
                 'data_research_api_mortgage_mapdata',
@@ -397,6 +445,17 @@ class TimeseriesViewTests(django.test.TestCase):
                         'days_late': '30-89',
                         'year_month': '2008-01'}))
         self.assertEqual(response.status_code, 200)
+
+    def test_state_map_data_90(self):
+        response = self.client.get(
+            reverse(
+                'data_research_api_mortgage_mapdata',
+                kwargs={'geo': 'states',
+                        'days_late': '90',
+                        'year_month': '2008-01'}))
+        self.assertEqual(
+            json.loads(response.content)['data']['12']['value'],
+            0.015216090922685808)
 
     def test_national_map_data_90(self):
         response = self.client.get(
