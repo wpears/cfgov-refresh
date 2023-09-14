@@ -30,7 +30,7 @@ jobs:
             registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-            image: ${{ github.repository }}-builder:latest
+            image: ${{ github.repository }}-builder:main
             options: -v ${{ github.workspace }}:/cfgov
             run: ./_build.sh
 
