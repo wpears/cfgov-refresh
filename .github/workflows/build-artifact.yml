@@ -34,7 +34,7 @@ jobs:
             options: -v ${{ github.workspace }}:/cfgov
             run: |
               source scl_source enable rh-python38
-              ./call_create.py
+              ./call_create.sh
 
       - name: Upload arifact
         uses: keithweaver/aws-s3-github-action@v1.0.0
