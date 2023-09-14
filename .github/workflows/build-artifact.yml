@@ -32,7 +32,11 @@ jobs:
             password: ${{ secrets.GITHUB_TOKEN }}
             image: ghcr.io/${{ github.repository }}-builder:main
             options: -v ${{ github.workspace }}:/cfgov
-            run: ./_build.sh
+            run: |
+              which python
+              which python3
+              /etc/profile.d/scl_python.sh
+              ./_build.sh
 
       - name: Upload arifact
         uses: keithweaver/aws-s3-github-action@v1.0.0
