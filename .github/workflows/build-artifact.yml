@@ -33,9 +33,7 @@ jobs:
             image: ghcr.io/${{ github.repository }}-builder:main
             options: -v ${{ github.workspace }}:/cfgov
             run: |
-              which python
-              which python3
-              /etc/profile.d/scl_python.sh
+              source scl_source enable rh-python38
               ./_build.sh
 
       - name: Upload arifact
