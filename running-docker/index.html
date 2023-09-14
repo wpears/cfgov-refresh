@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Running in Docker - consumerfinance.gov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/overrides.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Running in Docker";
+        var mkdocs_page_input_path = "running-docker.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../running-virtualenv/">Running in a Virtual Environment</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Running in Docker</a>
+    <ul class="current">
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#environment-variables">Environment variables</a></li>
+        
+            <li><a class="toctree-l4" href="#commands-that-must-be-run-from-within-the-python-container">Commands that must be run from within the Python container</a></li>
+        
+            <li><a class="toctree-l4" href="#access-a-containers-shell">Access a container’s shell</a></li>
+        
+            <li><a class="toctree-l4" href="#updatechange-python-majorminor-version">Update/Change Python MAJOR.MINOR Version</a></li>
+        
+            <li><a class="toctree-l4" href="#update-python-dependencies">Update Python dependencies</a></li>
+        
+            <li><a class="toctree-l4" href="#work-on-satellite-apps">Work on satellite apps</a></li>
+        
+            <li><a class="toctree-l4" href="#attach-for-debugging">Attach for debugging</a></li>
+        
+            <li><a class="toctree-l4" href="#useful-docker-commands">Useful Docker commands</a></li>
+        
+            <li><a class="toctree-l4" href="#production-like-docker-image">Production-like Docker Image</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic-structure/">Atomic Structure and Design</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../branching-merging/">Branching and Merging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development-tips/">Development Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Running this Project &raquo;</li>
+      <li class="breadcrumb-item active">Running in Docker</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/running-docker.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="running-in-docker">Running in Docker<a class="headerlink" href="#running-in-docker" title="Permanent link">¶</a></h1>
+<p>First, follow
+<a href="../installation/#docker-based-installation">the Docker installation instructions</a>
+to setup your Docker environment and create the project Docker containers.</p>
+<p>We use <a href="https://docs.docker.com/compose/reference/overview/"><code>docker-compose</code></a>
+to run an Elasticsearch container, a PostgreSQL container,
+and Django in a Python container.</p>
+<p>All of these containers are configured in our
+<a href="https://github.com/cfpb/consumerfinance.gov/blob/main/docker-compose.yml"><code>docker-compose.yml</code> file</a>.
+See the <a href="https://docs.docker.com/compose/compose-file/">Docker documentation</a>
+for more about the format and use of this file.</p>
+<p>The following URLs are mapped to your host from the containers:</p>
+<ul>
+<li>Access consumerfinance.gov running in the Python container: <a href="http://localhost:8000/">http://localhost:8000/</a></li>
+<li>Access Elasticsearch: <a href="http://localhost:9200/">http://localhost:9200/</a></li>
+</ul>
+<p>To build and run the containers for the first time, run:</p>
+<pre class="highlight"><code class="language-bash">docker network create cfgov
+docker-compose up</code></pre>
+<h2 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">¶</a></h2>
+<p>Environment variables from your <code>.env</code> file are sourced
+when the Python container starts
+and when you <a href="#access-a-containers-shell">access the running Python container</a>.
+Your local shell environment variables, however,
+are not visible to applications running in Docker.
+To add new environment variables, simply add them to the <code>.env</code> file,
+stop docker-compose with Ctrl+C,
+and start it again with <code>docker-compose up</code>.</p>
+<h2 id="commands-that-must-be-run-from-within-the-python-container">Commands that must be run from within the Python container<a class="headerlink" href="#commands-that-must-be-run-from-within-the-python-container" title="Permanent link">¶</a></h2>
+<p>Django <code>manage.py</code> commands can only be run after you've
+<a href="#access-a-containers-shell">opened up a shell in the Python container</a>.
+From there, commands like <code>cfgov/manage.py migrate</code> should run as expected.</p>
+<p>The same goes for scripts like <code>./refresh-data.sh</code> and <code>./initial-data.sh</code> —
+they will work as expected once you’re inside the Python container.</p>
+<h2 id="access-a-containers-shell">Access a container’s shell<a class="headerlink" href="#access-a-containers-shell" title="Permanent link">¶</a></h2>
+<ul>
+<li>Python: <code>docker-compose exec python sh</code></li>
+<li>Elasticsearch: <code>docker-compose exec elasticsearch bash</code></li>
+<li>PostgreSQL: <code>docker-compose exec postgres bash</code></li>
+</ul>
+<h2 id="updatechange-python-majorminor-version">Update/Change Python MAJOR.MINOR Version<a class="headerlink" href="#updatechange-python-majorminor-version" title="Permanent link">¶</a></h2>
+<p>The <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/Dockerfile">first line</a>
+of <code>Dockerfile</code> sets the base Python Interpreter version for all <code>cfgov</code>
+images. Our current pattern is <code>python:MAJOR.MINOR-alpine</code> for the base image.
+This allows us to rapidly incorporate <code>PATCH</code> versions without the need
+for explicit commits.</p>
+<h3 id="updating-patch-version-locally">Updating <code>PATCH</code> version locally<a class="headerlink" href="#updating-patch-version-locally" title="Permanent link">¶</a></h3>
+<p>To update the <code>PATCH</code> version on your local Docker, replace <code>&lt;MAJOR.MINOR&gt;</code>
+with your target and run:</p>
+<pre class="highlight"><code class="language-bash">PYTHONVERSION=&lt;MAJOR.MINOR&gt;; \
+  docker pull python:${PYTHONVERSION}-alpine &amp;&amp; \
+  docker-compose build --no-cache python</code></pre>
+<h2 id="update-python-dependencies">Update Python dependencies<a class="headerlink" href="#update-python-dependencies" title="Permanent link">¶</a></h2>
+<p>If the Python package requirements files have changed,
+you will need to stop <code>docker-compose</code> (if it is running)
+and rebuild the Python container using:</p>
+<pre class="highlight"><code class="language-bash">docker-compose up --build python</code></pre>
+<h2 id="work-on-satellite-apps">Work on satellite apps<a class="headerlink" href="#work-on-satellite-apps" title="Permanent link">¶</a></h2>
+<p>See <a href="../related-projects/#using-docker">“Using Docker” on the Related Projects page</a>.</p>
+<h2 id="attach-for-debugging">Attach for debugging<a class="headerlink" href="#attach-for-debugging" title="Permanent link">¶</a></h2>
+<p>If you have inserted a <a href="https://docs.python.org/3/library/pdb.html">PDB breakpoint</a> in your code
+and need to interact with the running Django process when the breakpoint is reached
+you can run <a href="https://docs.docker.com/engine/reference/commandline/attach/"><code>docker attach</code></a>:</p>
+<pre class="highlight"><code class="language-bash">docker attach consumerfinancegov_python_1</code></pre>
+<p>When you're done, you can detach with <code>Ctrl+P Ctrl+Q</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p><code>docker attach</code> takes the specific container name or ID.
+Yours may or may not be <code>consumerfinancegov_python_1</code>.
+To verify, use <code>docker container ls</code>
+to get the Python container's full name or ID.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p><code>docker attach</code> will ONLY work with the dev image, not prod (apache).</p>
+<h2 id="useful-docker-commands">Useful Docker commands<a class="headerlink" href="#useful-docker-commands" title="Permanent link">¶</a></h2>
+<p>For <code>docker-compose</code> commands,
+<code>[SERVICE]</code> is the service name that is defined in <code>docker-compose.yml</code>.</p>
+<p>For <code>docker</code> commands, <code>[CONTAINER]</code> is the container name displayed with <code>docker ps</code>.</p>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/commandline/ps/"><code>docker ps</code></a>
+  will list all containers.</li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/logs/"><code>docker logs [CONTAINER]</code></a>
+  will print the logs of a container.</li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/top/"><code>docker top [CONTAINER]</code></a>
+  will display the running processes in a container.</li>
+<li><a href="https://docs.docker.com/compose/reference/build/"><code>docker-compose build [SERVICE]</code></a>
+  will build any of our configured containers.</li>
+</ul>
+<h2 id="production-like-docker-image">Production-like Docker Image<a class="headerlink" href="#production-like-docker-image" title="Permanent link">¶</a></h2>
+<p>This repository includes a "production-like" Docker image, created for
+experimenting with how cf.gov <em>could</em> be built and run as a Docker
+container in production.</p>
+<p>This includes:</p>
+<ul>
+<li>all relevant <code>consumerfinance.gov</code> source code</li>
+<li>all OS, Python, and JS dependencies for building and running the cf.gov webapp</li>
+<li>procedures for executing Django <code>collectstatic</code> and <code>yarn</code>-based frontend build process</li>
+<li>an Apache HTTPD webserver with <code>mod_wsgi</code>, run with configs in <code>consumerfinance.gov</code></li>
+</ul>
+<h3 id="how-do-i-use-it">How do I use it?<a class="headerlink" href="#how-do-i-use-it" title="Permanent link">¶</a></h3>
+<h4 id="just-docker">Just Docker<a class="headerlink" href="#just-docker" title="Permanent link">¶</a></h4>
+<p>If you just want to build the image:</p>
+<pre class="highlight"><code class="language-bash">docker build . -t your-desired-image-name</code></pre>
+<h4 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">¶</a></h4>
+<p>You can also launch the full cf.gov stack locally via <code>docker-compose</code>. This setup is
+a nice way to test out new Apache config changes. It includes volumes that mount your
+local checkout <code>cfgov/apache</code> config directories into the container, allowing you to
+change configs locally without having to rebuild the image each time.</p>
+<ol>
+<li>Launch the stack.</li>
+</ol>
+<pre class="highlight"><code class="language-bash">docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build</code></pre>
+<p>This creates a container running cf.gov on Python, as well as
+   Postgres and Elasticsearch containers, much like the development environment.</p>
+<ol>
+<li>Load the <code>cfgov</code> database (optional). If you do not already have a running
+   <code>cfgov</code> database, you will need to download and load it from within the container.</li>
+</ol>
+<pre class="highlight"><code class="language-bash">docker-compose exec python sh
+
+# Once in the container...
+export CFGOV_PROD_DB_LOCATION=&lt;database-dump-url&gt;
+./refresh-data.sh</code></pre>
+<ol>
+<li>Browse to your new local cf.gov site.</li>
+</ol>
+<p><a href="http://localhost:8000">http://localhost:8000</a></p>
+<ol>
+<li>Adjust an Apache <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/cfgov/apache"><code>cfgov/apache</code></a>
+   config and reload Apache (optional).</li>
+</ol>
+<pre class="highlight"><code class="language-bash">docker-compose exec python sh
+
+# Once in the container...
+httpd -d /src/consumerfinance.gov/cfgov/apache -f /src/consumerfinance.gov/cfgov/apache/conf/httpd.conf -k restart</code></pre>
+<ol>
+<li>Switch back to the development Compose setup.</li>
+</ol>
+<pre class="highlight"><code class="language-bash">docker-compose rm -sf python
+docker-compose up --build python</code></pre>
+<h4 id="jenkins-ci-docker-swarm">Jenkins CI + Docker Swarm<a class="headerlink" href="#jenkins-ci-docker-swarm" title="Permanent link">¶</a></h4>
+<p>This repo also includes a Docker Swarm-compatible Compose file
+(<code>docker-stack.yml</code>).
+This file is intended for use with the project's <code>Jenkinsfile</code>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/">multibranch build pipeline</a>.
+It follows a standard Docker build/scan/push workflow,
+optionally deploying to our Docker Swarm cluster.</p>
+<h3 id="how-does-it-work">How does it work?<a class="headerlink" href="#how-does-it-work" title="Permanent link">¶</a></h3>
+<p>This project heavily utilizes
+"<a href="https://docs.docker.com/develop/develop-images/multistage-build/">multi-stage builds</a>".</p>
+<p>There are a few layers at work here, with the hierarchy represented by the list structure:</p>
+<ul>
+<li><code>base</code> - This is the bare minimum base Python layer for building up any further layers.</li>
+<li><code>cfgov-python-builder</code> - Installs deployment Python dependencies to <code>/build</code> for use
+    in <code>cfgov-dev</code> and <code>cfgov-prod</code>.
+    _ <code>cfgov-dev</code> - Dev layer used for local development. Contains no code
+    (requires code volume mount), and installs additional dependencies only needed for local development.
+    _ <code>cfgov-frontend-builder</code> - Frontend builder layer, builds static files for Django</li>
+<li><code>cfgov-mod-wsgi</code> - mod_wsgi compile layer for Apache2
+    (helps to guarantee mod_wsgi compatability with Python, Alpine, and Apache)</li>
+<li><code>cfgov-prod</code> - Final layer for Production. Installs and uses Apache2,
+    swaps to <code>apache</code> user, copies in all files from previous layers to maintain a lightweight image.</li>
+</ul>
+<p>The production image extends <strong>ONLY</strong> the base layer to maintain a lightweight final image.
+Everything from previous layers is copied in from those layers using <code>COPY --from=&lt;layer-name&gt;</code>.
+This dramatically improves the overall final image size.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../running-virtualenv/" class="btn btn-neutral float-left" title="Running in a Virtual Environment"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../running-docs/" class="btn btn-neutral float-right" title="Running documentation site locally">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../running-virtualenv/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../running-docs/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

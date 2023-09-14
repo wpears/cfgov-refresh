@@ -1,221 +1,261 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>consumerfinance.gov</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/overrides.css" rel="stylesheet" />
     
-    <title>Introduction - cfgov-refresh</title>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Introduction";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
     
-    
-
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/syntax.css">
-    
-
-    <style type="text/css">
-        
-        .sidebar-nav a:hover,
-        .sidebar-nav a:focus,
-        .sidebar-nav a:active,
-        .sidebar-nav a.sidebar-nav-active {
-            border-left-color: #2CB34A;
-        }
-        header {
-            border-bottom-color: #2CB34A;
-        }
-        
-        
-
-        
-    </style>
-
-
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-      <script src="./js/respond.min.js"></script>
-    <![endif]--> 
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
-<body>
+<body class="wy-body-for-nav" role="document">
 
-    <div class="container">
-        <header role="banner">
-            <div class="wrap">
-                
-                <img class="logo" src="https://cfpb.github.io/img/logo_210.png" alt="Consumer Financial Protection Bureau">
-                
-                <h1 class="site-title"><a class="title-link" href="./">cfgov-refresh</a></h1>
-            </div>
-        </header>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
 
-        <div class="wrap content">
-            <aside>
-                <nav class="sidebar-nav" role="navigation">
-                    <ul>
-                        
-                        <li>
-                            
-                            <a href="." class="sidebar-nav-active">Introduction</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Introduction</a>
+    <ul class="current">
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#disclaimer">Disclaimer</a></li>
+        
+            <li><a class="toctree-l4" href="#technology-stack">Technology stack</a></li>
+        
+            <li><a class="toctree-l4" href="#additional-dependencies">Additional dependencies</a></li>
+        
+            <li><a class="toctree-l4" href="#versions">Versions</a></li>
+        
+        </ul>
+    
 
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="installation/" class="">Installation</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="usage/" class="">Usage</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Building and Deploying for cf.gov</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="whats-new/" class="">What's new</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="new-projects/" class="">New projects</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="branching-merging/" class="">Branching and merging</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="release-cadence/" class="">Release cadence</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="deployment/" class="">Deployment</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="feature-flags/" class="">Feature flags</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Back-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="wagtail-migrations/" class="">Wagtail and Django migrations</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="translation/" class="">Translation</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Front-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="atomic-structure/" class="">Atomic structure and design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="notes-on-atomic-design/" class="">Notes on adapting atomic design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="notes-on-frameworks/" class="">Notes on frameworks</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="testing/" class="">Testing</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="development-tips/" class="">Development tips</a>
-
-                            
-                        </li>
-                        
-                    </ul>
-                </nav>
-            </aside>
-
-            <section id="main" class="main-content" role="main">
-                <h1 id="introduction">Introduction</h1>
-<p>This is the documentation for the <code>cfgov-refresh</code> project, a redesign of the <a href="http://www.consumerfinance.gov"><a href="http://www.consumerfinance.gov">www.consumerfinance.gov</a></a> website. It is organized thematically in order to create a central repository for all information pertaining to cfgov-refresh.</p>
-<h1 id="disclaimer">Disclaimer</h1>
-<p><strong>This project is a work in progress.</strong> Nothing presented in this repo—whether in the source code, issue tracker, or wiki—is a final product unless it is marked as such or appears on <a href="http://www.consumerfinance.gov"><a href="http://www.consumerfinance.gov">www.consumerfinance.gov</a></a>. In-progress updates may appear on <a href="http://beta.consumerfinance.gov">beta.consumerfinance.gov</a>.</p>
-<h1 id="technology-stack">Technology stack</h1>
-<p>The standard technology stack for development of cfgov-refresh within the CFPB consists of the following base:</p>
-<ul>
-<li>Mac OSX</li>
-<li><a href="http://brew.sh">Homebrew</a> - package manager for installing system software on OSX</li>
-<li>Python and PIP (Python package manager)</li>
-<li>WordPress API data source URL</li>
-<li><a href="http://jinja.pocoo.org">Jinja templates</a> for front-end rendering</li>
-<li><a href="https://wagtail.io">Wagtail CMS</a> for content administration</li>
-<li>Dependencies, listed below</li>
-</ul>
-<h1 id="dependencies">Dependencies</h1>
-<ul>
-<li><a href="http://www.elasticsearch.org">Elasticsearch</a>:
-  Used for full-text search capabilities and content indexing.</li>
-<li><a href="http://nodejs.org">Node</a> and <a href="https://www.npmjs.com">npm (Node Package Manager)</a>:
-  Used for downloading and managing front-end dependencies and assets.</li>
-</ul>
-<p>For Vagrant Virtualbox usage (<img align="absmiddle" alt="⚠️" class="gemoji" height="20px" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png" title=":warning:" width="20px" /> The Vagrant box is not currently working.)</p>
-<ul>
-<li><a href="https://www.virtualbox.org">VirtualBox</a></li>
-<li><a href="https://www.vagrantup.com">Vagrant</a></li>
-<li>python &gt;=  2.6</li>
-<li>ansible &gt;= 1.9</li>
-</ul>
-            </section>
-        </div>
-
-        <footer role="contentinfo">
-            <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
-
-                <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
-            </div>
-        </footer>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="installation/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="running-virtualenv/">Running in a Virtual Environment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="running-docker/">Running in Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="atomic-structure/">Atomic Structure and Design</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="branching-merging/">Branching and Merging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="development-tips/">Development Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
     </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li class="breadcrumb-item active">Introduction</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduction-to-consumerfinancegov">Introduction to consumerfinance.gov<a class="headerlink" href="#introduction-to-consumerfinancegov" title="Permanent link">¶</a></h1>
+<p>This is the documentation for the consumerfinance.gov project that powers the <a href="https://www.consumerfinance.gov">www.consumerfinance.gov</a> website. It is organized thematically in order to create a central repository for all information pertaining to consumerfinance.gov.</p>
+<h2 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">¶</a></h2>
+<p><strong>This project is a work in progress.</strong> Nothing presented in this repo—whether in the source code, issue tracker, or wiki—is a final product unless it is marked as such or appears on <a href="https://www.consumerfinance.gov">www.consumerfinance.gov</a>. In-progress updates may appear on <a href="https://beta.consumerfinance.gov">beta.consumerfinance.gov</a>.</p>
+<h2 id="technology-stack">Technology stack<a class="headerlink" href="#technology-stack" title="Permanent link">¶</a></h2>
+<p>The standard technology stack for development of consumerfinance.gov within the CFPB consists of the following base:</p>
+<ul>
+<li>macOS</li>
+<li><a href="https://brew.sh">Homebrew</a> - package manager for installing system software on OSX</li>
+<li><a href="https://docs.python.org/3.8/">Python 3.8</a> and <a href="https://pip.pypa.io/en/stable/user_guide/">pip (Python package manager)</a></li>
+<li><a href="https://jinja.palletsprojects.com/">Jinja2 templates</a> for front-end rendering. See <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/requirements/libraries.txt"><code>requirements/libraries.txt</code></a> for version.</li>
+<li><a href="https://wagtail.io">Wagtail CMS</a> for content administration. See <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/requirements/wagtail.txt"><code>requirements/wagtail.txt</code></a> for version.</li>
+<li><a href="https://www.postgresql.org/">PostgreSQL 10.5</a> is the database we use in production and locally.</li>
+<li><a href="http://initd.org/psycopg/">Psycopg</a> is the Python library that lets Python talk to Postgres. See <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/requirements/libraries.txt"><code>requirements/libraries.txt</code></a> for current version.</li>
+<li>Additional dependencies, listed below.</li>
+</ul>
+<h2 id="additional-dependencies">Additional dependencies<a class="headerlink" href="#additional-dependencies" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://www.elastic.co">Elasticsearch</a>:
+  Used for full-text search capabilities and content indexing.</li>
+<li><a href="http://nodejs.org">Node</a> and <a href="https://yarnpkg.com/">yarn</a>:
+  Used for downloading and managing front-end dependencies and assets. Front-end dependencies are listed in the project's <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/package.json">package.json</a> file.</li>
+<li><a href="https://github.com/pyenv/pyenv">pyenv</a></li>
+<li><a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a></li>
+</ul>
+<h2 id="versions">Versions<a class="headerlink" href="#versions" title="Permanent link">¶</a></h2>
+<p>Versions for most front-end packages are kept updated in the project's <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/package.json">package.json</a> file.</p>
+<p>Versions for back-end software including Django, Wagtail, Jinja, etc. are kept in the project's requirements files:
+<a href="https://github.com/cfpb/consumerfinance.gov/tree/main/requirements">https://github.com/cfpb/consumerfinance.gov/tree/main/requirements</a></p>
+<ul>
+<li><code>base.txt</code>: shortcut for <code>django.txt</code> + <code>wagtail.txt</code> + <code>libraries.txt</code></li>
+<li><code>ci.txt</code>: specific requirements for the continuous integration environment. Should/could be moved to CI configuration files?</li>
+<li><code>deployment.txt</code>: requirements for deployment, includes <code>base.txt</code> and a New Relic library that we don't install anywhere else.</li>
+<li><code>django.txt</code>: specifies the Django version. The file is used when running the site, but by having it separate we can test against other versions of Django by excluding this file.</li>
+<li><code>docs.txt</code>: requirements to build the consumerfinance.gov docs.</li>
+<li><code>libraries.txt</code>: Python libraries.</li>
+<li><code>local.txt</code>: includes <code>base.txt</code> and some useful libraries when developing locally.</li>
+<li><code>scripts.txt</code>: Requirements for running certain jobs on Jenkins, so scripts can run in Jenkins without having to install all the other requirements.</li>
+<li><code>test.txt</code>: requirements for running Python tests.</li>
+<li><code>wagtail.txt</code>: specifies Wagtail version. In its own file to make it easier to test multiple versions, same as with <code>django.txt</code>.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="installation/" class="btn btn-neutral float-right" title="Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="installation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
 </body>
 </html>
 
 <!--
-MkDocs version : 0.16.3
-Build Date UTC : 2017-09-05 17:22:56
+MkDocs version : 1.5.2
+Build Date UTC : 2023-09-14 02:37:49.430372+00:00
 -->

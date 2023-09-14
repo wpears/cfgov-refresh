@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Running in a Virtual Environment - consumerfinance.gov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/overrides.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Running in a Virtual Environment";
+        var mkdocs_page_input_path = "running-virtualenv.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Running in a Virtual Environment</a>
+    <ul class="current">
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-git-operations">1. Git operations</a></li>
+        
+            <li><a class="toctree-l4" href="#2-run-elasticsearch-optional">2. Run Elasticsearch (optional)</a></li>
+        
+            <li><a class="toctree-l4" href="#3-launch-site">3. Launch Site</a></li>
+        
+            <li><a class="toctree-l4" href="#yarn-commands">yarn commands</a></li>
+        
+            <li><a class="toctree-l4" href="#reinstalling-the-virtual-environment">Reinstalling the virtual environment</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic-structure/">Atomic Structure and Design</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../branching-merging/">Branching and Merging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development-tips/">Development Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Running this Project &raquo;</li>
+      <li class="breadcrumb-item active">Running in a Virtual Environment</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/running-virtualenv.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="running-in-a-virtual-environment">Running in a Virtual Environment<a class="headerlink" href="#running-in-a-virtual-environment" title="Permanent link">¶</a></h1>
+<p>First, follow
+<a href="../installation/#stand-alone-installation">the standalone installation instructions</a>
+to create your virtual environment, install required dependencies, and run
+the setup scripts.</p>
+<p>You will generally have three tabs (or windows) open in your terminal,
+which will be used for:</p>
+<ol>
+<li><strong>Git operations</strong>.
+    Perform Git operations and general development in the repository,
+    such as <code>git checkout main</code>.</li>
+<li><strong>Elasticsearch</strong>.
+    Run an Elasticsearch (ES) instance.
+    See instructions <a href="#2-run-elasticsearch-optional">below</a>.</li>
+<li><strong>Django server</strong>. Start and stop the web server.
+    Server is started with <code>./runserver.sh</code>,
+    but see more details <a href="#3-load-indexes--launch-site">below</a>.</li>
+</ol>
+<p>What follows are the specific steps for each of these tabs.</p>
+<h3 id="1-git-operations">1. Git operations<a class="headerlink" href="#1-git-operations" title="Permanent link">¶</a></h3>
+<p>From this tab you can do Git operations,
+such as checking out our main branch:</p>
+<pre class="highlight"><code class="language-bash">git checkout main</code></pre>
+<h4 id="updating-all-dependencies">Updating all dependencies<a class="headerlink" href="#updating-all-dependencies" title="Permanent link">¶</a></h4>
+<p>Each time you fetch from the upstream repository (this repo), run <code>./setup.sh</code>.
+This setup script will remove and reinstall the project dependencies
+and rebuild the site's JavaScript and CSS assets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>You may also run <code>./backend.sh</code> or <code>./frontend.sh</code>
+if you only want to re-build the backend or front-end, respectively.</p>
+<h5 id="setting-environments">Setting environments<a class="headerlink" href="#setting-environments" title="Permanent link">¶</a></h5>
+<p>The <code>NODE_ENV</code> environment variable can be set in your <code>.env</code> file to either
+<code>development</code> or <code>production</code>, which will affect how the build is made.
+To install dependencies of one environment or the other run <code>./frontend.sh</code>
+(dependencies and devDependencies) or <code>./frontend.sh production</code>
+(dependencies but not devDependencies).</p>
+<h3 id="2-run-elasticsearch-optional">2. Run Elasticsearch (optional)<a class="headerlink" href="#2-run-elasticsearch-optional" title="Permanent link">¶</a></h3>
+<p>Elasticsearch is needed for certain pieces of this project but is not a
+requirement for basic functionality.</p>
+<p>If Elasticsearch is installed via <a href="https://brew.sh">Homebrew</a>, you can see
+instructions for running manually or as a background service using:</p>
+<pre class="highlight"><code class="language-bash">brew info elasticsearch</code></pre>
+<p>Typically to run Elasticsearch as a background service you can run:</p>
+<pre class="highlight"><code class="language-bash">brew services start elasticsearch</code></pre>
+<h3 id="3-launch-site">3. Launch Site<a class="headerlink" href="#3-launch-site" title="Permanent link">¶</a></h3>
+<p>First, move into the <code>consumerfinance.gov</code> project directory
+and ready your environment:</p>
+<pre class="highlight"><code class="language-bash"># Use the consumerfinance.gov virtualenv.
+workon consumerfinance.gov
+
+# cd into this directory (if you aren't already there)
+cd consumerfinance.gov</code></pre>
+<p>From the project root, start the Django server:</p>
+<pre class="highlight"><code class="language-bash">./runserver.sh</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>If prompted to migrate database changes,
+stop the server with <code>ctrl</code> + <code>c</code> and run these commands:</p>
+<pre class="highlight"><code class="language-bash">python cfgov/manage.py migrate
+./initial-data.sh
+./runserver.sh</code></pre>
+<p>To view the site browse to: <a href="http://localhost:8000">http://localhost:8000</a></p>
+<div class="admonition note">
+<p class="admonition-title">Using a different port</p>
+</div>
+<p>If you want to run the server at a port other than 8000 use</p>
+<pre class="highlight"><code>`python cfgov/manage.py runserver &lt;port number&gt;`
+
+Specify an alternate port number, e.g. `8001`.</code></pre>
+<p>To view the Wagtail admin login,
+browse to <a href="http://localhost:8000/admin">http://localhost:8000/admin</a> and login with username <code>admin</code>
+and password <code>admin</code> (created in <code>initial-data.sh</code> above; note that this
+password will expire after 60 days).</p>
+<div class="admonition note">
+<p class="admonition-title">Using HTTPS locally</p>
+</div>
+<p>To access a local server using HTTPS use</p>
+<pre class="highlight"><code>`./runserver.sh ssl`
+
+You'll need to ignore any browser certificate errors.</code></pre>
+<h3 id="yarn-commands">yarn commands<a class="headerlink" href="#yarn-commands" title="Permanent link">¶</a></h3>
+<p>The following yarn tasks are available:</p>
+<pre class="highlight"><code>yarn scripts             # Build the Javascript with esbuild
+yarn styles              # Build the Less with esbuild w/ its PostCSSPlugin
+yarn copy                # Move static files to the output directory
+yarn build               # Run scripts, styles, and copy along with app-specific scripts
+yarn watch               # Run the build then watch JS and LESS changes
+yarn lint                # Run frontend linting
+yarn jest                # Run frontend tests
+yarn test                # Run both</code></pre>
+<h3 id="reinstalling-the-virtual-environment">Reinstalling the virtual environment<a class="headerlink" href="#reinstalling-the-virtual-environment" title="Permanent link">¶</a></h3>
+<p>To remove an existing virtual environment for
+<a href="../installation/#stand-alone-installation">a reinstall of consumerfinance.gov</a>,
+first deactivate the virtual environment if it is active:</p>
+<pre class="highlight"><code class="language-bash">deactivate</code></pre>
+<p>Then remove the existing virtual environment:</p>
+<pre class="highlight"><code class="language-bash">rmvirtualenv consumerfinance.gov</code></pre>
+<p>After this, you may follow
+<a href="installation/#stand-alone-installation">the installation instructions</a>
+again.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installation/" class="btn btn-neutral float-left" title="Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../running-docker/" class="btn btn-neutral float-right" title="Running in Docker">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../running-docker/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,472 +1,489 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Setup - consumerfinance.gov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/overrides.css" rel="stylesheet" />
     
-    <title>Installation - cfgov-refresh</title>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Setup";
+        var mkdocs_page_input_path = "installation.md";
+        var mkdocs_page_url = null;
+      </script>
     
-    
-
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/syntax.css">
-    
-
-    <style type="text/css">
-        
-        .sidebar-nav a:hover,
-        .sidebar-nav a:focus,
-        .sidebar-nav a:active,
-        .sidebar-nav a.sidebar-nav-active {
-            border-left-color: #2CB34A;
-        }
-        header {
-            border-bottom-color: #2CB34A;
-        }
-        
-        
-
-        
-    </style>
-
-
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-      <script src="../js/respond.min.js"></script>
-    <![endif]--> 
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
-<body>
+<body class="wy-body-for-nav" role="document">
 
-    <div class="container">
-        <header role="banner">
-            <div class="wrap">
-                
-                <img class="logo" src="https://cfpb.github.io/img/logo_210.png" alt="Consumer Financial Protection Bureau">
-                
-                <h1 class="site-title"><a class="title-link" href="../">cfgov-refresh</a></h1>
-            </div>
-        </header>
-
-        <div class="wrap content">
-            <aside>
-                <nav class="sidebar-nav" role="navigation">
-                    <ul>
-                        
-                        <li>
-                            
-                            <a href=".." class="">Introduction</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="./" class="sidebar-nav-active">Installation</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../usage/" class="">Usage</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Building and Deploying for cf.gov</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../whats-new/" class="">What's new</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../new-projects/" class="">New projects</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../branching-merging/" class="">Branching and merging</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../release-cadence/" class="">Release cadence</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../deployment/" class="">Deployment</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../feature-flags/" class="">Feature flags</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Back-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../translation/" class="">Translation</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Front-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../atomic-structure/" class="">Atomic structure and design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-atomic-design/" class="">Notes on adapting atomic design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-frameworks/" class="">Notes on frameworks</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../testing/" class="">Testing</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../development-tips/" class="">Development tips</a>
-
-                            
-                        </li>
-                        
-                    </ul>
-                </nav>
-            </aside>
-
-            <section id="main" class="main-content" role="main">
-                <h1 id="installation-and-configuration-for-cfgov-refresh">Installation and configuration for cfgov-refresh</h1>
-<h2 id="clone-the-repository">Clone the repository</h2>
-<p>Using the console, navigate to the root directory in which your projects live and clone this project's repository:</p>
-<pre class="highlight"><code class="language-bash linenums">git clone git@github.com:cfpb/cfgov-refresh.git
-cd cfgov-refresh</code></pre>
-
-<p>You may also wish to fork the repository on GitHub and clone the resultant personal fork. This is advised if you are going to be doing development on <code>cfgov-refresh</code> and contributing to the project.</p>
-<p>There are two ways to install cfgov-refresh:</p>
-<ul>
-<li><a href="#stand-alone-installation">Stand-alone installation</a></li>
-<li><a href="#vagrant-box-installation">Vagrant-box installation</a></li>
-</ul>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>The instruction for Vagrant are not currently working.</p>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
 </div>
-<h2 id="stand-alone-installation">Stand-alone installation</h2>
-<p>These instructions are somewhat specific to developing on Mac OS X,
-but if you're familiar with other Unix-based systems,
-it should be fairly easy to adapt them to your needs.</p>
-<h3 id="install-system-level-requirements">Install system-level requirements</h3>
-<h4 id="virtualenv-virtualenvwrapper-python-modules">virtualenv &amp; virtualenvwrapper Python modules</h4>
-<p>Install <a href="https://virtualenv.pypa.io/en/latest/index.html">virtualenv</a>
-and <a href="https://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a>
-to be able to create a local environment for your server:</p>
-<pre class="highlight"><code class="language-bash linenums">pip install virtualenv virtualenvwrapper</code></pre>
+      </div>
 
-<h4 id="autoenv-module">Autoenv module</h4>
-<p>This project uses a large number of environment variables.</p>
-<p>To automatically define environment variables and launch the virtualenv
-upon <code>cd</code>ing to the project folder,
-<a href="https://github.com/kennethreitz/autoenv#install">install Autoenv</a>.
-We recommend using <a href="http://brew.sh">Homebrew</a>:</p>
-<pre class="highlight"><code class="language-bash linenums">brew install autoenv</code></pre>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup</a>
+    <ul class="current">
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#quickstart">Quickstart</a></li>
+        
+            <li><a class="toctree-l4" href="#detailed-installation">Detailed installation</a></li>
+        
+            <li><a class="toctree-l4" href="#alternative-setups">Alternative setups</a></li>
+        
+            <li><a class="toctree-l4" href="#additional-setup">Additional setup</a></li>
+        
+        </ul>
+    
 
-<p>After installation, Homebrew will output instructions similar to:</p>
-<pre class="highlight"><code class="language-bash linenums">To finish the installation, source activate.sh in your shell:
-  source /Users/[YOUR USERNAME]/homebrew/opt/autoenv/activate.sh</code></pre>
-
-<p>Run that now for your initial setup.
-Any time you run the project you’ll need to run that last line, so
-if you’ll be working with the project consistently,
-we suggest adding it to your Bash profile by running:</p>
-<pre class="highlight"><code class="language-bash linenums">echo 'source /Users/[YOUR USERNAME]/homebrew/opt/autoenv/activate.sh' &gt;&gt; ~/.bash_profile</code></pre>
-
-<p>If you need to find this info again later, you can run:</p>
-<pre class="highlight"><code class="language-bash linenums">brew info autoenv</code></pre>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you use Zsh you’ll need to use
-<a href="https://github.com/Tarrasch/zsh-autoenv">zsh-autoenv</a>,
-but we can’t provide support for issues that may arise.</p>
-</div>
-<h4 id="mysql">MySQL</h4>
-<p>If you're developing on OS X, this should be installed by default,
-and you shouldn't have to do anything else to get it working.
-You can optionally install a different version with Homebrew.</p>
-<h4 id="elasticsearch">Elasticsearch</h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>These instructions are deprecated since Elasticsearch 1.7
-is no longer supported by <code>brew</code>.</strong></p>
-</div>
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/1.7/setup.html">Install Elasticsearch 1.7</a>
-however you’d like. We use <a href="http://brew.sh">Homebrew</a> for developing on OS X):</p>
-<pre class="highlight"><code class="language-bash linenums">brew tap homebrew/versions
-brew search elasticsearch
-brew install homebrew/versions/elasticsearch17</code></pre>
-
-<p>Just as with Autoenv, Homebrew will output similar instructions after installation:</p>
-<pre class="highlight"><code class="language-bash linenums"># To have launchd start homebrew/versions/elasticsearch17 now and restart at login:
-  brew services start homebrew/versions/elasticsearch17
-# Or, if you don't want/need a background service you can just run:
-  elasticsearch --config=/Users/[YOUR USERNAME]/homebrew/opt/elasticsearch17/config/elasticsearch.yml</code></pre>
-
-<p>Any time you resume work on the project after restarting your machine,
-you’ll need to open a new tab and run that last line.
-If you’ll be working on the project consistently,
-we suggest using the first option, so you don't have to worry about that.
-Note that some older versions of Homebrew may suggest
-using <code>launchctl</code> instead of <code>brew services</code>.</p>
-<p>If you need to find this info again later, you can run:</p>
-<pre class="highlight"><code class="language-bash linenums">brew info elasticsearch17</code></pre>
-
-<h4 id="front-end-dependencies">Front-end dependencies</h4>
-<p>The cfgov-refresh front end currently uses the following frameworks / tools:</p>
-<ul>
-<li><a href="http://gulpjs.com">Gulp</a>: task management for pulling in assets,
-  linting and concatenating code, etc.</li>
-<li><a href="http://lesscss.org">Less</a>: CSS pre-processor.</li>
-<li><a href="https://cfpb.github.io/capital-framework/getting-started">Capital Framework</a>:
-  User interface pattern-library produced by the CFPB.</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you’re new to Capital Framework, we encourage you to
-<a href="https://cfpb.github.io/capital-framework/getting-started">start here</a>.</p>
-</div>
-<ol>
-<li>
-<p>Install <a href="http://nodejs.org">Node.js</a> however you’d like.
-   We recommend using <a href="https://github.com/creationix/nvm">nvm</a>, though.</p>
-</li>
-<li>
-<p>Install <a href="http://gulpjs.com">Gulp</a>:</p>
-</li>
-</ol>
-<pre class="highlight"><code class="language-bash linenums">npm install -g gulp</code></pre>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This project requires Node.js v5.5 or higher, and npm v3 or higher.</p>
-</div>
-<h4 id="set-up-your-environment">Set up your environment</h4>
-<p>If this is the first time you're setting up the project, run the following
-script to copy <code>.env_SAMPLE</code> to <code>.env</code>, export your environment variables,
-and activate your virtualenv for the first time.</p>
-<pre class="highlight"><code class="language-bash linenums">source load-env.sh</code></pre>
-
-<p>Each time you start a new session for working on this project, you'll need to
-get those environment variables and get your virtualenv running again.
-If you setup Autoenv earlier, this will happen for you automatically when you
-<code>cd</code> into the project directory.</p>
-<p>If you prefer not to use Autoenv, just be sure to <code>source .env</code> every time
-you start a new session of work on the project.</p>
-<h4 id="run-the-setup-script">Run the setup script</h4>
-<p>At this point, your machine should have everything it needs to automate the
-rest of the setup process.</p>
-<p>If you haven't cloned this repo yet, clone it to a local folder.
-Because related projects will need to be installed as siblings to this project,
-we recommend putting them all in their own folder, e.g., <code>~/Projects/cf.gov</code>.</p>
-<p>Once cloned, from the project root (<code>~/Projects/cf.gov/cfgov-refresh/</code>),
-run this command to complete the setup process:</p>
-<pre class="highlight"><code class="language-bash linenums">source setup.sh</code></pre>
-
-<p>This will take several minutes, going through the steps in these scripts:</p>
-<ol>
-<li><code>frontend.sh</code></li>
-<li><code>backend.sh</code></li>
-</ol>
-<p>Once complete, you should have a fully functioning local environment,
-ready for you to develop against!</p>
-<p>There are some <a href="#optional-steps">optional setup steps</a>
-that you may want to perform before continuing.</p>
-<p>Want to know more about what the setup scripts are doing?
-<a href="#curious-about-what-the-setup-scripts-are-doing">Read the detailed rundown.</a></p>
-<p>Get any errors? <a href="#troubleshooting">See our troubleshooting tips.</a></p>
-<p><strong>Continue following the <a href="../usage">usage instructions</a>.</strong></p>
-<h2 id="vagrant-box-installation">Vagrant-box installation</h2>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>These instructions are not currently working, but we'd like to get them working soon. <a href="../contributing">PRs welcome</a>.</p>
-</div>
-<h3 id="1-environment-variables-setup">1. Environment variables setup</h3>
-<p>The project uses a number of environment variables.
-The <code>setup.sh</code> script will create a <code>.env</code> file for you
-from the <code>.env_SAMPLE</code> file found in the repository,
-if you don't already have one.</p>
-<p>Inside the <code>.env</code> file you can customize the project environment configuration.</p>
-<p>If you would like to manually copy the environment settings,
-copy the <code>.env_SAMPLE</code> file and un-comment each variable after
-adding your own values.
-<pre class="highlight"><code class="language-bash linenums">cp -a .env_SAMPLE .env &amp;&amp; open -t .env</code></pre></p>
-<p>Then load the environment variables with:
-<pre class="highlight"><code class="language-bash linenums">. ./.env</code></pre></p>
-<h3 id="2-fetch-extra-playbooks">2. Fetch extra playbooks</h3>
-<p>The project pulls together various open source and closed source plays. The plays are
-managed through ansible-galaxy, a core module for this exact purpose. To download all
-the dependencies, use this command:</p>
-<pre class="highlight"><code class="language-bash linenums">ansible-galaxy install -r ansible/requirements.yml</code></pre>
-
-<h3 id="3-launch-vagrant-virtual-environment">3. Launch Vagrant virtual environment</h3>
-<p>The project uses Vagrant to create the simulated virtual environment allowing the developer
-to work on a production-like environment while maintaining development work on the
-local machine. To create this virtual environment, you need to execute the following command.</p>
-<pre class="highlight"><code class="language-bash linenums">vagrant up</code></pre>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Please be patient the first time you run this step.</p>
-</div>
-<h3 id="4-front-end-tools">4. Front-end Tools</h3>
-<p>In order to run the application, we must generate the front-end assets.
-After running the following commands, visit <a href="http://localhost:8001">http://localhost:8001</a> to see the site running.
-You can also place the first two export commands into your <code>.bashrc</code> to simplify things later.</p>
-<pre class="highlight"><code class="language-bash linenums">export CFGOV_HOME=path/to/cfgov-refresh
-export PATH=$PATH:$CFGOV_HOME/bin
-cfgov init
-cfgov assets
-cfgov start django</code></pre>
-
-<h2 id="optional-steps">Optional steps</h2>
-<h3 id="load-initial-data-into-database">Load initial data into database</h3>
-<p>The <code>initial-data.sh</code> script can be used to initialize a new database to make
-it easy to get started working on Wagtail. This script first ensures that all
-migrations are applied to the database, and then does the following:</p>
-<ul>
-<li>Creates an <code>admin</code> superuser with a password as specified in the
-<code>WAGTAIL_ADMIN_PW</code> environment variable, if set.</li>
-<li>If it doesn't already exist, creates a new Wagtail home page named <code>CFGOV</code>,
-with a slug of <code>cfgov</code>.</li>
-<li>Updates the default Wagtail site to use the port defined by the <code>DJANGO_HTTP_PORT</code> environment variable, if defined; otherwise this port is set to 80.</li>
-<li>If it doesn't already exist, creates a new <a href="https://github.com/cfpb/wagtail-sharing">wagtail-sharing</a> <code>SharingSite</code> with a hostname and port defined by the <code>DJANGO_STAGING_HOSTNAME</code> and <code>DJANGO_HTTP_PORT</code> environment variables.</li>
-</ul>
-<h3 id="load-a-database-dump">Load a database dump</h3>
-<p>If you're installing this fresh, the initial data you receive will not be
-as extensive as you'd probably like it to be.</p>
-<p>You can get a database dump by:</p>
-<ol>
-<li>Going to [GHE]/CFGOV/platform/wiki/Database-downloads</li>
-<li>Selecting one of the extractions and downloading the <code>production_django.sql.gz</code> file</li>
-<li>Unzip it</li>
-<li>Run:</li>
-</ol>
-<pre class="highlight"><code class="language-bash linenums">./refresh-data.sh /path/to/dump.sql</code></pre>
-
-<p>The <code>refresh-data.sh</code> script will apply the same changes as the <code>initial-data.sh</code> script described above (including setting up the <code>admin</code> superuser), but will not apply migrations.</p>
-<p>To apply any unapplied migrations to a database created from a dump, run:</p>
-<pre class="highlight"><code class="language-bash linenums">python cfgov/manage.py migrate</code></pre>
-
-<h3 id="install-dependencies-for-working-with-the-govdelivery-api">Install dependencies for working with the GovDelivery API</h3>
-<p>Install the following GovDelivery dependencies into your virtual environment:</p>
-<pre class="highlight"><code class="language-bash linenums">pip install git+git://github.com/dpford/flask-govdelivery
-pip install git+git://github.com/rosskarchner/govdelivery</code></pre>
-
-<p>Uncomment and set the GovDelivery environment variables in your <code>.env</code> file.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>GovDelivery is a third-party web service that powers our emails.
-The API is used by subscribe forms on our website.
-Users may decide to swap this tool out for another third-party service.</p>
-</div>
-<h2 id="curious-about-what-the-setup-scripts-are-doing">Curious about what the setup scripts are doing?</h2>
-<p>Here's a rundown of each of the scripts called by <code>setup.sh</code> and what they do.</p>
-<h3 id="1-frontendsh">1. <code>frontend.sh</code></h3>
-<ol>
-<li><strong>Initialize project dependency directories</strong> (<code>init</code>)</li>
-</ol>
-<p>This script first checks for an argument passed from the command line
-   that can trigger different options for different environments.
-   Since you ran it with no arguments, it will set up the dev environment.</p>
-<p>It will then set some env vars for the Node and Bower dependency directories.
-1. <strong>Clean project dependencies</strong> (<code>clean</code>)</p>
-<p>The script will now empty out all installed dependencies,
-   so the new installation can start fresh.
-1. <strong>Install project dependencies</strong> (<code>install</code>)</p>
-<p>Node and Bower dependencies are installed.
-   The <code>devDependencies</code> from <code>package.json</code> are not installed
-   if the environment is production, and if it's the dev or test environment,
-   it checks to see if Protractor is globally installed.
-1. <strong>Run tasks to build the project for distribution</strong> (<code>build</code>)</p>
-<p>Finally, the script executes <code>gulp clean</code> to wipe out any lingering
-   <code>dist</code> files, then runs <code>gulp build</code> to rebuild everything.</p>
-<h3 id="2-backendsh">2. <code>backend.sh</code></h3>
-<ol>
-<li><strong>Confirm environment</strong> (<code>init</code>)</li>
-</ol>
-<p>This script first checks for an argument passed from the command line
-   that can trigger different options for different environments.
-   Since you ran it with no arguments, it will set up the dev environment.</p>
-<p>It will then run a script to ensure that you're in a virtualenv.
-   If not, the script will end, to prevent you from accidentally installing
-   your Python dependencies globally.
-1. <strong>Install project dependencies</strong> (<code>install</code>)</p>
-<p>Python dependencies are installed into the virtualenv via pip.
-   Dependencies vary slightly depending on whether we're in dev, test, or prod.
-1. <strong>Setup MySQL server</strong> (<code>db_setup</code>)</p>
-<p>Finally, the script will start the MySQL server, if it's not already running,
-   run <code>create-mysql-db.sh</code> to create the database using
-   the variables given in <code>.env</code>, if it's not already there,
-   and will run <code>initial-data.sh</code> to create the first Wagtail user
-   and load some basic initial data.</p>
-<h2 id="troubleshooting">Troubleshooting</h2>
-<p>Here are some common issues and how you can fix them:</p>
-<h3 id="errors-referencing-south-or-other-python-errors">Errors referencing South, or other Python errors:</h3>
-<p>Since moving to Django 1.8, we use Django's built-in migration engine,
-and we no longer use South.
-If you're getting South errors, you probably have it installed globally.
-To solve this, from outside the virtual environment, run <code>pip uninstall south</code>.</p>
-<p>If you're getting other kinds of Python errors (for example, when running tox),
-you may even want to go as far as uninstalling all globally-installed
-Python packages: <code>pip freeze | grep -v "^-e" | xargs pip uninstall -y</code>.
-After doing that, you'll need to reinstall virtualenv:
-<code>pip install virtualenv virtualenvwrapper</code>.</p>
-            </section>
-        </div>
-
-        <footer role="contentinfo">
-            <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
-
-                <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
-            </div>
-        </footer>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-virtualenv/">Running in a Virtual Environment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic-structure/">Atomic Structure and Design</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../branching-merging/">Branching and Merging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development-tips/">Development Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
     </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li class="breadcrumb-item active">Setup</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/installation.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="setting-up-consumerfinancegov">Setting up consumerfinance.gov<a class="headerlink" href="#setting-up-consumerfinancegov" title="Permanent link">¶</a></h1>
+<h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">¶</a></h2>
+<p>This quickstart requires a working Docker Desktop installation and git:</p>
+<ul>
+<li><a href="#clone-the-repository">Clone the repository</a>:</li>
+</ul>
+<pre class="highlight"><code class="language-sh">git clone https://github.com/cfpb/consumerfinance.gov.git
+cd consumerfinance.gov</code></pre>
+<ul>
+<li><a href="#set-up-and-run-the-docker-containers">Set up and run the Docker containers via docker-compose</a>:</li>
+</ul>
+<pre class="highlight"><code class="language-sh">docker-compose up</code></pre>
+<p>This may take some time, as it will also
+<a href="#load-initial-data">load initial data</a>
+and
+<a href="#build-the-frontend">build the frontend</a>.</p>
+<p>consumerfinance.gov should now be available at <a href="http://localhost:8000">http://localhost:8000</a>.</p>
+<p>The Wagtail admin area will be available at <a href="http://localhost:8000/admin/">http://localhost:8000/admin/</a>,
+which you can log into with the credentials <code>admin</code>/<code>admin</code>.</p>
+<p>Please see
+our <a href="/running/">running consumerfinance.gov</a> documentation
+for next steps.</p>
+<p>There are also optional steps described below, as well as
+<a href="#alternative-setups">alternative setup options</a>.</p>
+<h2 id="detailed-installation">Detailed installation<a class="headerlink" href="#detailed-installation" title="Permanent link">¶</a></h2>
+<p>The <a href="#quickstart">quickstart above</a> should get you started.
+Each step has some additional detail below.</p>
+<h3 id="clone-the-repository">Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permanent link">¶</a></h3>
+<p>Using the console, navigate to the root directory in which your projects
+live and clone this project's repository:</p>
+<pre class="highlight"><code class="language-sh">git clone git@github.com:cfpb/consumerfinance.gov.git
+cd consumerfinance.gov</code></pre>
+<p>Configure <code>.git-blame-ignore-revs</code> by running the following command within
+the repository:</p>
+<pre class="highlight"><code class="language-sh">git config blame.ignoreRevsFile .git-blame-ignore-revs</code></pre>
+<h3 id="set-up-the-environment-optional">Set up the environment (optional)<a class="headerlink" href="#set-up-the-environment-optional" title="Permanent link">¶</a></h3>
+<p>The consumerfinance.gov Django site relies on environment variables defined
+in a <code>.env</code> file. If this is your first time setting up the project,
+copy <code>.env_SAMPLE</code> to <code>.env</code>:</p>
+<pre class="highlight"><code class="language-sh">cp -a .env_SAMPLE .env</code></pre>
+<h3 id="set-up-a-local-python-environment-optional">Set up a local Python environment (optional)<a class="headerlink" href="#set-up-a-local-python-environment-optional" title="Permanent link">¶</a></h3>
+<p>For running our
+<a href="/python-unit-tests/">Python unit tests, linting, etc</a>
+outside of the Docker container, we rely on a local Python environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Our local Python environment requires <a href="https://github.com/pyenv/pyenv">pyenv</a>
+with
+<a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a>.
+They can be installed from Homebrew on macOS:</p>
+<pre class="highlight"><code>```sh
+brew install pyenv pyenv-virtualenv
+```
+
+Python 3.8 must then be installed once pyenv is installed:
+
+```sh
+pyenv install 3.8.12
+```</code></pre>
+<p>First we need to create a Python virtualenv for consumerfinance.gov:</p>
+<pre class="highlight"><code class="language-sh">pyenv virtualenv 3.8.12 consumerfinance.gov</code></pre>
+<p>Then we'll need to activate it.
+Activating the virtualenv is necessary before using it in the future as well:</p>
+<pre class="highlight"><code class="language-sh">pyenv activate consumerfinance.gov</code></pre>
+<p>Once activated, our Python CI requirements can be installed in the virtualenv:</p>
+<pre class="highlight"><code class="language-sh">pip install -r requirements/ci.txt</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Use local for application-specific python version</p>
+</div>
+<p>To set the virtualenv in the future for this project, run:</p>
+<pre class="highlight"><code class="language-sh">pyenv local consumerfinance.gov</code></pre>
+<p>This will set the python version in the project's hidden <code>.python-version</code> file.</p>
+<h3 id="configure-vscode-formatters-optional">Configure VSCode formatters (optional)<a class="headerlink" href="#configure-vscode-formatters-optional" title="Permanent link">¶</a></h3>
+<p>For developers who use <a href="https://code.visualstudio.com/">Visual Studio Code</a>
+as their editor of choice, you may wish to install certain
+<a href="https://marketplace.visualstudio.com/VSCode">extensions</a>
+to support easier code formatting.</p>
+<p>This repository includes a <code>.vscode/settings.json</code> file that sets the
+<a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier extension</a>
+as the default code formatter. It also sets the
+<a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python extension</a>
+as the formatter for Python files.</p>
+<h3 id="install-pre-commit">Install pre-commit<a class="headerlink" href="#install-pre-commit" title="Permanent link">¶</a></h3>
+<p>We use <code>pre-commit</code> to automatically run our linting tools before a commit
+takes place. These tools consist of <code>black</code>, <code>ruff</code>, <code>isort</code>, and <code>bandit</code>.
+To install <code>pre-commit</code>, running the following commands from within the
+<code>consumerfinance.gov</code> directory:</p>
+<pre class="highlight"><code class="language-sh">pip install -U pre-commit &amp;&amp; pre-commit install</code></pre>
+<p>Before each commit, <code>pre-commit</code> will execute and run our <code>pre-commit</code> checks.
+If any task fails, it will attempt to resolve the issue automatically, notify
+you of the changes (if any), and ask for you to re-stage the changed files. If
+all checks pass, a commit will take place as expected, allowing you to then
+push to GitHub. This is to reduce the number of commits with failed lints, and
+to assist developers with linting without thinking.</p>
+<h3 id="build-the-frontend">Build the frontend<a class="headerlink" href="#build-the-frontend" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Our frontend requires <a href="https://nodejs.org/en/">Node.js 16</a>
+with
+<a href="https://yarnpkg.com/">Yarn</a>.
+We prefer
+<a href="https://github.com/nvm-sh/nvm">nvm</a>
+for Node.js version management.
+nvm can be installed using:</p>
+<pre class="highlight"><code>```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | sh
+```
+
+Node 16 must then be installed once nvm is installed:
+
+```sh
+nvm install 16
+```
+
+Node.js 16 can then be used in any sh using:
+
+```sh
+nvm use 16
+```
+
+Yarn must then be installed:
+
+```sh
+curl -o- -L https://yarnpkg.com/install.sh | sh
+```</code></pre>
+<p>We have a single script that will install our frontend dependencies for both
+building and
+<a href="/javascript-unit-tests/">unit testing/linting/etc</a>:</p>
+<pre class="highlight"><code class="language-sh">./frontend.sh</code></pre>
+<p>Yarn can be used to rebuild our assets after the initial setup:</p>
+<pre class="highlight"><code class="language-sh">yarn build</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>If you are having trouble loading JavaScript edits locally, you may need to turn off service workers for localhost:8000. Learn how to <a href="https://love2dev.com/blog/how-to-uninstall-a-service-worker/">manage service workers in Firefox and Chrome</a>.</p>
+<h3 id="set-up-and-run-the-docker-containers">Set up and run the Docker containers<a class="headerlink" href="#set-up-and-run-the-docker-containers" title="Permanent link">¶</a></h3>
+<p>consumerfinance.gov depends on PostgreSQL database and Elasticsearch.
+You can use either
+<a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> or
+<a href="https://kubernetes.io/">Kubernetes</a> via <a href="https://helm.sh/">Helm</a>
+to run these services along side the consumerfinance.gov Django site.</p>
+<p>To build and run our Docker containers for the first time, run:</p>
+<h4 id="docker-compose">docker-compose:<a class="headerlink" href="#docker-compose" title="Permanent link">¶</a></h4>
+<pre class="highlight"><code class="language-sh">docker-compose up</code></pre>
+<h4 id="kubernetes-via-helm">Kubernetes via Helm:<a class="headerlink" href="#kubernetes-via-helm" title="Permanent link">¶</a></h4>
+<pre class="highlight"><code class="language-shell">./build-images.sh &amp;&amp; ./helm-install.sh</code></pre>
+<p>Either approach will build and start our
+PostgreSQL, Elasticsearch, and Python services.</p>
+<p>The first time this is fun, it will
+<a href="#load-initial-data">load initial data</a>
+and
+<a href="#build-the-frontend">build the frontend</a>
+for you.</p>
+<h3 id="load-initial-data">Load initial data<a class="headerlink" href="#load-initial-data" title="Permanent link">¶</a></h3>
+<p>Our <code>initial-data.sh</code> script can be used to initialize a new database to make
+it easy to get started working on consumerfinance.gov.
+This script ensures that all migrations are applied to the database
+and then does the following:</p>
+<ul>
+<li>Creates an <code>admin</code> superuser with password <code>admin</code>.</li>
+<li>If it doesn't already exist, creates a new Wagtail home page named <code>CFGOV</code>,
+  with a slug of <code>cfgov</code>.</li>
+<li>Updates the default Wagtail site to use the port defined by the
+  <code>DJANGO_HTTP_PORT</code> environment variable, if defined; otherwise this port is
+  set to 80.</li>
+<li>If it doesn't already exist, creates a new
+  <a href="https://github.com/cfpb/wagtail-sharing">wagtail-sharing</a> <code>SharingSite</code> with
+  a hostname and port defined by the <code>WAGTAIL_SHARING_HOSTNAME</code> and
+  <code>DJANGO_HTTP_PORT</code> environment variables.</li>
+</ul>
+<p>This script must be run inside the Docker <code>python</code> container:</p>
+<pre class="highlight"><code class="language-sh">docker-compose exec python sh
+./initial-data.sh</code></pre>
+<h3 id="load-a-database-dump">Load a database dump<a class="headerlink" href="#load-a-database-dump" title="Permanent link">¶</a></h3>
+<p>Alternatively, one of our database dumps can be installed using our
+<code>refresh-data.sh</code> script. You can get a database dump by defining
+<code>CFGOV_PROD_DB_LOCATION</code> in your <code>.env</code> file as described in
+GitHub Enterprise at
+[GHE]/CFGOV/platform/wiki/Database-downloads#resources-available-via-s3, or
+inside a Docker <code>python</code> container sh immediately before running
+<code>refresh-data.sh</code>:</p>
+<pre class="highlight"><code class="language-sh">docker-compose exec python sh
+CFGOV_PROD_DB_LOCATION=http://(rest of the URL)
+./refresh-data.sh</code></pre>
+<p><code>refresh-data.sh</code> can also be given a path to a gziped database dump:</p>
+<pre class="highlight"><code class="language-sh">./refresh-data.sh /path/to/dump.sql.gz</code></pre>
+<p>This automatically <a href="/search/#building-the-index">(re)builds the Elasticsearch index</a>,
+unless you run the <code>refresh-data.sh</code> script with the <code>--noindex</code> flag.</p>
+<h2 id="alternative-setups">Alternative setups<a class="headerlink" href="#alternative-setups" title="Permanent link">¶</a></h2>
+<p>consumerfinance.gov requires a Python environment, PostgreSQL, and
+Elasticsearch to run. None of this requires Docker, Docker is simply a
+convenient way to ensure consistent versioning and running of these services
+along with the consumerfinance.gov Django site.</p>
+<p>The consumerfinance.gov Django site can be run locally in a virtualenv and can
+use PostgreSQL and Elasticsearch from either
+our <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> file
+or from Homebrew.</p>
+<h3 id="postgresql-and-elasticsearch-from-docker">PostgreSQL and Elasticsearch from Docker<a class="headerlink" href="#postgresql-and-elasticsearch-from-docker" title="Permanent link">¶</a></h3>
+<p>To build and start only
+the PostgreSQL (<code>postgres</code>)
+and Elasticsearch (<code>elasticsearch</code>)
+containers from our
+<a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> file,
+explicitly specify them as arguments to <code>docker-compose</code>:</p>
+<pre class="highlight"><code>docker-compose up postgres elasticsearch</code></pre>
+<p>This will expose
+PostgreSQL on port <code>5432</code> on <code>localhost</code>
+and
+Elasticsearch on port <code>9200</code> on <code>localhost</code>.</p>
+<h3 id="postgresql-and-elasticsearch-from-homebrew">PostgreSQL and Elasticsearch from Homebrew<a class="headerlink" href="#postgresql-and-elasticsearch-from-homebrew" title="Permanent link">¶</a></h3>
+<p>You can install PostgreSQL and Elasticsearch from Homebrew if you're on a Mac:</p>
+<pre class="highlight"><code class="language-sh">brew install postgresql
+brew install elasticsearch</code></pre>
+<p>Once it's installed, you can configure it to run as a service:</p>
+<pre class="highlight"><code class="language-sh">brew services start postgresql
+brew services start elasticsearch</code></pre>
+<p>Our recommended Postgres configuration is a database named <code>cfgov</code> and a user
+named <code>cfpb</code>, with data stored in schema <code>cfpb</code>. This can be created with the
+following commands:</p>
+<pre class="highlight"><code class="language-sh">dropdb --if-exists cfgov &amp;&amp; dropuser --if-exists cfpb
+psql postgres -c "CREATE USER cfpb WITH LOGIN PASSWORD 'cfpb' CREATEDB"
+psql postgres -c "CREATE DATABASE cfgov OWNER cfpb"
+psql postgres://cfpb:cfpb@localhost/cfgov -c "CREATE SCHEMA cfpb"</code></pre>
+<p>We don't support using an SQLite database because we use database fields
+that are specific to Postgres. The <code>CREATEDB</code> keyword above allows the
+<code>cfpb</code> user to create a temporary Django database when running unit tests.</p>
+<h3 id="set-up-the-consumerfinancegov-virtualenv">Set up the <code>consumerfinance.gov</code> virtualenv<a class="headerlink" href="#set-up-the-consumerfinancegov-virtualenv" title="Permanent link">¶</a></h3>
+<p>After you have chosen a means to run PostgreSQL and Elasticsearch,
+<a href="#set-up-the-environment">set up the environment</a>,
+<a href="#set-up-a-local-python-environment">set up a local Python environment</a>,
+and <a href="#build-the-frontend">built the frontend</a>,
+all the Python dependencies for running locally can be installed:</p>
+<pre class="highlight"><code class="language-sh">pyenv activate consumerfinance.gov
+pip install -r requirements/local.txt</code></pre>
+<p>Once complete, our <code>runserver.sh</code> script will bring up the site at
+<a href="http://localhost:8000">http://localhost:8000</a>.</p>
+<pre class="highlight"><code class="language-sh">./runserver.sh</code></pre>
+<h2 id="additional-setup">Additional setup<a class="headerlink" href="#additional-setup" title="Permanent link">¶</a></h2>
+<h3 id="sync-local-image-and-document-storage-optional">Sync local image and document storage (optional)<a class="headerlink" href="#sync-local-image-and-document-storage-optional" title="Permanent link">¶</a></h3>
+<p>If using a database dump, pages will contain links to images or documents
+that exist in the database but don't exist on your local disk.
+This will cause broken or missing images or links when browsing the site locally.</p>
+<p>This is because in production images and documents are stored on S3,
+but when running locally they are stored on disk.</p>
+<p>This project includes two Django management commands that can be used to download
+any remote images or documents referenced in the database so that they can be served when
+running locally.</p>
+<p>This command downloads all remote images (and image renditions) referenced in the
+database, retrieving them from the specified URL and storing them in the
+specified local directory:</p>
+<pre class="highlight"><code class="language-sh">cfgov/manage.py sync_image_storage https://files.consumerfinance.gov/f/ ./cfgov/f/</code></pre>
+<p>This command does the same, but for documents:</p>
+<pre class="highlight"><code class="language-sh">cfgov/manage.py sync_document_storage https://files.consumerfinance.gov/f/ ./cfgov/f/</code></pre>
+<h3 id="install-gnu-gettext-for-django-translation-support-optional">Install GNU gettext for Django translation support (optional)<a class="headerlink" href="#install-gnu-gettext-for-django-translation-support-optional" title="Permanent link">¶</a></h3>
+<p>In order to generate Django translations as documented
+<a href="../translation/">here</a>, you'll need to install the
+<a href="https://www.gnu.org/software/gettext/">GNU gettext</a> library.</p>
+<p>On macOS, GNU gettext is available via Homebrew:</p>
+<pre class="highlight"><code>brew install gettext</code></pre>
+<p>but it gets installed as
+<a href="https://docs.brew.sh/FAQ#what-does-keg-only-mean">"keg-only"</a> due to conflicts
+with the default installation of BSD gettext. This means that GNU gettext won't
+be loaded in your PATH by default. To fix this, you can run</p>
+<pre class="highlight"><code>brew link --force gettext</code></pre>
+<p>to force its installation, or see <code>brew info gettext</code> for an alternate
+solution.</p>
+<p>If installed locally, you should be able to run this command successfully:</p>
+<pre class="highlight"><code>$ gettext --version</code></pre>
+<p>GNU gettext is also required to run our translation-related unit tests locally.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../running-virtualenv/" class="btn btn-neutral float-right" title="Running in a Virtual Environment">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../running-virtualenv/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
 </body>
 </html>

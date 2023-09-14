@@ -1,194 +1,214 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Branching and Merging - consumerfinance.gov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/overrides.css" rel="stylesheet" />
     
-    <title>Branching and merging - cfgov-refresh</title>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Branching and Merging";
+        var mkdocs_page_input_path = "branching-merging.md";
+        var mkdocs_page_url = null;
+      </script>
     
-    
-
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/syntax.css">
-    
-
-    <style type="text/css">
-        
-        .sidebar-nav a:hover,
-        .sidebar-nav a:focus,
-        .sidebar-nav a:active,
-        .sidebar-nav a.sidebar-nav-active {
-            border-left-color: #2CB34A;
-        }
-        header {
-            border-bottom-color: #2CB34A;
-        }
-        
-        
-
-        
-    </style>
-
-
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-      <script src="../js/respond.min.js"></script>
-    <![endif]--> 
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
-<body>
+<body class="wy-body-for-nav" role="document">
 
-    <div class="container">
-        <header role="banner">
-            <div class="wrap">
-                
-                <img class="logo" src="https://cfpb.github.io/img/logo_210.png" alt="Consumer Financial Protection Bureau">
-                
-                <h1 class="site-title"><a class="title-link" href="../">cfgov-refresh</a></h1>
-            </div>
-        </header>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
 
-        <div class="wrap content">
-            <aside>
-                <nav class="sidebar-nav" role="navigation">
-                    <ul>
-                        
-                        <li>
-                            
-                            <a href=".." class="">Introduction</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-virtualenv/">Running in a Virtual Environment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic-structure/">Atomic Structure and Design</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Branching and Merging</a>
+    <ul class="current">
+    
 
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../installation/" class="">Installation</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../usage/" class="">Usage</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Building and Deploying for cf.gov</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../whats-new/" class="">What's new</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../new-projects/" class="">New projects</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="./" class="sidebar-nav-active">Branching and merging</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../release-cadence/" class="">Release cadence</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../deployment/" class="">Deployment</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../feature-flags/" class="">Feature flags</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Back-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../translation/" class="">Translation</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Front-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../atomic-structure/" class="">Atomic structure and design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-atomic-design/" class="">Notes on adapting atomic design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-frameworks/" class="">Notes on frameworks</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../testing/" class="">Testing</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../development-tips/" class="">Development tips</a>
-
-                            
-                        </li>
-                        
-                    </ul>
-                </nav>
-            </aside>
-
-            <section id="main" class="main-content" role="main">
-                <h1 id="branching-and-merging">Branching and merging</h1>
-<p>Branches should be named descriptively, preferably in some way that indicates whether they are short-lived feature branches or longer-lived development branches. Short-lived feature branches should be deleted once they are merged into master. </p>
-<p>All pull requests to merge into master must be reviewed by at least one member of the cf.gov platform team. The cf.gov platform team will ensure that these reviews happen in a timely manner. To ensure timely code reviews, please tag all PRs to master with @cfpb/cfgov-backends and @cfpb/cfgov-frontends as appropriate.</p>
-<p>When reviewing pull requests, it is important to distinguish between explicit blockers and things that can be addressed in the future or would be nice to have. The latter two can be indicated with 'TODO'. This is best as a simple top-level post after review to summarize the review.</p>
-<p>The cfgov-refresh repository makes use of automated testing and linting to ensure the quality, consistency, and readability of the codebase. All pull requests to master must pass all automated tests and must not reduce the code coverage of the codebase. It is the responsibility of the submitter to ensure that the tests pass.</p>
-<p>Pull requests that are <em>not</em> to master must use GitHub labels in such a way that individuals who are responsible for reviewing those pull requests can easily find them. Pull requests that are works-in-progress must be clearly labeled as such.</p>
-<p>Generally, teams working on cf.gov projects should create and collaborate on feature branches, with frequent merges back to master. Teams are responsible for governing their own branches and forks, these guidelines apply to master. </p>
-            </section>
-        </div>
-
-        <footer role="contentinfo">
-            <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
-
-                <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
-            </div>
-        </footer>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development-tips/">Development Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
     </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Contributing &raquo;</li>
+      <li class="breadcrumb-item active">Branching and Merging</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/branching-merging.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="branching-and-merging">Branching and merging<a class="headerlink" href="#branching-and-merging" title="Permanent link">¶</a></h1>
+<p>Branches should be named descriptively, preferably in some way that indicates whether they are short-lived feature branches or longer-lived development branches. Short-lived feature branches should be deleted once they are merged into main.</p>
+<p>All pull requests to merge into main must be reviewed by at least one member of the cf.gov platform team. The cf.gov platform team will ensure that these reviews happen in a timely manner. To ensure timely code reviews, please tag all PRs to main with @cfpb/cfgov-backends and @cfpb/cfgov-frontends as appropriate.</p>
+<p>When reviewing pull requests, it is important to distinguish between explicit blockers and things that can be addressed in the future or would be nice to have. The latter two can be indicated with 'TODO'. This is best as a simple top-level post after review to summarize the review.</p>
+<p>The consumerfinance.gov repository makes use of automated testing and linting to ensure the quality, consistency, and readability of the codebase. All pull requests to main must pass all automated tests and must not reduce the code coverage of the codebase. It is the responsibility of the submitter to ensure that the tests pass.</p>
+<p>Pull requests that are <em>not</em> to main must use GitHub labels in such a way that individuals who are responsible for reviewing those pull requests can easily find them. Pull requests that are works-in-progress must be clearly labeled as such.</p>
+<p>Generally, teams working on cf.gov projects should create and collaborate on feature branches, with frequent merges back to main. Teams are responsible for governing their own branches and forks, these guidelines apply to main.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../other-front-end-testing/" class="btn btn-neutral float-left" title="Other Front-end Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../contributing-docs/" class="btn btn-neutral float-right" title="Contributing to the Docs">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../other-front-end-testing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../contributing-docs/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
 </body>
 </html>

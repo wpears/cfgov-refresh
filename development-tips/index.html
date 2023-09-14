@@ -1,373 +1,292 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Development Tips - consumerfinance.gov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/overrides.css" rel="stylesheet" />
     
-    <title>Development tips - cfgov-refresh</title>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Development Tips";
+        var mkdocs_page_input_path = "development-tips.md";
+        var mkdocs_page_url = null;
+      </script>
     
-    
-
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/syntax.css">
-    
-
-    <style type="text/css">
-        
-        .sidebar-nav a:hover,
-        .sidebar-nav a:focus,
-        .sidebar-nav a:active,
-        .sidebar-nav a.sidebar-nav-active {
-            border-left-color: #2CB34A;
-        }
-        header {
-            border-bottom-color: #2CB34A;
-        }
-        
-        
-
-        
-    </style>
-
-
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-      <script src="../js/respond.min.js"></script>
-    <![endif]--> 
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
-<body>
+<body class="wy-body-for-nav" role="document">
 
-    <div class="container">
-        <header role="banner">
-            <div class="wrap">
-                
-                <img class="logo" src="https://cfpb.github.io/img/logo_210.png" alt="Consumer Financial Protection Bureau">
-                
-                <h1 class="site-title"><a class="title-link" href="../">cfgov-refresh</a></h1>
-            </div>
-        </header>
-
-        <div class="wrap content">
-            <aside>
-                <nav class="sidebar-nav" role="navigation">
-                    <ul>
-                        
-                        <li>
-                            
-                            <a href=".." class="">Introduction</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../installation/" class="">Installation</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../usage/" class="">Usage</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Building and Deploying for cf.gov</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../whats-new/" class="">What's new</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../new-projects/" class="">New projects</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../branching-merging/" class="">Branching and merging</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../release-cadence/" class="">Release cadence</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../deployment/" class="">Deployment</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../feature-flags/" class="">Feature flags</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Back-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../translation/" class="">Translation</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Front-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../atomic-structure/" class="">Atomic structure and design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-atomic-design/" class="">Notes on adapting atomic design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-frameworks/" class="">Notes on frameworks</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../testing/" class="">Testing</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="./" class="sidebar-nav-active">Development tips</a>
-
-                            
-                        </li>
-                        
-                    </ul>
-                </nav>
-            </aside>
-
-            <section id="main" class="main-content" role="main">
-                <h2 id="development-tips">Development tips</h2>
-<h3 id="tip-loading-sibling-projects">TIP: Loading sibling projects</h3>
-<p>Some projects fit within the cfgov-refresh architecture,
-but are not fully incorporated into the project.
-These are known as "non-v1 Django apps."
-In order to visit areas of the site locally where those projects are used,
-the sibling projects need to be installed
-and then indexed within this cfgov-refresh project.</p>
-<p>The non-v1 apps are the following:</p>
-<ul>
-<li><a href="https://github.com/cfpb/owning-a-home">Owning a Home</a>.</li>
-<li>fin-ed-resources (ghe/CFGOV/fin-ed-resources) - for the Education Resources section.</li>
-<li>know-before-you-owe (ghe/CFGOV/know-before-you-owe) - for the Consumer Tools &gt; Know before you owe section.</li>
-</ul>
-<p>After installing these projects as sibling directories to the <code>cfgov-refresh</code> repository,</p>
-<h5 id="option-1-sheer-index-and-elasticsearch-eg-owning-a-home">Option 1: Sheer Index and Elasticsearch (e.g. owning-a-home)</h5>
-<ol>
-<li>build the third-party projects per their directions,</li>
-<li>stop the web server and return to <code>cfgov-refresh</code></li>
-<li>and run <code>cfgov/manage.py sheer_index -r</code> to load the projects' data into ElasticSearch.</li>
-</ol>
-<h5 id="option-2-direct-dependencies">Option 2: Direct dependencies</h5>
-<ol>
-<li>Build the third-party projects per their directions</li>
-<li>Stop the web server and return to <code>cfgov-refresh</code></li>
-<li>Run <code>pip install -e ../&lt;sibling&gt;</code> to load the projects' dependencies</li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Do not install the projects directly into the <code>cfgov-refresh</code> directory.
-Clone and install the projects as siblings to <code>cfgov-refresh</code>,
-so that they share the same parent directory (<code>~/Projects</code> or similar).</p>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
 </div>
-<h3 id="tip-loading-data-into-django-models">TIP: Loading data into Django models</h3>
-<p>The Django management command <code>import-data</code> will import data from the specified
-source into the specified model.</p>
-<p><pre class="highlight"><code class="linenums">usage: manage.py import-data [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS]
-        [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--parent PARENT]
-        [--snippet] -u USERNAME -p PASSWORD [--app APP] [--overwrite]
-        data_type wagtail_type</code></pre>
-- <code>data_type</code> is the WordPress post type defined in the <code>processors.py</code> file.
-- <code>wagtail_type</code> is the Django model name where the data is going to go.
-- <code>-u</code> and <code>-p</code> are credentials to an admin account.</p>
-<p>Required option:</p>
-<ul>
-<li><code>--parent</code> is the slug of the parent page that the pages will exist
-  under.</li>
-<li><code>--snippet</code> is a flag that's used to signify that the importing data will be
-  inserted into a Django model, registered as a <a href="http://docs.wagtail.io/en/v1.1/topics/snippets.html">Wagtail snippet</a>.
-  One of these options must be set for the command to run.</li>
-</ul>
-<p>Other options:</p>
-<ul>
-<li><code>--app</code> is the name of the app the Django models from <code>wagtail_type</code> exist in.
-  It defaults to our app, <code>v1</code>.</li>
-<li><code>--overwrite</code> overwrites existing pages in Wagtail based on comparing slugs.
-Be careful when using this as it will overwrite the data in Wagtail with data
-from the source. Default is <code>False</code>.</li>
-<li><code>--verbosity</code> is set to 1 by default. Set it to 2 or higher and expect the
-name of the slugs to appear where appropriate.</li>
-</ul>
-<p>For now, in order for this command to import the data, one of the things it
-needs is a file for "sheer logic" to use to retrieve the data. For us, the
-processors are already done from our last backend. This part of the command
-will change as we move away from our dependency on "sheer logic." This is set
-by putting the file in a <code>processors</code> module in the top level of the project
-and adding it to the setting <a href="https://github.com/cfpb/cfgov-refresh/blob/master/cfgov/cfgov/settings/base.py#L218"><code>SHEER_PROCESSORS</code></a>.</p>
-<p>The command needs a <code>processors</code> module in the app that's passed to it, as well
-as a file with the same name as the Django model specified that defines a class
-named <code>DataConverter</code> that subclasses either <code>_helpers.PageDataConverter</code> or
-<code>_helpers.SnippetDataConverter</code> and implements their method(s) explained below:</p>
-<p><strong>PageDataConverter</strong>:</p>
-<ul>
-<li><strong>convert(self, imported_data)</strong>:
-   For converting pages or snippets, the processor file must implement the
-   <strong>convert()</strong> function with one argument. That argument represents the
-   imported data dictionary. That function must take the dictionary and map it
-   to a new one that uses the keys that Wagtail's <strong>create()</strong> and <strong>edit()</strong>
-   admin/snippet view functions expect in the <code>request.POST</code> dictionary to
-   actually migrate the data over, and then returns that dictionary where it
-   will be assigned to <code>request.POST</code>.</li>
-</ul>
-<p><strong>SnippetDataConverter(PageDataConverter)</strong>:</p>
-<ul>
-<li><strong>get_existing_snippet()</strong>
-   This also accepts the imported data dictionary. It's used to find an
-   existing snippet given the imported data, returning it if found or <code>None</code> if
-   not.</li>
-</ul>
-<h3 id="tip-working-with-the-templates">TIP: Working with the templates</h3>
-<h4 id="front-end-templateasset-locations">Front-End Template/Asset Locations</h4>
-<p><strong>Templates</strong> that are served by the Django server: <code>cfgov\jinja2\v1</code></p>
-<p><strong>Static assets</strong> prior to processing (minifying etc.): <code>cfgov\unprocessed</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After running <code>gulp build</code> the site's assets are copied over to <code>cfgov\static_built</code>,
-ready to be served by Django.</p>
-</div>
-<h4 id="simple-static-template-setup">Simple static template setup</h4>
-<p>By default, Django will render pages with accordance to the URL pattern defined
-for it. For example, going to <code>http://localhost:8000/the-bureau/index.html</code>
-(or <code>http://localhost:8000/the-bureau/</code>) renders <code>/the-bureau/index.html</code> from
-the <code>cfgov</code> app folder's <code>jinja2/v1</code> templates folder as processed
-by the <a href="http://jinja.pocoo.org/docs">Jinja2</a> templating engine.</p>
-<h3 id="tip-outputting-indexed-content-in-a-sheer-template">TIP: Outputting indexed content in a Sheer template</h3>
-<p>Most of our content is indexed from the API output of our WordPress back-end.
-This happens when the <code>python cfgov/manage.py sheer_index -r</code> command is run.</p>
-<p>There are two ways in which we use indexed content:
-repeating items (e.g., blog posts and press releases),
-and single pages (e.g., the Future Requests page in Doing Business with Us).
-What follows is a deeper dive into both of these content types.</p>
-<h4 id="single-content">Single content</h4>
-<p>To access a single piece of content,
-the easiest thing to do is use the <code>get_document()</code> function.</p>
-<p>Using the example given earlier of the Future Requests page,
-here's how it's done:</p>
-<pre class="highlight"><code class="language-jinja linenums">{% set page = get_document('pages', '63169') %}
-{{ page.content | safe }}</code></pre>
+      </div>
 
-<p>The <code>get_document</code> method can be used to retrieve a single item of any post type
-for display within a template.
-In the below example we get an instance of the non-hierarchical
-<code>contact</code> post type using its slug (<code>whistleblowers</code>):</p>
-<pre class="highlight"><code class="language-jinja linenums">{% set whistleblowers = get_document('contact', 'whistleblowers') %}</code></pre>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-virtualenv/">Running in a Virtual Environment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../atomic-structure/">Atomic Structure and Design</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../branching-merging/">Branching and Merging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Development Tips</a>
+    <ul class="current">
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#editorconfig">EditorConfig</a></li>
+        
+            <li><a class="toctree-l4" href="#main-front-end-templateasset-locations">Main front-end template/asset locations</a></li>
+        
+            <li><a class="toctree-l4" href="#adding-new-javascript-entrypoints">Adding new Javascript entrypoints</a></li>
+        
+            <li><a class="toctree-l4" href="#installing-new-front-end-dependencies">Installing new front-end dependencies</a></li>
+        
+            <li><a class="toctree-l4" href="#watching-files-for-changes">Watching files for changes</a></li>
+        
+            <li><a class="toctree-l4" href="#developing-on-nested-satellite-apps">Developing on nested satellite apps</a></li>
+        
+        </ul>
+    
 
-<p>In practice, many of our templates are a Frankenstein-type mixture
-of hand-coded static content and calls to indexed content,
-as we continually try to strike the right balance of what content
-is appropriate to be edited by non-developers in Wagtail,
-and what is just too fragile to do any other way than by hand.</p>
-<h3 id="tip-filtering-results-with-queries">TIP: Filtering results with queries</h3>
-<p>Sometimes you'll want to create queries in your templates to filter the data.</p>
-<p>The two main ways of injecting filters into your data are in the URL's query
-string and within the template code itself.</p>
-<p>We have a handy function <code>search()</code> that:</p>
-<ol>
-<li>Pulls in filters from the URL query string.</li>
-<li>Allows you to add additional filters by passing them in as arguments to the function.</li>
-</ol>
-<h4 id="url-query-string-filters">URL query string filters</h4>
-<p>URL query string filters can be further broken down into two types:</p>
-<ol>
-<li>Term - Used when you want to filter by whether a field matches a term.
-Note that in order to use this type of filter,
-the field you are matching it against must have
-<code>"index": "not_analyzed"</code> set in the mapping.</li>
-<li>Range - Used for when you want to filter something by a range (e.g. dates or numbers)</li>
-</ol>
-<p>An example of Term is:</p>
-<p><code>?filter_category=Op-Ed</code></p>
-<p><code>filter_[field]=[value]</code></p>
-<p>An example of Range is:</p>
-<p><code>?filter_range_date_gte=2014-01</code></p>
-<p><code>filter_range_[field]_[operator]=[value]</code></p>
-<p>URL query string filters are convenient for many of the filtered queries you'll need to run,
-but often there are cases where you'll need more flexibility.</p>
-<h4 id="more-complex-filters">More complex filters</h4>
-<p>By default, <code>search()</code> uses the default query parameters
-defined in the <code>_queries/object-name.json</code> file,
-then mixes them in with any additional arguments
-from the URL query string in addition to what is passed into the function itself.</p>
-<p>When using <code>search()</code>, you can also pass in filters with the same <code>filter_</code> syntax as above.</p>
-<p>For example:</p>
-<p><code>search(filter_category='Op-Ed')</code></p>
-<p>Multiple term filters on the same field will be combined in an OR clause, while
-term filters of different fields will be combined in an AND clause.</p>
-<p>For example:</p>
-<p><code>search(filter_tag='Students', filter_tag='Finance', filter_author='Batman')</code></p>
-<p>This will return documents that have the tag Students OR Finance, AND have an author of Batman.</p>
-<p>If you need more control over your filter than that,
-enter it manually in the <code>cfgov/jinja2/v1/_queries/[filtername].json</code> file.</p>
-<h3 id="tip-debugging-site-performance">TIP: Debugging site performance</h3>
-<p>When running locally it is possible to enable the
-<a href="https://django-debug-toolbar.readthedocs.io/en/stable/">Django Debug Toolbar</a>
-by defining the <code>ENABLE_DEBUG_TOOLBAR</code> environment variable:</p>
-<pre class="highlight"><code class="language-sh linenums">$ ENABLE_DEBUG_TOOLBAR=1 ./runserver.sh</code></pre>
-
-<p>This tool exposes various useful pieces of information about things like HTTP headers,
-Django settings, SQL queries, and template variables. Note that running with the toolbar on
-may have an impact on local server performance.</p>
-<h3 id="tip-updating-the-documentation">TIP: Updating the documentation</h3>
-<p>Our documentation is written as Markdown files and served in GitHub pages
-by <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">mkdocs</a>.</p>
-<p>To update the docs in GitHub Pages once a pull request has been merged,
-mkdocs provides <a href="http://www.mkdocs.org/user-guide/deploying-your-docs/">a helpful command</a>:</p>
-<pre class="highlight"><code class="linenums">mkdocs gh-deploy --clean</code></pre>
-            </section>
-        </div>
-
-        <footer role="contentinfo">
-            <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
-
-                <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
-            </div>
-        </footer>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
     </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Contributing &raquo;</li>
+      <li class="breadcrumb-item active">Development Tips</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/development-tips.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="development-tips">Development tips<a class="headerlink" href="#development-tips" title="Permanent link">¶</a></h1>
+<h2 id="editorconfig">EditorConfig<a class="headerlink" href="#editorconfig" title="Permanent link">¶</a></h2>
+<p>We support <a href="https://editorconfig.org/">EditorConfig</a>. EditorConfig is a plugin for editors
+that allows for easy and quick configuration of editors for
+<a href="https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties">multiple properties</a>.
+Feel free to <a href="https://editorconfig.org/#download">install a plugin</a> for your editor.</p>
+<h2 id="main-front-end-templateasset-locations">Main front-end template/asset locations<a class="headerlink" href="#main-front-end-templateasset-locations" title="Permanent link">¶</a></h2>
+<p><strong>Templates</strong> that are served by the Django server: <code>cfgov/jinja2/v1</code></p>
+<p><strong>Static assets</strong> prior to processing (compilation, minification, etc.):
+<code>cfgov/unprocessed</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>After running <code>yarn build</code> (or <code>./setup.sh</code>) the site's assets are copied over to <code>cfgov/static_built</code>,
+ready to be served by Django.</p>
+<h2 id="adding-new-javascript-entrypoints">Adding new Javascript entrypoints<a class="headerlink" href="#adding-new-javascript-entrypoints" title="Permanent link">¶</a></h2>
+<ul>
+<li>In order to build standalone javascript files that are to be included in a template, they
+  need to be included in the <code>jsPaths</code> variable in <code>esbuild/scripts</code>.</li>
+</ul>
+<h2 id="installing-new-front-end-dependencies">Installing new front-end dependencies<a class="headerlink" href="#installing-new-front-end-dependencies" title="Permanent link">¶</a></h2>
+<ul>
+<li>Use <code>yarn add new_dep@se.m.ver</code> to install new dependencies
+  or update existing dependencies.</li>
+<li>If you can't do this for some reason or are looking to freshen all dependencies,
+  you will need to edit <code>.yarnrc</code>, temporarily commenting out the <code>--install.pure-lockfile true</code>
+  and <code>--install.offline true</code> flags before proceeding with your installation or update.</li>
+<li>In the rare but observed case that <code>yarn add new_dep@se.m.ver</code> doesn't add
+  every needed package to the offline cache, you likely need to first run
+  <code>yarn cache clean</code>.</li>
+</ul>
+<h2 id="watching-files-for-changes">Watching files for changes<a class="headerlink" href="#watching-files-for-changes" title="Permanent link">¶</a></h2>
+<p>Some (but not all) JavaScript and CSS files can be rebuilt automatically when they are changed by using <code>yarn watch</code>.</p>
+<h2 id="developing-on-nested-satellite-apps">Developing on nested satellite apps<a class="headerlink" href="#developing-on-nested-satellite-apps" title="Permanent link">¶</a></h2>
+<p>Some projects can sit inside consumerfinance.gov, but manage their own asset
+dependencies. These projects have their own <code>package.json</code> and base templates.</p>
+<p>The structure looks like this:</p>
+<h3 id="npm-modules">npm modules<a class="headerlink" href="#npm-modules" title="Permanent link">¶</a></h3>
+<ul>
+<li>List an app's own dependencies in
+  <code>cfgov/unprocessed/apps/[project namespace]/package.json</code>.</li>
+</ul>
+<h3 id="app-build-scripts">App build scripts<a class="headerlink" href="#app-build-scripts" title="Permanent link">¶</a></h3>
+<ul>
+<li>Apps may include their own scripts to run during the build process
+  These must be <code>require</code>d from <code>esbuild/build.js</code></li>
+</ul>
+<h3 id="adding-images">Adding Images<a class="headerlink" href="#adding-images" title="Permanent link">¶</a></h3>
+<ul>
+<li>Images should be compressed and optimized before being committed to the repo</li>
+<li>In order to keep builds fast and reduce dependencies, the front-end build does not contain an image optimization step</li>
+<li>A suggested workflow for those with Adobe Creative Suite is as follows:</li>
+<li>Export a full-quality PNG from Adobe Illustrator</li>
+<li>Reexport that PNG from Adobe Fireworks as an 8-bit PNG</li>
+<li>Run the 8-bit PNG through <a href="https://imageoptim.com">ImageOptim</a></li>
+</ul>
+<h3 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">¶</a></h3>
+<ul>
+<li>Apps use a Jinja template that extends the <code>base.html</code>
+  template used by the rest of the site.
+  This template would reside in <code>cfgov/jinja2/[project namespace]/index.html</code>
+  or similar (for example, <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/jinja2/owning-a-home/explore-rates/index.html">owning-a-home</a>).</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>A template may support a non-standard browser, like an older IE version,
+by including the required dependencies, polyfills, etc. in its
+template's <code>{% block css %}</code> or <code>{% block javascript scoped %}</code> blocks.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../related-projects/" class="btn btn-neutral float-left" title="Related Projects"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../github-actions/" class="btn btn-neutral float-right" title="How We Use GitHub Actions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../related-projects/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../github-actions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
 </body>
 </html>

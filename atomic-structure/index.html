@@ -1,355 +1,406 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Atomic Structure and Design - consumerfinance.gov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/overrides.css" rel="stylesheet" />
     
-    <title>Atomic structure and design - cfgov-refresh</title>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Atomic Structure and Design";
+        var mkdocs_page_input_path = "atomic-structure.md";
+        var mkdocs_page_url = null;
+      </script>
     
-    
-
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/syntax.css">
-    
-
-    <style type="text/css">
-        
-        .sidebar-nav a:hover,
-        .sidebar-nav a:focus,
-        .sidebar-nav a:active,
-        .sidebar-nav a.sidebar-nav-active {
-            border-left-color: #2CB34A;
-        }
-        header {
-            border-bottom-color: #2CB34A;
-        }
-        
-        
-
-        
-    </style>
-
-
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-      <script src="../js/respond.min.js"></script>
-    <![endif]--> 
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
-<body>
+<body class="wy-body-for-nav" role="document">
 
-    <div class="container">
-        <header role="banner">
-            <div class="wrap">
-                
-                <img class="logo" src="https://cfpb.github.io/img/logo_210.png" alt="Consumer Financial Protection Bureau">
-                
-                <h1 class="site-title"><a class="title-link" href="../">cfgov-refresh</a></h1>
-            </div>
-        </header>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> consumerfinance.gov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
 
-        <div class="wrap content">
-            <aside>
-                <nav class="sidebar-nav" role="navigation">
-                    <ul>
-                        
-                        <li>
-                            
-                            <a href=".." class="">Introduction</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running this Project</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-virtualenv/">Running in a Virtual Environment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment/">Artifacts and Deployment</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pages and Components</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Atomic Structure and Design</a>
+    <ul class="current">
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#atoms">Atoms</a></li>
+        
+            <li><a class="toctree-l4" href="#molecules">Molecules</a></li>
+        
+            <li><a class="toctree-l4" href="#organisms">Organisms</a></li>
+        
+            <li><a class="toctree-l4" href="#folder-structure">Folder structure</a></li>
+        
+            <li><a class="toctree-l4" href="#javascript-architecture">JavaScript architecture</a></li>
+        
+            <li><a class="toctree-l4" href="#component-build-pipeline">Component build pipeline</a></li>
+        
+        </ul>
+    
 
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../installation/" class="">Installation</a>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editing-components/">Creating and Editing Components</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging-templates/">Debugging Templates</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migrations/">Django and Wagtail Migrations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wagtail-pages/">Wagtail Pages</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Supporting Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filterable-lists/">Filterable Lists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../javascript-unit-tests/">JavaScript Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-unit-tests/">Python Unit Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../functional-testing/">Functional Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../profiling-django/">Profiling Django</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other-front-end-testing/">Other Front-end Testing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../branching-merging/">Branching and Merging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing-docs/">Contributing to the Docs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../related-projects/">Related Projects</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development-tips/">Development Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../github-actions/">How We Use GitHub Actions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">APIs and Data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ask-cfpb/">Ask CFPB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../consumer-complaint-database/">Consumer Complaints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../housing-counselor-tool/">Find a Housing Counselor Tool</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
 
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../usage/" class="">Usage</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Building and Deploying for cf.gov</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../whats-new/" class="">What's new</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../new-projects/" class="">New projects</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../branching-merging/" class="">Branching and merging</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../release-cadence/" class="">Release cadence</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../deployment/" class="">Deployment</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../feature-flags/" class="">Feature flags</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Back-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="../wagtail-migrations/" class="">Wagtail and Django migrations</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../django-to-wagtail/" class="">Wagtail Pages vs Django views</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../translation/" class="">Translation</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <span>Front-end guidelines</span>
-                            <ul class="secondary-nav">
-                                
-                                <li>
-                                    <a href="./" class="sidebar-nav-active">Atomic structure and design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-atomic-design/" class="">Notes on adapting atomic design</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../notes-on-frameworks/" class="">Notes on frameworks</a>
-                                </li>
-                                
-                            </ul>
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../testing/" class="">Testing</a>
-
-                            
-                        </li>
-                        
-                        <li>
-                            
-                            <a href="../development-tips/" class="">Development tips</a>
-
-                            
-                        </li>
-                        
-                    </ul>
-                </nav>
-            </aside>
-
-            <section id="main" class="main-content" role="main">
-                <h1 id="notes-on-atomic-design">Notes on Atomic Design</h1>
-<p>Check out <a href="http://www.ebaytechblog.com/?p=3113">Don't Build Pages, Build Modules</a>. It encompasses exactly what we are trying to achieve by building components using atomic design. It's important to note that our front-end atomic architecture is still evolving.</p>
-<p>Our components are broken down into templates, organisms, molecules, and atoms. We opted not to use the page component, although it exists in atomic design. Our components are composed of HTML, CSS, and JavaScript. If a component doesn’t have user interactions or require styling, then it won’t have an associated js and/or css file. We compose our atomic components as follows:</p>
-<h3 id="atoms">Atoms</h3>
-<p>Prefixed with “a-” in CSS, JavaScript, and HTML files.</p>
-<h4 id="html">HTML</h4>
-<pre class="highlight"><code class="language-html linenums">&lt;div class=&quot;a-overlay u-hidden&quot;&gt;&lt;/div&gt;</code></pre>
-
-<h4 id="css">CSS</h4>
-<pre class="highlight"><code class="language-css linenums"> .a-overlay {
-        // Only show overlay at mobile/tablet size.
-        .respond-to-max( @bp-sm-max, {
-            height: 100%;
-            width: 100%;</code></pre>
-
-<h3 id="molecules">Molecules</h3>
-<p>Prefixed with “m-” in CSS, JavaScript, and HTML files.</p>
-<h4 id="html_1">HTML</h4>
-<pre class="highlight"><code class="language-html linenums">&lt;div class=&quot;m-notification m-notification__error m-notification__visible&quot; data-js-hook=&quot;state_atomic_init&quot;&gt;
-      &lt;span class=&quot;m-notification_icon cf-icon&quot;&gt;&lt;/span&gt;
-      &lt;div class=&quot;m-notification_content&quot; role=&quot;alert&quot;&gt;&lt;/div&gt;
- &lt;/div&gt;</code></pre>
-
-<h4 id="css_1">CSS</h4>
-<pre class="highlight"><code class="language-css linenums">.m-notification {
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">consumerfinance.gov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Pages and Components &raquo;</li>
+      <li class="breadcrumb-item active">Atomic Structure and Design</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/atomic-structure.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notes-on-atomic-design">Notes on Atomic Design<a class="headerlink" href="#notes-on-atomic-design" title="Permanent link">¶</a></h1>
+<p>Our components employ the concept of atomic design, meaning that
+we break them down into atoms, molecules, and organisms,
+each successive level being more complex than the previous.
+(We do not currently use the template or page concepts as described in
+<a href="http://bradfrost.com/blog/post/atomic-web-design/">Brad Frost's seminal article introducing atomic design</a>).</p>
+<p>Our components are composed (on the front-end) of HTML, Less, and JavaScript.
+If a component doesn’t have user interactions or require styling,
+then it won’t have an associated JS and/or Less file.
+Components that are available for adding to a Wagtail page also
+require some Python programming—see the
+<a href="../editing-components/">creating and editing components</a> page for details.</p>
+<p>We compose our atomic components as follows:</p>
+<h2 id="atoms">Atoms<a class="headerlink" href="#atoms" title="Permanent link">¶</a></h2>
+<p>The smallest kind of component.
+May not contain any other components.
+Prefixed with <code>a-</code> in class names.</p>
+<h3 id="html">HTML<a class="headerlink" href="#html" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-html">&lt;div class="a-tag"&gt;Tag label {{ svg_icon('error') }}&lt;/div&gt;</code></pre>
+<h3 id="less">Less<a class="headerlink" href="#less" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-css">.a-tag {
+    cursor: default;
+    display: inline-block;
+    padding: 5px 10px;
+    …
+}</code></pre>
+<h3 id="javascript">JavaScript<a class="headerlink" href="#javascript" title="Permanent link">¶</a></h3>
+<p>None of our atoms require any JavaScript at this time.</p>
+<h2 id="molecules">Molecules<a class="headerlink" href="#molecules" title="Permanent link">¶</a></h2>
+<p>The medium-sized component.
+May contain atoms.
+Prefixed with <code>m-</code> in class names.</p>
+<h3 id="html_1">HTML<a class="headerlink" href="#html_1" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-html">&lt;div
+  class="m-notification
+         m-notification__visible
+         m-notification__error"
+&gt;
+  {{ svg_icon('error') }}
+  &lt;div class="m-notification_content" role="alert"&gt;
+    &lt;div class="h4 m-notification_message"&gt;Page not found.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<h3 id="less_1">Less<a class="headerlink" href="#less_1" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-css">.m-notification {
     display: none;
     position: relative;
-    padding: @m-notification-padding__px;
-    padding-left: 40px;</code></pre>
+    padding: @notification-padding__px;
+    …
+}</code></pre>
+<h3 id="javascript_1">JavaScript<a class="headerlink" href="#javascript_1" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-js">const BASE_CLASS = 'm-notification';
+function Notification( element ) {
+  // Constants for the state of this Notification.
+  const SUCCESS = 'success';
+  const WARNING = 'warning';
+  const ERROR = 'error';
 
-<h4 id="javascript">JavaScript</h4>
-<pre class="highlight"><code class="language-javascript linenums">function Notification( element ) {
-   // eslint-disable-line max-statements, inline-comments, max-len
-   var BASE_CLASS = 'm-notification';
+  // Constants for the Notification modifiers.
+  const MODIFIER_VISIBLE = BASE_CLASS + '__visible';
+  const _dom = atomicHelpers.checkDom( element, BASE_CLASS );
+  const _contentDom = _dom.querySelector( '.' + BASE_CLASS + '_content' );
+  …
+}</code></pre>
+<p>The Notification molecule can be instantiated
+by adding the following to your project's JavaScript code:</p>
+<pre class="highlight"><code class="language-js">const notification = new Notification(_dom);
+notification.init();</code></pre>
+<h2 id="organisms">Organisms<a class="headerlink" href="#organisms" title="Permanent link">¶</a></h2>
+<p>The largest component.
+May contain atoms, molecules, or
+(if no other solution is viable) other organisms.
+Prefixed with <code>o-</code> in class names.</p>
+<h3 id="html_2">HTML<a class="headerlink" href="#html_2" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-html">&lt;div
+  class="o-expandable
+         o-expandable__padded
+         o-expandable__midtone"
+&gt;
+  &lt;button class="o-expandable_header"&gt;
+    &lt;div class="o-expandable_label"&gt;…&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+<h3 id="less_2">Less<a class="headerlink" href="#less_2" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-css">.o-expandable {
+    position: relative;
 
-   // Constants for the state of this Notification.
-   var SUCCESS = 'success';
-   var WARNING = 'warning';
-   var ERROR = 'error';
-   // Constants for the Notification modifiers.
-   var MODIFIER_VISIBLE = BASE_CLASS + '__visible';
-   var _dom = atomicHelpers.checkDom( element, BASE_CLASS );
-   var _contentDom = _dom.querySelector( '.' + BASE_CLASS + '_content' );</code></pre>
-
-<p>The notification molecule can be instantiated with the following code:</p>
-<pre class="highlight"><code class="language-javascript linenums">_notification = new Notification( _dom );
-_notification.init();</code></pre>
-
-<h3 id="organisms">Organisms</h3>
-<p>Prefixed with “o-” in CSS, JavaScript, and HTML.</p>
-<h4 id="html_2">HTML</h4>
-<pre class="highlight"><code class="language-html linenums">&lt;div data-qa-hook=&quot;expandable&quot; class=&quot;o-expandable
-                                      o-expandable__borders
-                                      o-expandable__midtone
-                                      o-expandable__expanded&quot;
-                               data-js-hook=&quot;state_atomic_init&quot;&gt;
-    &lt;button class=&quot;o-expandable_target&quot; aria-pressed=&quot;true&quot;&gt;
-        &lt;div class=&quot;o-expandable_header&quot;&gt;</code></pre>
-
-<p>JavaScript:</p>
-<pre class="highlight"><code class="language-javascript linenums"> function Expandable( element ) {
-  var BASE_CLASS = 'o-expandable';
-
+    &amp;_header {
+        padding: 0;
+        border: 0;
+        …
+    }
+    …
+}</code></pre>
+<h3 id="javascript_2">JavaScript<a class="headerlink" href="#javascript_2" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code class="language-js">const BASE_CLASS = 'o-expandable';
+function Expandable( element ) {
   // Bitwise flags for the state of this Expandable.
-  var COLLAPSED = 0;
-  var COLLAPSING = 1;
-  var EXPANDING = 2;
-  var EXPANDED = 3;
+  const COLLAPSED = 0;
+  const COLLAPSING = 1;
+  const EXPANDING = 2;
+  const EXPANDED = 3;
 
   // The Expandable element will directly be the Expandable
   // when used in an ExpandableGroup, otherwise it can be the parent container.
-  var _dom = atomicHelpers.checkDom( element, BASE_CLASS );
-  var _target = _dom.querySelector( '.' + BASE_CLASS + '_target' );
-  var _content = _dom.querySelector( '.' + BASE_CLASS + '_content' );</code></pre>
-
-<p>The Expandable organism can be instantiated with the following code:</p>
-<pre class="highlight"><code class="language-javascript linenums">_expandable = new Expandable( _dom.querySelector( '.o-expandable' ) );
-_expandable.init( _expandable.EXPANDED );</code></pre>
-
-<p>or</p>
-<pre class="highlight"><code class="language-javascript linenums">var atomicHelpers = require( '../../modules/util/atomic-helpers' );
-var Expandable = require( '../../organisms/Expandable' );
-atomicHelpers.instantiateAll( '.o-expandable', Expandable );</code></pre>
-
-<h3 id="templates">Templates</h3>
-<p>Prefixed with “t-” in CSS, JavaScript, and HTML.</p>
-<h4 id="css_2">CSS</h4>
-<pre class="highlight"><code class="language-css linenums">.t-careers {
-    &amp;_social .m-social-media {
-        float: right;
-    }
-    …</code></pre>
-
-<h3 id="folder-structure">Folder Structure</h3>
-<p>Atomic code is currently separated and named based on asset type. This is a mistake in my view, as I believe we should begin migrating to a modular folder structure based on the component.</p>
-<h4 id="current-structure">Current Structure</h4>
-<h4 id="html_3">HTML</h4>
-<pre class="highlight"><code class="linenums">cfgov-refresh/cfgov/jinja2/v1/_includes/atoms/
-cfgov-refresh/cfgov/jinja2/v1/_includes/molecules/
-cfgov-refresh/cfgov/jinja2/v1/_includes/organisms/</code></pre>
-
-<h4 id="css_3">CSS</h4>
-<pre class="highlight"><code class="linenums">cfgov-refresh/cfgov/unprocessed/css/atoms/
-cfgov-refresh/cfgov/unprocessed/css/molecules/
-cfgov-refresh/cfgov/unprocessed/css/organisms/</code></pre>
-
-<h4 id="javascript_1">JavaScript</h4>
-<pre class="highlight"><code class="linenums">cfgov-refresh/cfgov/unprocessed/js/atoms/
-cfgov-refresh/cfgov/unprocessed/js/molecules/
-cfgov-refresh/cfgov/unprocessed/js/organisms/</code></pre>
-
-<h4 id="test">Test</h4>
-<pre class="highlight"><code class="linenums">cfgov-refresh/test/unit_tests/atoms/
-cfgov-refresh/test/unit_tests/molecules/
-cfgov-refresh/test/unit_tests/organisms/</code></pre>
-
-<h4 id="proposed-folder-structure">Proposed Folder Structure</h4>
-<pre class="highlight"><code class="linenums">cfgov-refresh/cfgov/front-end/molecules/Expandable
-
-Expandable.html
-Expandable.css
-Expandable.js
-Expandable-unit-test.js
-README.MD</code></pre>
-
-<h3 id="javascript-architecture">JavaScript Architecture</h3>
-<p>There was considerable discussion on how we should create JS components. The components aren't constructed to be used on SPAs (Single Page Applications). They are built to be rendered on the sever and then enhanced via JavaScript on the client. The basic interface for the components is as follows:</p>
-<pre class="highlight"><code class="language-javascript linenums">function AtomicComponent( domElement ) {
-    // Ensure the passed in Element is in the DOM.
-    // Query and store references to sub-elements.
-    // Instantiate child atomic components.
-    // Bind necessary events for referenced DOM elements.
-    // Perform other initialization related tasks.
-    this.init = function init(){}
-
-    // General teardown function
-    // We don't remove the element from the DOM so
-    // we need to unbind the events.
-    this.destroy = function destroy(){}
+  const _dom = atomicHelpers.checkDom( element, BASE_CLASS );
+  const _target = _dom.querySelector( '.' + BASE_CLASS + '_header' );
+  const _content = _dom.querySelector( '.' + BASE_CLASS + '_content' );
+  …
 }</code></pre>
+<p>The Expandable organism can be instantiated
+by adding the following to your project's JavaScript code:</p>
+<pre class="highlight"><code class="language-js">const expandable = new Expandable(_dom.querySelector('.o-expandable'));
+expandable.init(_expandable.EXPANDED);</code></pre>
+<p>or</p>
+<pre class="highlight"><code class="language-js">import { instantiateAll } from '@cfpb/cfpb-atomic-component';
+import { Expandable } from '@cfpb/cfpb-expandables';
+instantiateAll('.o-expandable', Expandable);</code></pre>
+<h2 id="folder-structure">Folder structure<a class="headerlink" href="#folder-structure" title="Permanent link">¶</a></h2>
+<p>Our atomic components are separated and named based on asset type.
+HTML, Less, and JavaScript for each component are in separate directories.</p>
+<h3 id="html_3">HTML<a class="headerlink" href="#html_3" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code>consumerfinance.gov/cfgov/v1/jinja2/v1/includes/atoms/
+consumerfinance.gov/cfgov/v1/jinja2/v1/includes/molecules/
+consumerfinance.gov/cfgov/v1/jinja2/v1/includes/organisms/</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Some of our foundational components get their Less and JavaScript
+from the <a href="https://cfpb.github.io/design-system/">Design System</a>,
+but the HTML for their Wagtail block templates
+is stored in the above folders.</p>
+<h3 id="css">CSS<a class="headerlink" href="#css" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code>consumerfinance.gov/cfgov/unprocessed/css/atoms/
+consumerfinance.gov/cfgov/unprocessed/css/molecules/
+consumerfinance.gov/cfgov/unprocessed/css/organisms/</code></pre>
+<h3 id="javascript_3">JavaScript<a class="headerlink" href="#javascript_3" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code>consumerfinance.gov/cfgov/unprocessed/js/molecules/
+consumerfinance.gov/cfgov/unprocessed/js/organisms/</code></pre>
+<h3 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">¶</a></h3>
+<pre class="highlight"><code>consumerfinance.gov/test/unit_tests/js/molecules/
+consumerfinance.gov/test/unit_tests/js/organisms/</code></pre>
+<h2 id="javascript-architecture">JavaScript architecture<a class="headerlink" href="#javascript-architecture" title="Permanent link">¶</a></h2>
+<p>JavaScript components are built to be rendered on the server
+and then enhanced via JavaScript on the client.
+The basic interface for the components is as follows:</p>
+<pre class="highlight"><code class="language-js">function AtomicComponent(domElement) {
+  // Ensure the passed in Element is in the DOM.
+  // Query and store references to sub-elements.
+  // Instantiate child atomic components.
+  // Bind necessary events for referenced DOM elements.
+  // Perform other initialization related tasks.
+  this.init = function init() {};
 
-<p>We aren't testing for interface adherence but we probably should. We generally favor composition over inheritance. You can get more information by reading the following:</p>
-<h4 id="articles">Articles</h4>
-<p><a href="https://medium.com/javascript-scene/a-simple-challenge-to-classical-inheritance-fans-e78c2cf5eead#.mtrvhcjiw">A Simple Challenge to Classical Inheritance Fans</a>
-<a href="https://www.youtube.com/watch?v=wfMtDGfHWpA">Composition over Inheritance (Youtube)</a></p>
-<h4 id="code-and-related-prs">Code and Related PRs</h4>
-<p><a href="https://github.com/cfpb/cfgov-refresh/pull/916">View Unit Test</a>
-<a href="http://jsfiddle.net/0j9u66h0/9/">Expandable example 1</a>
-<a href="https://jsfiddle.net/cpsyLy3L/2/">Expandable example 2</a></p>
-<h2 id="component-build-pipeline">Component Build Pipeline</h2>
-<h4 id="gulp">Gulp</h4>
-<p>Gulp is used as a task automation tool. A specific breakdown of each task is contained <a href="https://github.com/cfpb/cfgov-refresh#available-gulp-tasks">here</a>.</p>
-<h4 id="webpack">Webpack</h4>
-<p>Wepback is used as a module bundler although it's capable of more. We create page, global, and atomic specific bundles. The configuration for the bundles is contained in webpack-config.js. An explanation for the usage of each bundle is contained in scripts.js.</p>
-<h4 id="routes">Routes</h4>
-<p>Routes are used to serve JavaScript bundles to the browser based on the requested URL or Wagtail page Media property. The happens via code contained in base.html.</p>
-<h4 id="basehtml">Base.html</h4>
-<p>This file serves as the base document for serving up assets and content. It's currently very complicated, obtrusive, and needs to be refactored.</p>
-<h4 id="wagtail-page-media-property">Wagtail Page Media Property</h4>
-<p>Each Atomic component has a media property which list the JavaScript files that should be rendered via base.html. When a page is requested via the browser, code contained in base.html will loop all Atomic components for the requested page and render the appropriate Atomic JavaScript bundles.</p>
-<h4 id="questions-and-concerns">Questions and Concerns</h4>
+  // General teardown function
+  // We don't remove the element from the DOM so
+  // we need to unbind the events.
+  this.destroy = function destroy() {};
+}</code></pre>
+<p>We generally favor composition over inheritance.
+You can get more information by reading the following:</p>
 <ul>
-<li>How do we support Single Page Applications and be functional when JavaScript is disabled?</li>
-<li>How do we ensure creation of performant atomic components?</li>
-<li>Is the codebase lacking uniformity?</li>
-<li>CSS bloat when multiple components are on the same page but from different Django apps.</li>
-<li>Ensuring simplicity over complexity.</li>
+<li><a href="https://medium.com/javascript-scene/a-simple-challenge-to-classical-inheritance-fans-e78c2cf5eead#.mtrvhcjiw">A Simple Challenge to Classical Inheritance Fans</a></li>
+<li><a href="https://www.youtube.com/watch?v=wfMtDGfHWpA">Composition over Inheritance (YouTube)</a></li>
 </ul>
-            </section>
-        </div>
-
-        <footer role="contentinfo">
-            <div class="wrap">
-                This project is maintained by <a href="https://cfpb.github.io">The Consumer Financial Protection Bureau</a>.
-
-                <p>Hosted on <a href="http://pages.github.com/">GitHub Pages</a>.</p>
+<h2 id="component-build-pipeline">Component build pipeline<a class="headerlink" href="#component-build-pipeline" title="Permanent link">¶</a></h2>
+<h3 id="routes">Routes<a class="headerlink" href="#routes" title="Permanent link">¶</a></h3>
+<p>Routes are used to serve JavaScript bundles to the browser based
+on the requested URL or Wagtail page's <code>Media</code> definition.
+This happens via code contained in
+<a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/v1/jinja2/v1/layouts/base.html#L85-L123"><code>v1/layouts/base.html</code></a>. This file serves as the base HTML template for serving Wagtail pages.</p>
+<h3 id="wagtail-page-media-class">Wagtail page <code>Media</code> class<a class="headerlink" href="#wagtail-page-media-class" title="Permanent link">¶</a></h3>
+<p>Each atomic component has a <code>Media</code> class that lists the JavaScript files
+that should be loaded via <code>base.html</code>.
+When a page is requested via the browser, code contained in <code>base.html</code> will
+loop all atomic components for the requested page and load
+the appropriate atomic JavaScript bundles.</p>
+<p>Here is an example of the <code>Media</code> class on a component,
+<a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/v1/atomic_elements/organisms.py#L223-L244">the <code>EmailSignUp</code> organism</a>:</p>
+<pre class="highlight"><code class="language-python">class Media:
+    js = ['email-signup.js']</code></pre>
+<p>This will load the <code>email-signup.js</code> script on any page
+that includes the <code>EmailSignUp</code> organism in one of its StreamFields.</p>
+              
             </div>
-        </footer>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../deployment/" class="btn btn-neutral float-left" title="Artifacts and Deployment"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../editing-components/" class="btn btn-neutral float-right" title="Creating and Editing Components">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/cfpb/consumerfinance.gov" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../deployment/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../editing-components/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
 </body>
 </html>
