@@ -28,6 +28,8 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
             registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
             image: ${{ github.repository }}-builder:latest
             options: -v ${{ github.workspace }}:/cfgov
             run: ./_build.sh
