@@ -27,7 +27,7 @@ jobs:
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
-            registry: gcr.io
+            registry: ghcr.io
             image: ${{ github.repository }}-builder:latest
             options: -v ${{ github.workspace }}:/cfgov
             run: ./_build.sh
