@@ -25,14 +25,14 @@ jobs:
         run: yarn run build
 
       - name: Run the build process with Docker
-        container:
-          image: ghcr.io/${{ github.repository }}-builder:main
-          volumes:
-            - ${{ github.workspace }}:/cfgov
-          credentials:
-              username: ${{ github.actor }}
-              password: ${{ secrets.GITHUB_TOKEN }}
-        run: ./_build.sh
+        uses: addnab/docker-run-action@v3
+        with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+            image: ${{ github.repository }}-builder:main
+            options: -v ${{ github.workspace }}:/cfgov
+            run: ./_build.sh
 
       - name: Upload arifact
         uses: keithweaver/aws-s3-github-action@v1.0.0
