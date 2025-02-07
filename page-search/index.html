@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -76,6 +78,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -99,6 +103,8 @@
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -151,8 +157,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Supporting Features &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Supporting Features</li>
       <li class="breadcrumb-item active">Page Search</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/page-search.md" class="icon icon-github"> Edit on GitHub</a>
@@ -257,12 +263,12 @@ class AnswerPageDocument(Document):
 <p>With the <code>Document</code> class created for your model in a <code>documents.py</code> module within a Django app listed in <code>INSTALLED_APPS</code>, all that is left to do is to use the <a href="https://django-opensearch-dsl.readthedocs.io/en/latest/management/">django-opensearch-dsl management commands</a> to rebuild the index:</p>
 <pre class="highlight"><code class="language-shell">./cfgov/manage.py opensearch index --force rebuild [INDEX]
 ./cfgov/manage.py opensearch document --force --indices [INDEX] --refresh --parallel index</code></pre>
-<p>The index for that app's models can also be rebuilt at any time:</p>
-<pre class="highlight"><code class="language-shell">./cfgov/manage.py opensearch index --force rebuild [INDEX]
-./cfgov/manage.py opensearch document --force --indices [INDEX] --refresh --parallel index</code></pre>
+<p>The above commands can also be run to rebuild the index for an app's models at any time.</p>
 <p>Finally, the indexes for all apps can be rebuilt using:</p>
 <pre class="highlight"><code class="language-shell">./cfgov/manage.py opensearch index --force rebuild
 ./cfgov/manage.py opensearch document --force --refresh --parallel index</code></pre>
+<p>Conveniently, we have a shell script that invokes the above two commands to rebuild all indexes:</p>
+<pre class="highlight"><code class="language-shell">./index.sh</code></pre>
 <h2 id="searching">Searching<a class="headerlink" href="#searching" title="Permanent link">¶</a></h2>
 <p>The document class <a href="https://django-opensearch-dsl.readthedocs.io/en/latest/getting_started/#search">provides a <code>search()</code> class method</a> that returns a <a href="https://opensearch.org/docs/latest/opensearch/rest-api/search/"><code>Search</code> object</a>. The <code>Search</code> object is opensearch-dsl-py's representation of Elasticsearch search requests.</p>
 <p>To <a href="https://django-opensearch-dsl.readthedocs.io/en/latest/getting_started/#search">query</a> for a specific term, for example:</p>

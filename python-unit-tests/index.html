@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -76,6 +78,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -85,6 +89,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -155,8 +161,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Testing &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Testing</li>
       <li class="breadcrumb-item active">Python Unit Testing</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/python-unit-tests.md" class="icon icon-github"> Edit on GitHub</a>
@@ -172,8 +178,8 @@
 <p>We have multiple resources for writing new unit tests for Django, Wagtail, and Python code:</p>
 <ul>
 <li><a href="https://github.com/cfpb/development/blob/main/guides/unittesting-django-wagtail.md">CFPB Django and Wagtail unit testing documentation</a></li>
-<li><a href="https://docs.djangoproject.com/en/1.11/topics/testing/overview/">The Django testing documentation</a></li>
-<li><a href="http://docs.wagtail.io/en/stable/advanced_topics/testing.html">The Wagtail testing documentation</a></li>
+<li><a href="https://docs.djangoproject.com/en/stable/topics/testing/overview/">The Django testing documentation</a></li>
+<li><a href="https://docs.wagtail.org/en/stable/advanced_topics/testing.html">The Wagtail testing documentation</a></li>
 <li><a href="https://realpython.com/testing-in-django-part-1-best-practices-and-examples/">Real Python's "Testing in Django"</a></li>
 </ul>
 <h3 id="testing-elasticsearch">Testing Elasticsearch<a class="headerlink" href="#testing-elasticsearch" title="Permanent link">¶</a></h3>
@@ -195,9 +201,9 @@ class MyTests(ElasticsearchTestsMixin, TestCase):
 for additional details on its functionality.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
 <p>If you have set up
-<a href="/installation/#install-system-level-requirements">a standalone installation of consumerfinance.gov</a>,
+<a href="../installation/#install-system-level-requirements">a standalone installation of consumerfinance.gov</a>,
 you'll need to
-<a href="/running-virtualenv/#3-launch-site">activate your virtual environment</a>
+<a href="../running-virtualenv/#3-launch-site">activate your virtual environment</a>
 before running the tests:</p>
 <pre class="highlight"><code class="language-sh">workon consumerfinance.gov</code></pre>
 <p>If you have not set up the standalone installation of consumerfinance.gov,
@@ -205,7 +211,7 @@ you can still run the tests if you install Tox in your
 <a href="https://github.com/cfpb/development/blob/main/guides/installing-python.md">local installation of Python</a>:</p>
 <pre class="highlight"><code>pip install tox</code></pre>
 <p>If you have set up
-<a href="/installation/#docker-based-installation">a Docker-based installation of consumerfinance.gov</a>,
+<a href="../installation/#docker-based-installation">a Docker-based installation of consumerfinance.gov</a>,
 you can run the tests there by
 <a href="http://localhost:8888/running-docker/#access-a-containers-shell">accessing the Python container's shell</a>:</p>
 <pre class="highlight"><code class="language-sh">docker-compose exec python sh</code></pre>
@@ -237,28 +243,26 @@ in Python 3.8.</p>
 <p>Tests will run against the default Django database.</p>
 <p>If you would like to run only a specific test, or the tests for a specific app,
 you can provide a dotted path to the test as the final argument to any of the above calls to <code>tox</code>:</p>
-<pre class="highlight"><code class="language-sh">tox -e unittest regulations3k.tests.test_regdown</code></pre>
+<pre class="highlight"><code class="language-sh">tox -e unittest -- regulations3k.tests.test_regdown</code></pre>
 <p>If you would like to skip running Django migrations when testing, set the
 <code>SKIP_DJANGO_MIGRATIONS</code> environment variable to any value before running <code>tox</code>.</p>
 <h3 id="formatting">Formatting<a class="headerlink" href="#formatting" title="Permanent link">¶</a></h3>
-<p>We use <code>black</code> to autoformat our Python code. <code>black</code> is invoked by Tox using
-the <code>lint</code> environment (this will also run <code>ruff</code> and <code>isort</code>):</p>
+<p>We use <code>ruff</code> to do <code>black</code>-compatible formatting of our Python code. <code>ruff</code> is invoked by Tox using the <code>lint</code> environment (this will also run <code>bandit</code> to do Python-specific static security analysis).</p>
 <pre class="highlight"><code class="language-sh">tox -e lint</code></pre>
-<p><strong>It is highly recommended to only invoke black via tox</strong></p>
+<p>This will run <code>ruff</code> in check-only mode. To automatically fix any formatting issues it flags, run:</p>
+<pre class="highlight"><code class="language-sh">ruff format</code></pre>
 <h3 id="linting">Linting<a class="headerlink" href="#linting" title="Permanent link">¶</a></h3>
-<p>We use the <code>ruff</code> and <code>isort</code> tools to ensure compliance with
+<p>We also use <code>ruff</code> to ensure compliance with
 <a href="https://www.python.org/dev/peps/pep-0008/">PEP8 style guide</a>,
-<a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/">Django coding style guidelines</a>,
+<a href="https://docs.djangoproject.com/en/stable/internals/contributing/writing-code/coding-style/">Django coding style guidelines</a>,
 and the
 <a href="https://github.com/cfpb/development/blob/main/standards/python.md#linting">CFPB Python style guide</a>.</p>
 <p>We also use <a href="https://bandit.readthedocs.io/">Bandit</a> to find any common
 security issues in our Python code.</p>
-<p><code>ruff</code>, <code>isort</code>, and <code>bandit</code> can all be run using the Tox <code>lint</code> environment
-(this will also run <code>black</code>):</p>
+<p><code>ruff</code> and <code>bandit</code> can all be run using the Tox <code>lint</code> environment:</p>
 <pre class="highlight"><code class="language-sh">tox -e lint</code></pre>
-<p>This will run <code>isort</code> in check-only mode and it will print diffs for imports
-that need to be fixed. To automatically fix import sort issues, run:</p>
-<pre class="highlight"><code class="language-sh">isort --recursive cfgov/</code></pre>
+<p>This will run <code>ruff</code> in check-only mode. To automatically (try to) fix any linting issues it flags, run:</p>
+<pre class="highlight"><code class="language-sh">ruff check --fix</code></pre>
 <p>From the root of <code>consumerfinance.gov</code>.</p>
 <h3 id="coverage">Coverage<a class="headerlink" href="#coverage" title="Permanent link">¶</a></h3>
 <p>To see Python code coverage information immediately following a test run,
@@ -283,7 +287,7 @@ but is not used by default when running tests locally.</p>
 <p>If you write Python code that interacts with the GovDelivery subscription API, you can use the functionality provided in <code>core.govdelivery.MockGovDelivery</code> as a mock interface to avoid the use of <code>patch</code> in unit tests.</p>
 <p>This object behaves similarly to the real <code>govdelivery.api.GovDelivery</code> class in that it handles all requests and returns a valid (200) <code>requests.Response</code> instance.</p>
 <p>Conveniently for unit testing, all calls are stored in a class-level list that can be retrieved at <code>MockGovDelivery.calls</code>. This allows for testing of code that interacts with GovDelivery by checking the contents of this list to ensure that the right methods were called.</p>
-<p>This pattern is modeled after Django's <a href="https://docs.djangoproject.com/en/2.0/topics/testing/tools/#email-services"><code>django.core.mail.outbox</code></a> which provides similar functionality for testing sending of emails.</p>
+<p>This pattern is modeled after Django's <a href="https://docs.djangoproject.com/en/stable/topics/testing/tools/#email-services"><code>django.core.mail.outbox</code></a> which provides similar functionality for testing sending of emails.</p>
 <p>The related classes <code>ExceptionMockGovDelivery</code> and <code>ServerErrorMockGovDelivery</code> can similarly be used in unit tests to test for cases where a call to the GovDelivery API raises an exception and returns an HTTP status code of 500, respectively.</p>
               
             </div>

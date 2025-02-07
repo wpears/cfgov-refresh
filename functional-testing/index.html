@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -76,6 +78,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -85,6 +89,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -153,8 +159,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Testing &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Testing</li>
       <li class="breadcrumb-item active">Functional Testing</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/functional-testing.md" class="icon icon-github"> Edit on GitHub</a>
@@ -171,9 +177,11 @@
 <p>We have included Cypress as a dependency of this project. The only installation step is doing a fresh <code>yarn</code> if you haven't already.</p>
 <h2 id="running-cypress-tests">Running Cypress tests<a class="headerlink" href="#running-cypress-tests" title="Permanent link">¶</a></h2>
 <h3 id="cypress-app">Cypress app<a class="headerlink" href="#cypress-app" title="Permanent link">¶</a></h3>
-<p>To run the desktop Cypress app execute <code>yarn cypress open</code> from the command line. From the app, you can select the tests you want to run and the browser you want to run them in.</p>
+<p>To run the desktop Cypress app execute <code>yarn cy open</code> from the command line. From the app, you can select the tests you want to run and the browser you want to run them in.</p>
 <h3 id="command-line">Command line<a class="headerlink" href="#command-line" title="Permanent link">¶</a></h3>
-<p>You can run functional tests from the command line with <code>yarn cypress run</code>. That will run all tests in the <code>test/cypress/integration/</code> directory with the default test configuration: headless, in Cypress's default Electron browser, and against <code>localhost:8000</code>. You might want to modify the test run with some common arguments:</p>
+<p>You can run functional tests from the command line with <code>yarn cy</code>. That will run all tests in the <code>test/cypress/integration/</code> directory with the default test configuration: headless, in Cypress's default Electron browser, and against <code>localhost:8000</code>.</p>
+<p>To run Cypress only on changed specs, run <code>yarn cy fast</code>.</p>
+<p>For a customized Cypress run, you may run <code>yarn cy</code> (or call Cypress directly with <code>npx cypress run</code>) with some common arguments:</p>
 <ul>
 <li><code>--spec test/cypress/integration/{path/to/test.js}</code> runs a single test suite</li>
 <li><code>--browser chrome</code> runs the tests in Chrome, which is what we use to run tests in our continuous integration pipeline</li>
@@ -194,13 +202,13 @@
   }
 
   signUp(email) {
-    cy.get('.o-form__email-signup').within(() =&gt; {
+    cy.get('.o-email-signup form').within(() =&gt; {
       cy.get('input:first').type(email);
       cy.get('button:first').click();
     });
   }
   successNotification() {
-    return cy.get('.m-notification_message');
+    return cy.get('.m-notification__message');
   }
 }</code></pre>
 <p>Notice how this class defines functions to retrieve and modify elements on the page but in a more human readable manner. This allows our test file for consumer tools to look like:</p>

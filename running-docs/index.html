@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Running documentation site locally</a>
     <ul class="current">
     
@@ -80,6 +82,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -89,6 +93,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -141,8 +147,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Running this Project &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Running this Project</li>
       <li class="breadcrumb-item active">Running documentation site locally</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/running-docs.md" class="icon icon-github"> Edit on GitHub</a>
@@ -162,15 +168,15 @@ mkdocs serve</code></pre>
 <a href="http://localhost:8000/">http://localhost:8000/</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>If you are currently running the consumerfinance.gov site locally and
 would like to access the docs at a different port, run,
 for example <code>mkdocs serve -a localhost:8001</code> to serve the docs at port 8001.</p>
+</div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../running-docker/" class="btn btn-neutral float-left" title="Running in Docker"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../running-k8s/" class="btn btn-neutral float-left" title="Running in Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../debugging-monitoring/" class="btn btn-neutral float-right" title="Debugging and Monitoring">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -198,7 +204,7 @@ for example <code>mkdocs serve -a localhost:8001</code> to serve the docs at por
         </span>
     
     
-      <span><a href="../running-docker/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../running-k8s/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../debugging-monitoring/" style="color: #fcfcfc">Next &raquo;</a></span>

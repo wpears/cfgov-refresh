@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -76,6 +78,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -85,6 +89,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -157,8 +163,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Testing &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Testing</li>
       <li class="breadcrumb-item active">JavaScript Unit Testing</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/javascript-unit-tests.md" class="icon icon-github"> Edit on GitHub</a>
@@ -197,22 +203,24 @@ it would be a good idea to peruse their docs before diving in here.</p>
 <li><a href="#testing-user-interaction">Testing user interaction</a></li>
 </ol>
 <h2 id="running-unit-tests">Running unit tests<a class="headerlink" href="#running-unit-tests" title="Permanent link">¶</a></h2>
-<h3 id="run-a-single-test-file">Run a single test file<a class="headerlink" href="#run-a-single-test-file" title="Permanent link">¶</a></h3>
-<p>To run a single test file, pass the name (or path) of the spec:</p>
-<pre class="highlight"><code class="language-bash">yarn jest Notification-spec.js
-# Equivalent to:
-yarn jest test/unit_tests/js/molecules/Notification-spec.js
-# The name argument would technically would match all Notification-spec.js files
-# This usually isn't a problem in our codebase (and you can always get more specific if needed)</code></pre>
-<h3 id="run-a-directory-of-unit-tests">Run a directory of unit tests<a class="headerlink" href="#run-a-directory-of-unit-tests" title="Permanent link">¶</a></h3>
-<p>A directory of unit tests can be run by passing its name or path:</p>
-<pre class="highlight"><code class="language-bash">yarn jest organisms
-yarn jest test/unit_tests/js/organisms</code></pre>
-<h3 id="run-all-unit-tests">Run all unit tests<a class="headerlink" href="#run-all-unit-tests" title="Permanent link">¶</a></h3>
 <p>To run all of the unit tests:</p>
 <pre class="highlight"><code class="language-bash">yarn jest</code></pre>
 <p>To first lint all files and then run tests:</p>
 <pre class="highlight"><code class="language-bash">yarn test</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run a single test, or a directory of tests, you can run, for example:</p>
+<pre class="highlight"><code class="language-bash"># Single test file:
+yarn jest Notification-spec.js
+# Equivalent to:
+yarn jest test/unit_tests/js/molecules/Notification-spec.js
+
+# Directory:
+yarn jest organisms
+# Equivalent to:
+yarn jest test/unit_tests/js/organisms
+</code></pre>
+</div>
 <p>Because we invoke jest directly, you can pass any command-line args it accepts
 to filter your output or to target specific tests <a href="https://jestjs.io/docs/cli">see the docs for more</a>.</p>
 <h2 id="where-to-find-tests">Where to find tests<a class="headerlink" href="#where-to-find-tests" title="Permanent link">¶</a></h2>
@@ -230,7 +238,7 @@ to filter your output or to target specific tests <a href="https://jestjs.io/doc
 The general concept is to start by writing your test <strong>first</strong>,
 with the expected behavior and functionality well-described,
 <strong>then</strong> you write the code that makes the test pass.
-<a href="http://www.javiersaldana.com/tech/2014/11/26/refactoring-the-three-laws-of-tdd.html">A good pithy summary</a>
+<a href="https://www.javiersaldana.com/articles/tech/refactoring-the-three-laws-of-tdd">A good pithy summary</a>
 is:</p>
 <blockquote>
 <ol>
@@ -275,7 +283,7 @@ the structure of the project JavaScript in
 <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/cfgov/unprocessed/js"><code>cfgov/unprocessed/js/</code></a>.</p>
 <p>When considering exactly where to place JavaScript in these directories,
 it might be helpful to review the documentation about
-<a href="../atomic-structure">atomic components in consumerfinance.gov</a>.
+<a href="../atomic-structure/">atomic components in consumerfinance.gov</a>.
 JavaScript corresponding to atomic elements should go into
 the appropriate subfolder for the type of element being implemented.
 In our case, <code>sample.js</code> and <code>sample-spec.js</code> don’t relate to atomic elements,
@@ -283,12 +291,12 @@ so they can be placed into the uncategorized <code>modules</code> subfolders:
 <code>cfgov/unprocessed/js/modules</code> and <code>test/unit_tests/modules</code>, respectively.</p>
 <div class="admonition note">
 <p class="admonition-title">Child apps</p>
-</div>
 <p>If you’re working on something in a child app,
 put it in <code>test/unit_test/appname/js/</code>.
 Otherwise, if you’re working on something that
 belongs to consumerfinance.gov generally,
 it should go in the corresponding folder under <code>test/unit_test/js/</code>.</p>
+</div>
 <h3 id="first-test-run">First test run<a class="headerlink" href="#first-test-run" title="Permanent link">¶</a></h3>
 <p>Now that you have your sample JS and test files in the right places,
 let’s try running them and see what happens!
@@ -299,9 +307,9 @@ to save and commit your changes.</p>
 <li>Edit line 6 of your spec file and remove the call to the <code>.skip</code> method.
    The line should now read:</li>
 </ol>
-<pre class="highlight"><code class="language-js">it( 'should return a string with expected value', () =&gt; {
-  …
-} );</code></pre>
+<pre class="highlight"><code class="language-js">it('should return a string with expected value', () =&gt; {
+  // …
+});</code></pre>
 <ol>
 <li>Run your sample test using</li>
 </ol>
@@ -334,32 +342,12 @@ Let’s take a look at the structure of our very basic sample test file.</p>
 <p>Line 1 of any spec file will use an <code>import</code> statement to
 include the JavaScript file that you are testing.
 Additional dependencies should be added in the same manner.</p>
-<pre class="highlight"><code class="language-js">import sample from '../../../../cfgov/unprocessed/js/modules/sample.js';</code></pre>
-<p>Some test files use <code>const</code> declarations to
-<code>require</code> scripts instead of <code>import</code>,
-because those files were written before <code>import</code> was available.
-We prefer to use <code>import</code> because it allows for tree shaking,
-meaning if two modules are importing the same module
-it should only be included in the bundle once,
-whereas with <code>require</code> it would be included twice.</p>
-<p>A consequence is that variables can’t be used in the import path,
-as they prevent Webpack from figuring out which modules are duplicates.
-For example, this snippet shows how a <code>require</code> statement
-should be converted to an <code>import</code> statement,
-but without including the <code>BASE_JS_PATH</code> variable in the file path:</p>
-<pre class="highlight"><code class="language-js">// This works, but could duplicate footer-button.js, if other files also require it.
-const FooterButton = require( BASE_JS_PATH + 'modules/footer-button.js' );
+<pre class="highlight"><code class="language-js">// This file has a default export.
+import sample from '../../../../cfgov/unprocessed/js/modules/sample.js';
 
-// This doesn't work and the build will fail.
-import * as FooterButton from BASE_JS_PATH + 'modules/footer-button.js';
-
-// This is ugly, but it works and supports tree shaking.
-import * as FooterButton from '../../../../cfgov/unprocessed/js/modules/footer-button.js';</code></pre>
-<p><code>import</code> also provides a benefit in that you can choose specific parts
-of a module so that you only import the dependencies you need.
-For testing purposes, we will typically import the whole module
-to make sure we have full test coverage.
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">Read the <code>import</code> reference guide on MDN</a>
+// Or, if the file has a named export, that can be imported.
+import { sample } from '../../../../cfgov/unprocessed/js/modules/sample.js';</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">Read the <code>import</code> reference guide on MDN</a>
 on how to implement <code>import</code> for different use cases.</p>
 <h4 id="the-describe-function">The <code>describe</code> function<a class="headerlink" href="#the-describe-function" title="Permanent link">¶</a></h4>
 <p>In Jest (whose syntax is based on Jasmine),
@@ -370,9 +358,9 @@ to outline the methods you need in your JS module.</p>
 the name of the JavaScript module we are testing.
 For the sample, the name of our module is <code>sample</code>,
 so we set this up on line 4 of <code>sample-spec.js</code>:</p>
-<pre class="highlight"><code class="language-js">describe( 'sample', () =&gt; {
-  …
-} );</code></pre>
+<pre class="highlight"><code class="language-js">describe('sample', () =&gt; {
+  // …
+});</code></pre>
 <p>This module name will appear in your test output in the console
 when the test is running:</p>
 <p><img alt="Snippet of console output for a unit test that reads 'sample: should return a string with expected value'" src="../img/js-unit-test-output-with-describes.png" /></p>
@@ -494,48 +482,6 @@ how the function should respond to various kinds of input.
 Inside each <code>it</code>, invoke the function
 with the input described in the <code>it</code> statement
 and use <code>expect</code> to check that you receive the desired result.</p>
-<p>Here is a simple example from our
-<a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/unprocessed/js/modules/util/array-helpers.js">array helpers module</a>
-(<code>cfgov/unprocessed/js/modules/util/array-helpers.js</code>):</p>
-<pre class="highlight"><code class="language-js">function indexOfObject(array, key, val) {
-  let match = -1;
-
-  if (!array.length &gt; 0) {
-    return match;
-  }
-
-  array.forEach(function (item, index) {
-    if (item[key] === val) {
-      match = index;
-    }
-  });
-
-  return match;
-}</code></pre>
-<p>Tests for that function, from
-<a href="https://github.com/cfpb/consumerfinance.gov/blob/main/test/unit_tests/js/modules/util/array-helpers-spec.js">test/unit_tests/js/modules/util/array-helpers-spec.js</a>:</p>
-<pre class="highlight"><code class="language-js">describe('indexOfObject()', () =&gt; {
-  it('should return -1 if the array is empty', () =&gt; {
-    array = [];
-    index = arrayHelpers.indexOfObject(array, 'foo');
-
-    expect(index).toBe(-1);
-  });
-
-  it('should return -1 if there is no match', () =&gt; {
-    array = [{ value: 'bar' }, { value: 'baz' }];
-    index = arrayHelpers.indexOfObject(array, 'value', 'foo');
-
-    expect(index).toBe(-1);
-  });
-
-  it('should return the matched index', () =&gt; {
-    array = [{ value: 'foo' }, { value: 'bar' }, { value: 'baz' }];
-    index = arrayHelpers.indexOfObject(array, 'value', 'foo');
-
-    expect(index).toBe(0);
-  });
-});</code></pre>
 <h3 id="testing-dom-manipulation">Testing DOM manipulation<a class="headerlink" href="#testing-dom-manipulation" title="Permanent link">¶</a></h3>
 <p><a href="https://jestjs.io/en/">Jest</a>, the JavaScript testing framework we use,
 <a href="https://jestjs.io/docs/en/configuration#testenvironment-string">includes jsdom</a>,
@@ -558,11 +504,11 @@ we have this function that sets the type of a notification before displaying it:
 
   // Remove existing type class
   const classList = _dom.classList;
-  classList.remove(`${BASE_CLASS}__${_currentType}`);
+  classList.remove(`${BASE_CLASS}___${_currentType}`);
 
   if (type === SUCCESS || type === WARNING || type === ERROR) {
     // Add new type class and update the value of _currentType
-    classList.add(`${BASE_CLASS}__${type}`);
+    classList.add(`${BASE_CLASS}___${type}`);
     _currentType = type;
 
     // Replace &lt;svg&gt; element with contents of type_ICON
@@ -589,25 +535,25 @@ import Notification from '../../../../cfgov/unprocessed/js/molecules/Notificatio
 const HTML_SNIPPET = `
   &lt;div class="m-notification"&gt;
     &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" class="cf-icon-svg"&gt;&lt;/svg&gt;
-    &lt;div class="m-notification_content"&gt;
-      &lt;div class="h4 m-notification_message"&gt;Notification content&lt;/div&gt;
+    &lt;div class="m-notification__content"&gt;
+      &lt;div class="m-notification__message"&gt;Notification content&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 `;
 
-describe( 'Notification', () =&gt; {
+describe('Notification', () =&gt; {
   let notificationElem;
   let notification;
   let thisNotification;
 
-  beforeEach( () =&gt; {
+  beforeEach(() =&gt; {
     document.body.innerHTML = HTML_SNIPPET;
-    notificationElem = document.querySelector( `.${ BASE_CLASS }` );
-    notification = new Notification( notificationElem, BASE_CLASS, {} );
-  } );
+    notificationElem = document.querySelector(`.${BASE_CLASS}`);
+    notification = new Notification(notificationElem, BASE_CLASS, {});
+  });
 
-  …
-} );</code></pre>
+  // …
+});</code></pre>
 <p>The main things to note here at the beginning of the file are
 the addition of the <code>HTML_SNIPPET</code> definition,
 containing the markup we will used for testing
@@ -618,7 +564,6 @@ and assigns the component node to the <code>notificationElem</code> variable, an
 (2) creates a new instance of the Notification class.</p>
 <div class="admonition note">
 <p class="admonition-title">A word about <code>HTML_SNIPPET</code>s</p>
-</div>
 <p>Right now it’s possible to update a component’s Jinja template,
 forget to update the corresponding JavaScript,
 and the unit tests would still pass,
@@ -631,34 +576,29 @@ the tests would have to reconcile
 into a complete, finished chunk of markup.
 For now, just be aware of this when
 <a href="../editing-components/">editing a Wagtail component that includes JavaScript</a>.</p>
+</div>
 <p>Further down, here are some of the tests that cover the <code>_setType</code> function
 (by way of the <code>setTypeAndContent</code> function that
 wraps both <code>_setType</code> and <code>_setContent</code>):</p>
-<pre class="highlight"><code class="language-js">describe( 'setTypeAndContent()', () =&gt; {
-  it( 'should update the notification type for the success state', () =&gt; {
+<pre class="highlight"><code class="language-js">describe('setTypeAndContent()', () =&gt; {
+  it('should update the notification type for the success state', () =&gt; {
     notification.init();
 
-    notification.setTypeAndContent(
-      notification.SUCCESS,
-      ''
-    );
+    notification.setTypeAndContent(notification.SUCCESS, '');
 
-    expect( notificationElem.classList ).toContain( 'm-notification__success' );
-  } );
+    expect(notificationElem.classList).toContain('m-notification--success');
+  });
 
-  it( 'should update the notification type for the warning state', () =&gt; {
+  it('should update the notification type for the warning state', () =&gt; {
     notification.init();
 
-    notification.setTypeAndContent(
-      notification.WARNING,
-      ''
-    );
+    notification.setTypeAndContent(notification.WARNING, '');
 
-    expect( notificationElem.classList ).toContain( 'm-notification__warning' );
-  } );
+    expect(notificationElem.classList).toContain('m-notification--warning');
+  });
 
-  …
-} );</code></pre>
+  // …
+});</code></pre>
 <p>This part mostly works like testing any other function.
 The notable distinction here is that the test invokes the function
 using the DOM nodes and class set up in <code>beforeEach</code>.</p>

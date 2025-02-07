@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -76,6 +78,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -85,6 +89,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -151,8 +157,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Contributing &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Contributing</li>
       <li class="breadcrumb-item active">Related Projects</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/related-projects.md" class="icon icon-github"> Edit on GitHub</a>
@@ -181,12 +187,12 @@ set up the full website.</p>
 <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/requirements/libraries.txt">requirements files</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Thinking about making a new satellite app?</p>
-</div>
 <p>Satellite apps were originally built to be imported into the
 consumerfinance.gov website before we started using Wagtail to manage site
 content. We now prefer to build projects as apps inside the consumerfinance.gov
 repo. For more info, refer to the "Setting up new project code for
 consumerfinance.gov" page on the CFGOV/platform wiki on GHE.</p>
+</div>
 <h2 id="other-python-packages">Other Python packages<a class="headerlink" href="#other-python-packages" title="Permanent link">¶</a></h2>
 <p>CFPB also develops and maintains several other Python source code repositories
 and packages that are used on <a href="https://www.consumerfinance.gov">https://www.consumerfinance.gov</a> but are more
@@ -217,10 +223,11 @@ can be used to swap out package versions.</p>
 <a href="https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs">"editable"</a>
 mode, replacing the satellite app version installed from requirements files
 with your local copy:</p>
-<div class="admonition note the retirement app used in this example is deprecated">
+<div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>The retirement app used in this example is deprecated
+and is shown for illustration purpooses only.</p>
 </div>
-<p>and is shown for illustration purpooses only.</p>
 <pre class="highlight"><code class="language-sh"># In a local virtual environment, after installing consumerfinance.gov.
 # Python packages have been installed from requirements files.
 # This includes, for example, the retirement satellite app:

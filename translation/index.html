@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -76,6 +78,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -85,6 +89,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Translation</a>
     <ul class="current">
@@ -153,8 +159,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Supporting Features &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Supporting Features</li>
       <li class="breadcrumb-item active">Translation</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/translation.md" class="icon icon-github"> Edit on GitHub</a>
@@ -166,7 +172,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="translation">Translation<a class="headerlink" href="#translation" title="Permanent link">¶</a></h1>
-<p>As consumerfinance.gov is a Django project, the <a href="https://docs.djangoproject.com/en/1.11/topics/i18n/translation/">Django translation documentation is a good place to start</a>. What follows is a brief introduction to translations with the particular tools consumerfinance.gov uses (like Jinja2 templates) and the conventions we use.</p>
+<p>As consumerfinance.gov is a Django project, the <a href="https://docs.djangoproject.com/en/stable/topics/i18n/translation/">Django translation documentation is a good place to start</a>. What follows is a brief introduction to translations with the particular tools consumerfinance.gov uses (like Jinja2 templates) and the conventions we use.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
 <p>Django translations use <a href="https://en.wikipedia.org/wiki/Gettext">GNU gettext</a> (see
 <a href="../installation/#install-gnu-gettext-for-django-translation-support">the installation instructions</a>).</p>
@@ -202,8 +208,8 @@ mystring = _("Hello World!")</code></pre>
 <p>Using <code>--ignore=tests</code> will ignore any calls to gettext inside our unit tests.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>If you're generating all languages, this will create <code>django.po</code> files in all our apps with translations. Please do not commit <code>django.po</code> and <code>django.mo</code> files for apps you have not editted.</p>
+</div>
 <h4 id="3-edit-the-portable-object-file-to-add-a-translation-for-the-string">3. Edit the portable object file to add a translation for the string<a class="headerlink" href="#3-edit-the-portable-object-file-to-add-a-translation-for-the-string" title="Permanent link">¶</a></h4>
 <p>The portable object files are stored in <code>[APP]/locale/[LANGUAGE]/LC_MESSAGES/</code>. For the Spanish portable object file, edit <code>[APP]/locale/es/LC_MESSAGES/django.po</code> and add the Spanish translation as the <code>msgstr</code> for your new <code>msgid</code></p>
 <pre class="highlight"><code class="language-po">msgid "Hello World!"
@@ -232,9 +238,9 @@ django-admin compilemessages</code></pre>
 <h4 id="do-not-use-f-strings-in-python-calls-to-gettext">Do not use f-strings in Python calls to gettext:<a class="headerlink" href="#do-not-use-f-strings-in-python-calls-to-gettext" title="Permanent link">¶</a></h4>
 <pre class="highlight"><code class="language-diff">- _(f"Hello {world_name}")
 + _("Hello %(world_name)s" % {'world_name': world_name})</code></pre>
-<p>Django's documentation <a href="https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#standard-translation">has some additional information on the limitations of translatable strings and gettext</a>.</p>
-<h4 id="do-mark-variable-strings-for-translation-with-gettext_noop">Do mark variable strings for translation with <a href="https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#marking-strings-as-no-op"><code>gettext_noop</code></a><a class="headerlink" href="#do-mark-variable-strings-for-translation-with-gettext_noop" title="Permanent link">¶</a></h4>
-<p>If you have a variable that will be translated in a template later using the variable name, but you need to mark it for translation so that <code>makemessages</code> will pick it up, use Django's <a href="https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#marking-strings-as-no-op"><code>gettext_noop</code></a>:</p>
+<p>Django's documentation <a href="https://docs.djangoproject.com/en/stable/topics/i18n/translation/#standard-translation">has some additional information on the limitations of translatable strings and gettext</a>.</p>
+<h4 id="do-mark-variable-strings-for-translation-with-gettext_noop">Do mark variable strings for translation with <a href="https://docs.djangoproject.com/en/stable/topics/i18n/translation/#marking-strings-as-no-op"><code>gettext_noop</code></a><a class="headerlink" href="#do-mark-variable-strings-for-translation-with-gettext_noop" title="Permanent link">¶</a></h4>
+<p>If you have a variable that will be translated in a template later using the variable name, but you need to mark it for translation so that <code>makemessages</code> will pick it up, use Django's <a href="https://docs.djangoproject.com/en/stable/topics/i18n/translation/#marking-strings-as-no-op"><code>gettext_noop</code></a>:</p>
 <pre class="highlight"><code class="language-python">from django.utils.translation import gettext_noop
 
 mystring = gettext_noop("Hello World!")</code></pre>
@@ -247,7 +253,7 @@ mystring = gettext_noop("Hello World!")</code></pre>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../site-search/" class="btn btn-neutral float-left" title="Site Search"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sso/" class="btn btn-neutral float-left" title="Single Sign-On"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../javascript-unit-tests/" class="btn btn-neutral float-right" title="JavaScript Unit Testing">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -275,7 +281,7 @@ mystring = gettext_noop("Hello World!")</code></pre>
         </span>
     
     
-      <span><a href="../site-search/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../sso/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../javascript-unit-tests/" style="color: #fcfcfc">Next &raquo;</a></span>

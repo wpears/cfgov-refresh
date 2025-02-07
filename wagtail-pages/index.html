@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -94,6 +96,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -103,6 +107,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -155,8 +161,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Pages and Components &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Pages and Components</li>
       <li class="breadcrumb-item active">Wagtail Pages</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/wagtail-pages.md" class="icon icon-github"> Edit on GitHub</a>
@@ -168,8 +174,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="wagtail-pages">Wagtail pages<a class="headerlink" href="#wagtail-pages" title="Permanent link">¶</a></h1>
-<p><a href="http://docs.wagtail.io/en/stable/topics/pages.html">Wagtail pages</a> are
-<a href="https://docs.djangoproject.com/en/1.11/topics/db/models/">Django models</a>
+<p><a href="https://docs.wagtail.org/en/stable/topics/pages.html">Wagtail pages</a> are
+<a href="https://docs.djangoproject.com/en/stable/topics/db/models/">Django models</a>
 that are constructed of
 <a href="#fields">fields</a>, <a href="#streamfields">StreamFields</a>, and <a href="#panels">panels</a>
 that are rendered in a standard way.
@@ -177,20 +183,20 @@ All CFPB Wagtail pages should inherit from the
 <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/v1/models/base.py"><code>v1.models.base.CFGOVPage</code> class</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>Before creating a new Wagtail page type
 please consider whether one of our existing page types can meet your needs.
 Talk to the consumerfinance.gov product owners
 if your content is significantly different from anything else on the site
 or a specific maintenance efficiency will be gained from a new page type.</p>
+</div>
 <p>There are types of information defined on a new Wagtail page model:
 basic <a href="#fields">database fields</a> (like any Django model),
 specialized database fields called <a href="#streamfields">StreamFields</a> that allow for freeform page content,
 and <a href="#panels">editor panels</a> that present these fields to content editors.</p>
 <h2 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">¶</a></h2>
 <p>Database fields in Wagtail pages work exactly the same as in
-<a href="https://docs.djangoproject.com/en/1.11/topics/db/models/#fields">Django models</a>,
-and Wagtail pages can use any <a href="https://docs.djangoproject.com/en/1.11/ref/models/fields/">Django model field</a>.</p>
+<a href="https://docs.djangoproject.com/en/stable/topics/db/models/#fields">Django models</a>,
+and Wagtail pages can use any <a href="https://docs.djangoproject.com/en/stable/ref/models/fields/">Django model field</a>.</p>
 <p>For example, our <code>BrowsePage</code>
 <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/v1/models/browse_page.py">includes a standard Django <code>BooleanField</code></a>
 that allows content editors to toggle secondary navigation sibling pages:</p>
@@ -211,7 +217,7 @@ In practice, this provides the flexibility of
 <p>For example, our <code>LandingPage</code> page model
 <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/v1/models/landing_page.py">includes a <code>header</code> StreamField</a>
 that can have a hero and/or a text introduction:</p>
-<pre class="highlight"><code class="language-python">from wagtail.core.fields import StreamField
+<pre class="highlight"><code class="language-python">from wagtail.fields import StreamField
 
 from v1.atomic_elements import molecules
 from v1.models import CFGOVPage
@@ -268,7 +274,7 @@ Checking or unchecking that checkbox will set the value of <code>secondary_nav_e
 the <code>header</code> StreamField
 <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/v1/models/landing_page.py#L31">is added to the <code>content_panels</code> as a <code>StreamFieldPanel</code></a>:</p>
 <pre class="highlight"><code class="language-python">from wagtail.admin.edit_handlers import StreamFieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 
 from v1.atomic_elements import molecules
 from v1.models import CFGOVPage
@@ -318,9 +324,9 @@ class RegulationPage(CFGOVPage):
     subpage_types = []</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>We prevent child pages from being added to <code>RegulationPage</code> and <code>RegulationSearchPage</code>
 by setting <code>subpage_types</code> to an empty list.</p>
+</div>
 <h2 id="template-rendering">Template rendering<a class="headerlink" href="#template-rendering" title="Permanent link">¶</a></h2>
 <p>New Wagtail page types will usually need to make customizations to their base template
 <a href="https://docs.wagtail.io/en/stable/topics/pages.html#template-rendering">when rendering the page</a>.
@@ -328,7 +334,7 @@ This is done by overriding the <code>template</code> attribute on the page model
 <p>For example, the <a href="https://github.com/cfpb/consumerfinance.gov/blob/main/cfgov/regulations3k/models/pages.py">interactive regulations landing page</a>
 includes a customized list of recently issued notices that gets loaded dynamically from the Federal Register.
 To do this it provides its own template that inherits from our base templates
-and overrides the <code>content_sidebar</code> block to include a separate <code>recent_notices</code> template:</p>
+and overrides the <code>content__sidebar</code> block to include a separate <code>recent_notices</code> template:</p>
 <pre class="highlight"><code class="language-python">from v1.models import CFGOVPage
 
 
@@ -347,7 +353,7 @@ class RegulationLandingPage(CFGOVPage):
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../migrations/" class="btn btn-neutral float-left" title="Django and Wagtail Migrations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../caching/" class="btn btn-neutral float-right" title="Caching">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../browser-support/" class="btn btn-neutral float-right" title="Browser Support">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -377,7 +383,7 @@ class RegulationLandingPage(CFGOVPage):
       <span><a href="../migrations/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../caching/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../browser-support/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

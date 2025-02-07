@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docker/">Running in Docker</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running-k8s/">Running in Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running-docs/">Running documentation site locally</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../debugging-monitoring/">Debugging and Monitoring</a>
@@ -90,6 +92,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Supporting Features</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../browser-support/">Browser Support</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../feature-flags/">Feature Flags</a>
@@ -99,6 +103,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../page-search/">Page Search</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../site-search/">Site Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sso/">Single Sign-On</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../translation/">Translation</a>
                   </li>
@@ -151,8 +157,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Pages and Components &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Pages and Components</li>
       <li class="breadcrumb-item active">Creating and Editing Components</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/cfpb/consumerfinance.gov/edit/master/docs/editing-components.md" class="icon icon-github"> Edit on GitHub</a>
@@ -311,15 +317,15 @@ but in the footer on others) on the sidebar tab.</p>
 <hr />
 <div class="admonition note">
 <p class="admonition-title">Don't forget the migrations!</p>
-</div>
 <p>Adding or changing fields on either Python class will always require a new
-<a href="https://docs.djangoproject.com/en/1.11/topics/migrations/">Django schema migration</a>;
-additionally, changing field names or types
-on an existing block will require a
-<a href="https://docs.djangoproject.com/en/1.11/topics/migrations/#data-migrations">Django data migration</a>.
-See the guide on
-<a href="#creating-migrations-for-streamfield-blocks">creating migrations for StreamField blocks</a>
-for more details.</p>
+  <a href="https://docs.djangoproject.com/en/stable/topics/migrations/">Django schema migration</a>;
+  additionally, changing field names or types
+  on an existing block will require a
+  <a href="https://docs.djangoproject.com/en/stable/topics/migrations/#data-migrations">Django data migration</a>.
+  See the guide on
+  <a href="#creating-migrations-for-streamfield-blocks">creating migrations for StreamField blocks</a>
+  for more details.</p>
+</div>
 <h3 id="the-front-end">The front end<a class="headerlink" href="#the-front-end" title="Permanent link">¶</a></h3>
 <p>Before diving into the front-end code, a reminder to
 visit the <a href="../atomic-structure/">Notes on Atomic Design</a> page
@@ -330,7 +336,7 @@ of atoms, molecules, and organisms.</p>
 can be controlled by writing a Django template
 and associating it with the block type.
 A custom block definition can specify the template path in its <code>Meta</code> class:</p>
-<pre class="highlight"><code class="language-python">from wagtail.core import blocks
+<pre class="highlight"><code class="language-python">from wagtail import blocks
 
 
 class PersonBlock(blocks.StructBlock):
@@ -343,26 +349,26 @@ class PersonBlock(blocks.StructBlock):
 in the same way that Django page templates are.
 The specified template path must be loadable
 by one of the Django template engines configured in
-<a href="https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-TEMPLATES"><code>settings.TEMPLATES</code></a>.
+<a href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-TEMPLATES"><code>settings.TEMPLATES</code></a>.
 (This project supports both the standard
-<a href="https://docs.djangoproject.com/en/2.1/topics/templates/#django.template.backends.django.DjangoTemplates">Django templates backend</a>
+<a href="https://docs.djangoproject.com/en/stable/topics/templates/#django.template.backends.django.DjangoTemplates">Django templates backend</a>
 and the
-<a href="https://docs.djangoproject.com/en/2.1/topics/templates/#django.template.backends.jinja2.Jinja2">Jinja2 backend</a>,
+<a href="https://docs.djangoproject.com/en/stable/topics/templates/#django.template.backends.jinja2.Jinja2">Jinja2 backend</a>,
 but Jinja2 is more commonly used.)
-<a href="https://docs.djangoproject.com/en/1.11/topics/templates/#usage">See the Django templates documentation</a>
+<a href="https://docs.djangoproject.com/en/stable/topics/templates/#usage">See the Django templates documentation</a>
 for more details on the search algorithm used to locate a template.</p>
 <p>Returning to the <code>RelatedContent</code> example,
 this is what its Jinja2 template looks like (comments excluded):</p>
 <pre class="highlight"><code class="language-html">&lt;div class="m-related-content"&gt;
   {% if value.heading %}
   &lt;header class="m-slug-header"&gt;
-    &lt;h2 class="a-heading"&gt;{{ value.heading }}&lt;/h2&gt;
+    &lt;h2 class="m-slug-header__heading"&gt;{{ value.heading }}&lt;/h2&gt;
   &lt;/header&gt;
   {% endif %} {{ value.paragraph | safe }} {% if value.links %}
-  &lt;ul class="m-list m-list__links"&gt;
+  &lt;ul class="m-list m-list--links"&gt;
     {% for link in value.links %}
-    &lt;li class="m-list_item"&gt;
-      &lt;a href="{{ link.url }}" class="m-list_link"&gt;{{ link.text }}&lt;/a&gt;
+    &lt;li class="m-list__item"&gt;
+      &lt;a href="{{ link.url }}" class="m-list__link"&gt;{{ link.text }}&lt;/a&gt;
     &lt;/li&gt;
     {% endfor %}
   &lt;/ul&gt;
@@ -383,38 +389,38 @@ those context variables can also be output with simple Jinja2 expression tags:
 <code>{{ context_var }}</code>.</p>
 <h4 id="adding-css">Adding CSS<a class="headerlink" href="#adding-css" title="Permanent link">¶</a></h4>
 <p>If a component needs any custom styling not already provided
-by the <a href="https://github.com/cfpb/design-system">Design System</a> or consumerfinance.gov,
-you can add it by creating a new
-<a href="http://lesscss.org/">Less</a> file for the component.</p>
+by the <a href="https://github.com/cfpb/design-system">Design System</a>
+or consumerfinance.gov, you can add it by creating a new
+<a href="https://sass-lang.com/">SCSS</a> file for the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>Please be sure that you actually need new SCSS before creating it.
+  We have a wide array of styles already available in the
+  <a href="https://cfpb.github.io/design-system/components/">Design System components</a> and
+  <a href="https://github.com/cfpb/consumerfinance.gov/tree/main/cfgov/unprocessed/css">here in consumerfinance.gov</a>,
+  some of which could perhaps be combined to achieve your desired result.
+  Also be sure that new component designs have gone through
+  our internal approval process before adding them to the project.</p>
 </div>
-<p>Please be sure that you actually need new Less before creating it.
-We have a wide array of styles already available in the
-<a href="https://cfpb.github.io/design-system/components/">Design System components</a> and
-<a href="https://github.com/cfpb/consumerfinance.gov/tree/main/cfgov/unprocessed/css">here in consumerfinance.gov</a>,
-some of which could perhaps be combined to achieve your desired result.
-Also be sure that new component designs have gone through
-our internal approval process before adding them to the project.</p>
 <p>If you're working on a general-purpose <a href="../atomic-structure/">atomic component</a>
 for site-wide use, this file should live in
 <code>cfgov/unprocessed/css/&lt;atoms|molecules|organisms&gt;/</code>.
 (Choose the deepest folder according to the atomic rank of the component.)
 Continuing the <code>RelatedContent</code> example, if it needed its own styles,
-it would live at <code>cfgov/unprocessed/css/molecules/related-content.less</code>.</p>
-<p>Newly-created Less files need to be imported into the project's main
-<code>main.less</code> file, located at <code>cfgov/unprocessed/css/main.less</code>.
+it would live at <code>cfgov/unprocessed/css/molecules/related-content.scss</code>.</p>
+<p>Newly-created SCSS files need to be imported (with <code>@use</code>) into the project's
+main <code>main.scss</code> file, located at <code>cfgov/unprocessed/css/main.scss</code>.
 Please place them in the appropriate section for their atomic rank.</p>
-<p>Because consumerfinance.gov uses <code>main.less</code> to build a single CSS file
+<p>Because consumerfinance.gov uses <code>main.scss</code> to build a single CSS file
 for almost the entire project, it is not necessary
 to tell the Python model anything about a component-specific stylesheet
 (for general-purpose, site-wide components).
 That is <em>not</em> the case with JavaScript, as we will see in the next section.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>If you're working on a component that belongs to a particular sub-app,
-its Less file should live in <code>cfgov/unprocessed/&lt;app-name&gt;/css/</code>.</p>
+  its SCSS file should live in <code>cfgov/unprocessed/&lt;app-name&gt;/css/</code>.</p>
+</div>
 <h4 id="adding-javascript">Adding JavaScript<a class="headerlink" href="#adding-javascript" title="Permanent link">¶</a></h4>
 <p>Each atomic component may optionally be given a <code>Media</code> class that can
 list one or more JavaScript files that should be loaded when using it.
@@ -446,13 +452,13 @@ that includes the <code>RelatedContent</code> molecule in one of its StreamField
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>Before creating a new component,
 please consider whether one of our existing components can meet your needs.
 Talk to the consumerfinance.gov product owners if
 your content has specific display requirements that aren't served
 by an existing component, or if
 a specific maintenance efficiency will be gained from a new component.</p>
+</div>
 <h3 id="adding-a-field-to-an-existing-component">Adding a field to an existing component<a class="headerlink" href="#adding-a-field-to-an-existing-component" title="Permanent link">¶</a></h3>
 <ol>
 <li>Locate the Python class of the component you want to add a field to.</li>
